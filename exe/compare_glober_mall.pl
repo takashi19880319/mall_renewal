@@ -264,8 +264,13 @@ while($goods_line = <GOODS_FILE>){
 					if (length($rakuten_select_4_code) != 4) {
 						$rakuten_select_4_code = delete_double_quotation($rakuten_select_code[8]);
 					}
-					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]); 
+					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]);
 					my $rakuten_select_code="$rakuten_select_5code$rakuten_select_4_code";
+					if($rakuten_select_code =~ /"/){
+						my $before_rep_str0="\"";
+						my $after_rep_str0="";
+						$rakuten_select_code =~ s/$before_rep_str0/$after_rep_str0/g;
+					} 
 					if ($glober_goods_9code eq $rakuten_select_code) {
 						$find_flag=1;
 						last;
