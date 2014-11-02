@@ -1,6 +1,6 @@
 # compare_glober_mall.pl
 # author:T.Haashiguchi
-# date:2014/5/1
+# date:2014/11/1
 
 #========== 改訂履歴 ==========
 # date:2014/05/01 modify
