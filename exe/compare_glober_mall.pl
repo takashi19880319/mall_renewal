@@ -261,7 +261,7 @@ while($goods_line = <GOODS_FILE>){
 					my $rakuten_select_4_code=delete_double_quotation($rakuten_select_code[6]);
 					# selectファイルの項目選択肢横軸子番号に4ケタがあるかが確認する。
 					# selectファイルの項目選択肢横軸子番号に4ケタがなかったら、項目選択肢縦軸子番号を変数に入れる。
-					if (length($rakuten_select_4_code) != 4) {
+					if (length($rakuten_select_4_code) < 4) {
 						$rakuten_select_4_code = delete_double_quotation($rakuten_select_code[8]);
 					}
 					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]);
