@@ -697,7 +697,6 @@ sub is_9code {
 ## 指定されたカテゴリ名に対応するカテゴリをXMLファイルから取得する
 sub get_brandname_from_xml {
 	my $category_name = $_[0]; 
-	print "sub get_brandname_from_xml".$category_name."\n";
 	my $info_name = "r_directory";  
 	#brand.xmlからブランド名を取得
 	my $xml = XML::Simple->new;
