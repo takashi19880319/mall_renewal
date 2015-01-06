@@ -488,11 +488,14 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($sub_jpg_num < 6) {
-								&add_y_zip($y_full_file_name);
+								print $y_file_name."\n";
+								&add_y_zip("$y_full_file_name");
 							}
 							else {
-								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+								print "$y_file_name"."\n";
+								&add_y_s_over6_zip("$y_full_file_name", "$y_file_name");
 							}
+							print "$y_thumb_file_name"."\n";
 							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 							# 処理した画像ファイル名を保持
 							my $separator="";
@@ -513,7 +516,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 }
 
 # ZIPファイルのクローズ
-&terminate_y_zip($y_image_dir."/y_pic_".$y_zip_count.".zip");
+&terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
 &terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 
 #=================
@@ -610,10 +613,10 @@ sub image_resize() {
 
 ## Yahoo用のZIPファイルに画像をファイルを追加
 sub add_y_zip() {
-	$y_zip->addFile($_[0]);
+	$y_zip->addFile("$_[0]");
 	if (!(++$y_zip_count % $y_image_max)) {
 		# 新しいZIPファイルにする
-		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
+		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count".".zip");
 		$y_zip = Archive::Zip->new();
 	}
 }
@@ -639,7 +642,11 @@ sub terminate_y_zip() {
 
 ## Yahoo用のZIPファイルの終了処理
 sub terminate_y_s_over6_zip() {
-	$y_s_over6_zip->writeToFileNamed("$_[0]");
+	my $status = $y_s_over6_zip->writeToFileNamed("$_[0]");
+	if ($status eq 'AZ_OK') {
+		output_log("!!!!!zip error [$status] filename[$_[0]]\n");
+		exit 1;
+	}
 }
 
 ## ログ出力
