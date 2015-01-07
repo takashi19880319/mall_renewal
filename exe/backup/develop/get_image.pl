@@ -65,7 +65,7 @@ my $regist_mall_data_file_name_correct="$output_dir"."/"."regist_mall_data_file.
 # 画像を保存するフォルダ名
 my $r_image_dir="../rakuten_up_data/rakuten_image";
 my $y_image_dir="../yahoo_up_data/yahoo_image";
-my $y_s_over6_image_dir="../yahoo_up_data/yahoo_image_s_over6";
+my $y_s_over6_image_dir="./../yahoo_up_data/yahoo_image_s_over6";
 # 取得する写真上限枚数(モール店で使用する最大画像数)
 my $get_image_max_num_= 50;
 # Yahooの画像ZIPファイルに格納するファイル数(上限15MB)
@@ -202,10 +202,6 @@ my $y_s_over6_zip_count=0;
 my %target_image_num;
 my %target_variation;
 my @code_7_list=();
-# _6未満の画像のリスト
-my @y_img_list = ();
-# _6以上の画像のリスト
-my @y_6over_img_list = ();
 my $sabun_line = $input_sabun_csv->getline($input_sabun_file_disc);
 while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	# 既に処理済みの商品の場合はスキップ
@@ -410,15 +406,12 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 				copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");		
 				&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 				if ($y_file_count < 6) {
-					push(@y_img_list,$y_full_file_name);
-#					&add_y_zip($y_full_file_name);
+					&add_y_zip($y_full_file_name);
 				}
 				else {
-					push (@y_6over_img_list,$y_full_file_name);
-#					&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+					&add_y_s_over6_zip($y_full_file_name, $y_file_name);
 				}
-				push (@y_6over_img_list,$y_thumb_full_file_name);
-#				&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+				&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 				# 処理した画像ファイル名を保持
 				my $separator="";
 				if ($y_filename_list ne "") {
@@ -460,15 +453,12 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($y_file_count < 6) {
-								push(@y_img_list,$y_full_file_name);
-#								&add_y_zip($y_full_file_name);
+								&add_y_zip($y_full_file_name);
 							}
 							else {
-								push (@y_6over_img_list,$y_full_file_name);
-#								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
 							}
-							push (@y_6over_img_list,$y_thumb_full_file_name);
-#							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 							# 処理した画像ファイル名を保持
 							my $separator="";
 							if ($y_filename_list ne "") {
@@ -498,15 +488,12 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($sub_jpg_num < 6) {
-								push(@y_img_list,$y_full_file_name);
-#								&add_y_zip("$y_full_file_name");
+								&add_y_zip($y_full_file_name);
 							}
 							else {
-								push (@y_6over_img_list,$y_full_file_name);
-#								&add_y_s_over6_zip("$y_full_file_name", "$y_file_name");
+								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
 							}
-							push (@y_6over_img_list,$y_thumb_full_file_name);
-#							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 							# 処理した画像ファイル名を保持
 							my $separator="";
 							if ($y_filename_list ne "") {
@@ -526,10 +513,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 }
 
 # ZIPファイルのクローズ
-&terminate_y_zip(@y_img_list);
-&terminate_y_s_over6_zip(@y_6over_img_list);
-#&terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
-#&terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
+&terminate_y_zip($y_image_dir."/y_pic_".$y_zip_count.".zip");
+&terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 
 #=================
 # sabunファイルの情報に"親の画像枚数","バリエーション"を追加してregist_mall_data_file.csvを作成
@@ -625,10 +610,10 @@ sub image_resize() {
 
 ## Yahoo用のZIPファイルに画像をファイルを追加
 sub add_y_zip() {
-	$y_zip->addFile("$_[0]");
+	$y_zip->addFile($_[0]);
 	if (!(++$y_zip_count % $y_image_max)) {
 		# 新しいZIPファイルにする
-		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count".".zip");
+		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
 		$y_zip = Archive::Zip->new();
 	}
 }
@@ -636,7 +621,7 @@ sub add_y_zip() {
 ## Yahoo用のZIPファイルにthumbnail, 6以上の画像を追加
 sub add_y_s_over6_zip() {
 	$y_s_over6_zip->addFile("$_[0]", "$_[1]");
-		if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
+	if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
 		# 新しいZIPファイルにする
 		terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 		$y_s_over6_zip = Archive::Zip->new();
@@ -645,21 +630,8 @@ sub add_y_s_over6_zip() {
 
 ## Yahoo用のZIPファイルの終了処理
 sub terminate_y_zip() {
-	$y_zip_count=0;
-	for (my $i = 0; $i <= $#y_img_list; $i++){
-		if (!(++$y_zip_count % $y_image_max)) {
-			my $status = $y_zip->writeToFileNamed("$y_image_dir/y_pic_$y_zip_count.zip");
-			if ($status != 0) {
-				output_log("!!!!!zip error [$status] filename[$_[0]]\n");
-				exit 1;
-			}
-			$y_zip = Archive::Zip->new();
-		}
-		my $y_img_list_name = substr($y_img_list[$i],29);
-		$y_zip->addFile($y_img_list[$i],$y_img_list_name);
-	}
-	my $status = $y_zip->writeToFileNamed("$y_image_dir/y_pic_$y_zip_count.zip");
-	if ($status != 0) {
+	my $status = $y_zip->writeToFileNamed("$_[0]");
+	if ($status eq 'AZ_OK') {
 		output_log("!!!!!zip error [$status] filename[$_[0]]\n");
 		exit 1;
 	}
@@ -667,24 +639,7 @@ sub terminate_y_zip() {
 
 ## Yahoo用のZIPファイルの終了処理
 sub terminate_y_s_over6_zip() {
-	$y_s_over6_zip_count =0;
-	for (my $i = 0; $i <= $#y_6over_img_list; $i++){
-		if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
-			my $status = $y_s_over6_zip->writeToFileNamed("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
-			if ($status != 0) {
-				output_log("!!!!!zip error [$status] filename[$_[0]]\n");
-				exit 1;
-			}
-			$y_s_over6_zip = Archive::Zip->new();
-		}
-		my $y_6over_img_list_name = substr($y_6over_img_list[$i],37);
-		$y_s_over6_zip->addFile($y_6over_img_list[$i],$y_6over_img_list_name);
-	}
-	my $status = $y_s_over6_zip->writeToFileNamed("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
-	if ($status != 0) {
-		output_log("!!!!!zip error [$status] filename[$_[0]]\n");
-		exit 1;
-	}
+	$y_s_over6_zip->writeToFileNamed("$_[0]");
 }
 
 ## ログ出力

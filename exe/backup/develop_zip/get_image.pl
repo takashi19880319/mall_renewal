@@ -65,7 +65,7 @@ my $regist_mall_data_file_name_correct="$output_dir"."/"."regist_mall_data_file.
 # 画像を保存するフォルダ名
 my $r_image_dir="../rakuten_up_data/rakuten_image";
 my $y_image_dir="../yahoo_up_data/yahoo_image";
-my $y_s_over6_image_dir="../yahoo_up_data/yahoo_image_s_over6";
+my $y_s_over6_image_dir="./../yahoo_up_data/yahoo_image_s_over6";
 # 取得する写真上限枚数(モール店で使用する最大画像数)
 my $get_image_max_num_= 50;
 # Yahooの画像ZIPファイルに格納するファイル数(上限15MB)
@@ -655,8 +655,9 @@ sub terminate_y_zip() {
 			}
 			$y_zip = Archive::Zip->new();
 		}
-		my $y_img_list_name = substr($y_img_list[$i],29);
-		$y_zip->addFile($y_img_list[$i],$y_img_list_name);
+		my $y_img_list_name = substr($y_img_list[$i],28,-1);
+		print $y_img_list_name."\n";
+		$y_zip->addFile($y_img_list[$i]);
 	}
 	my $status = $y_zip->writeToFileNamed("$y_image_dir/y_pic_$y_zip_count.zip");
 	if ($status != 0) {
@@ -677,8 +678,7 @@ sub terminate_y_s_over6_zip() {
 			}
 			$y_s_over6_zip = Archive::Zip->new();
 		}
-		my $y_6over_img_list_name = substr($y_6over_img_list[$i],37);
-		$y_s_over6_zip->addFile($y_6over_img_list[$i],$y_6over_img_list_name);
+		$y_s_over6_zip->addFile($y_6over_img_list[$i],"b[$i].jpg");
 	}
 	my $status = $y_s_over6_zip->writeToFileNamed("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 	if ($status != 0) {
