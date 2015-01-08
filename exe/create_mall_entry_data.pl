@@ -3309,7 +3309,7 @@ HTML_STR_1_3
 		$code = &get_5code($global_entry_goods_code)
         }
         else{
-        	$code = $global_entry_goods_code
+        	$code = &get_9code($global_entry_goods_code)
         }
         $additional_2 .= "$html_str1_1"."$code"."_1"."$html_str1_2"."\n";
         $additional_2 .= "$html_str1_1"."$code"."_2"."$html_str1_3";
