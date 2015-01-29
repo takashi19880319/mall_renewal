@@ -2084,9 +2084,7 @@
 	<brand>
 		<category_name>ラルディーニ</category_name>
 		<brand_name>ラルディーニ/Lardini</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lardini/lardini_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lardini/lardini_br.html&gt;ブランド&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ld</r_image>
 		<r_category>ブランドをチェック\ラ行\ラルディーニ</r_category>
 		<y_dictionary>ld-br.html</y_dictionary>

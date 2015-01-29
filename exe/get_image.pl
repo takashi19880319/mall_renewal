@@ -63,7 +63,7 @@ my $output_dir="./..";
 my $regist_mall_data_file_name="$output_dir"."/"."regist_mall_data_file_temp.csv";
 my $regist_mall_data_file_name_correct="$output_dir"."/"."regist_mall_data_file.csv";
 # 画像を保存するフォルダ名
-my $r_image_dir="../rakuten_up_data/rakuten_image";
+my $r_image_dir="../rakuten_up_data/pic";
 my $y_image_dir="../yahoo_up_data/yahoo_image";
 my $y_s_over6_image_dir="../yahoo_up_data/yahoo_image_s_over6";
 # 取得する写真上限枚数(モール店で使用する最大画像数)
