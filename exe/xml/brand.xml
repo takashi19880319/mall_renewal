@@ -1,133 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <brand_info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<brand>
-		<category_name>8010ゲッコー</category_name>
-		<brand_name>8010ゲッコー/8010Gekko</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gekko/gekko_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_gk</r_image>
-		<r_category>ブランドをチェック\カ行\8010ゲッコー</r_category>
-		<y_dictionary>gk-br.html</y_dictionary>
-		<y_path>8010ゲッコー/8010Gekko</y_path>
-	</brand>
-	<brand>
 		<category_name>G.V.コンテ</category_name>
 		<brand_name>G.V.コンテ/G.V.CONTE</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gvconte/gvconte_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gvconte/gvconte_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_gv</r_image>
 		<r_category>ブランドをチェック\サ行\G.V.コンテ</r_category>
 		<y_dictionary>gvconte-br.html</y_dictionary>
 		<y_path>G.V.コンテ/G.V.CONTE</y_path>
+		<r_directory>gvconte</r_directory>
 	</brand>
 	<brand>
 		<category_name>J＆M デヴィッドソン</category_name>
 		<brand_name>J＆M デヴィッドソン/J&amp;M Davidson</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jmdavidson/jmdavidson_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jmdavidson/jmdavidson_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_jm</r_image>
 		<r_category>ブランドをチェック\サ行\J＆M デヴィッドソン</r_category>
 		<y_dictionary>jm-br.html</y_dictionary>
 		<y_path>J＆M デヴィッドソン/J&amp;M Davidson</y_path>
+		<r_directory>jmdavids</r_directory>
 	</brand>
 	<brand>
 		<category_name>J.W.ブライン</category_name>
 		<brand_name>J.W.ブライン/J.W.Brine</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jwbrine/jwbrine_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jwbrine/jwbrine_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_jb</r_image>
 		<r_category>ブランドをチェック\サ行\J.W.ブライン</r_category>
 		<y_dictionary>jwbrine-br.html</y_dictionary>
 		<y_path>J.W.ブライン/J.W.Brine</y_path>
+		<r_directory>jwbrine</r_directory>
 	</brand>
 	<brand>
 		<category_name>KTルイストン</category_name>
 		<brand_name>KTルイストン/K.T.Lewiston</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ktlewiston/ktlewiston_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ktlewiston/ktlewiston_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_kl</r_image>
 		<r_category>ブランドをチェック\カ行\KTルイストン</r_category>
 		<y_dictionary>kl-br.html</y_dictionary>
 		<y_path>KTルイストン/K.T.Lewiston</y_path>
+		<r_directory>ktlewist</r_directory>
 	</brand>
 	<brand>
-		<category_name>PT01/PT05</category_name>
-		<brand_name>PT01/PT05</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/pt01/pt01_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_p1</r_image>
-		<r_category>ブランドをチェック\ハ行\PT01/PT05</r_category>
-		<y_dictionary>p1-br.html</y_dictionary>
-		<y_path>PT01/PT05</y_path>
+		<category_name>アイソック</category_name>
+		<brand_name>アイソック/iSok</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/isok/isok_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_isok</r_image>
+		<r_category>ブランドをチェック\ア行\アイソック</r_category>
+		<y_dictionary>isok-br.html</y_dictionary>
+		<y_path>アイソック/iSok</y_path>
+		<r_directory>isok</r_directory>
 	</brand>
 	<brand>
 		<category_name>アヴィオ</category_name>
 		<brand_name>アヴィオ/Avio</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/avio/avio_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/avio/avio_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_avio</r_image>
 		<r_category>ブランドをチェック\ア行\アヴィオ</r_category>
 		<y_dictionary>avio-br.html</y_dictionary>
 		<y_path>アヴィオ/Avio</y_path>
+		<r_directory>avio</r_directory>
 	</brand>
 	<brand>
 		<category_name>アヴィレックス</category_name>
 		<brand_name>アヴィレックス/Avirex</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/avirex/avirex_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/avirex/avirex_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_av</r_image>
 		<r_category>ブランドをチェック\ア行\アヴィレックス</r_category>
 		<y_dictionary>av-br.html</y_dictionary>
 		<y_path>アヴィレックス/Avirex</y_path>
-	</brand>
-	<brand>
-		<category_name>アドミラル</category_name>
-		<brand_name>アドミラル/Admiral</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/admiral/admiral_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_am</r_image>
-		<r_category>ブランドをチェック\ア行\アドミラル</r_category>
-		<y_dictionary>am-br.html</y_dictionary>
-		<y_path>アドミラル/Admiral</y_path>
-		<y_brand_code>4099</y_brand_code>
+		<r_directory>avirex</r_directory>
 	</brand>
 	<brand>
 		<category_name>アルテア</category_name>
 		<brand_name>アルテア/Altea</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/altea/altea_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/altea/altea_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_altea</r_image>
 		<r_category>ブランドをチェック\ア行\アルテア</r_category>
 		<y_dictionary>altea-br.html</y_dictionary>
 		<y_path>アルテア/Altea</y_path>
+		<r_directory>altea</r_directory>
+	</brand>
+	<brand>
+		<category_name>アルテア</category_name>
+		<brand_name>アルテア/Altea</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/altea/altea_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_altea</r_image>
+		<r_category>ブランドをチェック\ア行\アルテア</r_category>
+		<y_dictionary>altea-br.html</y_dictionary>
+		<y_path>アルテア/Altea</y_path>
+		<r_directory>altea</r_directory>
 	</brand>
 	<brand>
 		<category_name>アルポ</category_name>
 		<brand_name>アルポ/Alpo</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alpo/alpo_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alpo/alpo_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_alpo</r_image>
 		<r_category>ブランドをチェック\ア行\アルポ</r_category>
 		<y_dictionary>alpo-br.html</y_dictionary>
 		<y_path>アルポ/Alpo</y_path>
+		<r_directory>alpo</r_directory>
 	</brand>
 	<brand>
 		<category_name>アニアリ</category_name>
 		<brand_name>アニアリ/Aniary</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/aniary/aniary_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/aniary/aniary_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_aa</r_image>
 		<r_category>ブランドをチェック\ア行\アニアリ</r_category>
 		<y_dictionary>aniary-br.html</y_dictionary>
@@ -139,520 +115,350 @@
 	<brand>
 		<category_name>ストックトン</category_name>
 		<brand_name>ストックトン/Stokton</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/stokton/stokton_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/stokton/stokton_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sto</r_image>
 		<r_category>ブランドをチェック\サ行\ストックトン</r_category>
 		<y_dictionary>sto-br.html</y_dictionary>
 		<y_path>ストックトン/Stokton</y_path>
-	</brand>
-	<brand>
-		<category_name>アルコペディコ WOMEN'S</category_name>
-		<brand_name>アルコペディコ/Arcopedico</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/arcopedico/arcopedico_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_arc</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\ア行\アルコペディコ</r_category>
-		<y_dictionary>arc-br.html</y_dictionary>
-		<y_path>アルコペディコ/Arcopedico</y_path>
-	</brand>
-	<brand>
-		<category_name>アルファインダストリーズ</category_name>
-		<brand_name>アルファインダストリ－ズ/Alphaindustries</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alphaindustries/alphaindustries_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ai</r_image>
-		<r_category>ブランドをチェック\ア行\アルファインダストリーズ</r_category>
-		<y_dictionary>ai-br.html</y_dictionary>
-		<y_path>アルファインダストリーズ</y_path>
-		<y_brand_code>210</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>アレッサンドロ・ゲラルディ</category_name>
-		<brand_name>アレッサンドロ・ゲラルディ/Alessandro Gherardi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alessandrogherardi/alessandrogherardi_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_gherardi</r_image>
-		<r_category>ブランドをチェック\ア行\アレッサンドロ・ゲラルディ</r_category>
-		<y_dictionary>gherardi-br.html</y_dictionary>
-		<y_path>アレッサンドロ・ゲラルディ</y_path>
+		<r_directory>stokton</r_directory>
 	</brand>
 	<brand>
 		<category_name>アンダーソンズ</category_name>
 		<brand_name>アンダーソンズ/Anderson's</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/andersons/andersons_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/andersons/andersons_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_an</r_image>
 		<r_category>ブランドをチェック\ア行\アンダーソンズ</r_category>
 		<y_dictionary>as-br.html</y_dictionary>
 		<y_path>アンダーソンズ/Anderson's</y_path>
+		<r_directory>anderson</r_directory>
+	</brand>
+	<brand>
+		<category_name>アントレ・アミ</category_name>
+		<brand_name>アントレ・アミ/Entre Amis</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/entreamis/entreamis_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_entreamis</r_image>
+		<r_category>ブランドをチェック\ア行\アントレ・アミ</r_category>
+		<y_dictionary>entreamis-br.html</y_dictionary>
+		<y_path>アントレ・アミ/Entre Amis</y_path>
+		<r_directory>entreami</r_directory>
 	</brand>
 	<brand>
 		<category_name>アンドレア・ダミコ</category_name>
 		<brand_name>アンドレア・ダミコ/Andrea D'amico</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href="http://www.rakuten.ne.jp/gold/hff/brand/andreadamico/andreadamico_br.html"&gt;このブランドについて&lt;/a&gt;&lt;/span&gt; &lt;/div&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href="http://www.rakuten.ne.jp/gold/hff/brand/andreadamico/andreadamico_br.html"&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ad</r_image>
 		<r_category>ブランドをチェック\ア行\アンドレア・ダミコ</r_category>
 		<y_dictionary>ad-br.html</y_dictionary>
 		<y_path>アンドレア・ダミコ/Andrea D'amico</y_path>
+		<r_directory>andreada</r_directory>
 	</brand>
 	<brand>
 		<category_name>アンボワーズ</category_name>
 		<brand_name>アンボワーズ/Amboise</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/amboise/amboise_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/amboise/amboise_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ab</r_image>
 		<r_category>ブランドをチェック\ア行\アンボワーズ</r_category>
 		<y_dictionary>ab-br.html</y_dictionary>
 		<y_path>アンボワーズ/Amboise</y_path>
-	</brand>
-	<brand>
-		<category_name>イザイア</category_name>
-		<brand_name>イザイア/Isaia</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/isaia/isaia_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_is</r_image>
-		<r_category>ブランドをチェック\ア行\イザイア</r_category>
-		<y_dictionary>is-br.html</y_dictionary>
-		<y_path>イザイア/Isaia</y_path>
-		<y_brand_code>4028</y_brand_code>
+		<r_directory>amboise</r_directory>
 	</brand>
 	<brand>
 		<category_name>イレブンティ</category_name>
 		<brand_name>イレブンティ/Eleventy</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/eleventy/eleventy_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/eleventy/eleventy_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ele</r_image>
 		<r_category>ブランドをチェック\ア行\イレブンティ</r_category>
 		<y_dictionary>eleventy-br.html</y_dictionary>
 		<y_path>イレブンティ/eleventy</y_path>
+		<r_directory>eleventy</r_directory>
 	</brand>
 	<brand>
 		<category_name>インコテックス</category_name>
 		<brand_name>インコテックス</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/incotex/incotex_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/incotex/incotex_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ic</r_image>
 		<r_category>ブランドをチェック\ア行\インコテックス</r_category>
 		<y_dictionary>inc-br.html</y_dictionary>
 		<y_path>インコテックス/incotex</y_path>
+		<r_directory>incotex</r_directory>
 		<y_brand_code>4030</y_brand_code>
 	</brand>
 	<brand>
-		<category_name>ウイリアム</category_name>
-		<brand_name>ウイリアム/William</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/william/william_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_wi</r_image>
-		<r_category>ブランドをチェック\ア行\ウイリアム</r_category>
-		<y_dictionary>wi-br.html</y_dictionary>
-		<y_path>ウイリアム/William</y_path>
-	</brand>
-	<brand>
-		<category_name>ヴァッツォレール</category_name>
-		<brand_name>ヴァッツォレール/Vazzoler</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/william/vazzoler_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_wi</r_image>
-		<r_category>ブランドをチェック\ア行\ヴァッツォレール</r_category>
-		<y_dictionary>wi-br.html</y_dictionary>
-		<y_path>ヴァッツォレール/Vazzoler</y_path>
-	</brand>
-	<brand>
-		<category_name>エーグル WOMEN'S</category_name>
-		<brand_name>エーグル/Aigle</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/aigle/aigle_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_3a</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\ア行\エーグル</r_category>
-		<y_dictionary>3a-br.html</y_dictionary>
-		<y_path>エーグル　WOMEN'S/Aigle</y_path>
+		<category_name>ヴィガーノ</category_name>
+		<brand_name>ヴィガーノ/Vigano</brand_name>
+		<r_dictionary>&lt;ul class="link2"&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/vigano/vigano_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_vigano</r_image>
+		<r_category>ブランドをチェック\ア行\ヴィガーノ</r_category>
+		<y_dictionary>vigano-br.html</y_dictionary>
+		<y_path>ヴィガーノ/Vigano</y_path>
+		<r_directory>vigano</r_directory>
 	</brand>
 	<brand>
 		<category_name>エイドス</category_name>
 		<brand_name>エイドス/Eidos</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/eidos/eidos_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/eidos/eidos_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_eidos</r_image>
 		<r_category>ブランドをチェック\ア行\エイドス</r_category>
 		<y_dictionary>eidos-br.html</y_dictionary>
 		<y_path>エイドス/Eidos</y_path>
+		<r_directory>eidos</r_directory>
 	</brand>
 	<brand>
-		<category_name>エモジオーニ</category_name>
-		<brand_name>エモジオーニ/Emozioni</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/emozioni/emozioni_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_em</r_image>
-		<r_category>ブランドをチェック\ア行\エモジオーニ</r_category>
-		<y_dictionary>em-br.html</y_dictionary>
-		<y_path>エモジオーニ/Emozioni</y_path>
+		<category_name>エーエムビー</category_name>
+		<brand_name>エーエムビー/Amb</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/amb/amb_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_amb</r_image>
+		<r_category>ブランドをチェック\ア行\エーエムビー</r_category>
+		<y_dictionary>amb2-br.html</y_dictionary>
+		<y_path>エーエムビー/Amb</y_path>
+		<r_directory>amb</r_directory>
 	</brand>
 	<brand>
-		<category_name>エリザベス・パーカー</category_name>
-		<brand_name>エリザベス・パーカー/Elizabeth Parker</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/elizabeth/ep_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ep</r_image>
-		<r_category>ブランドをチェック\ア行\エリザベス・パーカー</r_category>
-		<y_dictionary>ep-br.html</y_dictionary>
-		<y_path>エリザベス・パーカー/Elizabeth Parker</y_path>
+		<category_name>エーエムビー WOMEN'S</category_name>
+		<brand_name>エーエムビー WOMEN'S/Amb WOMEN'S</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/amb/amb_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_amb</r_image>
+		<r_category>ブランドをチェック\ア行\エーエムビー</r_category>
+		<y_dictionary>amb2-br.html</y_dictionary>
+		<y_path>エーエムビー/Amb</y_path>
+		<r_directory>zzamb</r_directory>
 	</brand>
 	<brand>
 		<category_name>エル・ビー・エム1911</category_name>
 		<brand_name>エル・ビー・エム1911/L.B.M1911</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lbm1911/lbm1911_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lbm1911/lbm1911_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_lbm1911</r_image>
 		<r_category>ブランドをチェック\ア行\エル・ビー・エム1911</r_category>
 		<y_dictionary>lbm1911-br.html</y_dictionary>
 		<y_path>エル・ビー・エム1911/L.B.M1911</y_path>
+		<r_directory>lbm1911</r_directory>
 	</brand>
 	<brand>
 		<category_name>エンメティ</category_name>
 		<brand_name>エンメティ/EMMETI</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/emmeti/emmeti_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/emmeti/emmeti_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_et</r_image>
 		<r_category>ブランドをチェック\ア行\エンメティ</r_category>
 		<y_dictionary>et-br.html</y_dictionary>
 		<y_path>エンメティ/Emmeti</y_path>
+		<r_directory>emmeti</r_directory>
 	</brand>
 	<brand>
 		<category_name>エンメティ WOMEN'S</category_name>
 		<brand_name>エンメティ  WOMEN'S/EMMETI  WOMEN'S</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/emmeti/emmeti_wm_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/emmeti/emmeti_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_et</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\ア行\エンメティ　WOMEN'S</r_category>
 		<y_dictionary>wet-br.html</y_dictionary>
 		<y_path>エンメティ  WOMEN'S/EMMETI  WOMEN'S</y_path>
-	</brand>
-	<brand>
-		<category_name>オヴィリ</category_name>
-		<brand_name>オヴィリ/Oviri</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/oviri/oviri_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ov</r_image>
-		<r_category>ブランドをチェック\ア行\オヴィリ</r_category>
-		<y_dictionary>ov-br.html</y_dictionary>
-		<y_path>オヴィリ/Oviri</y_path>
+		<r_directory>zzemmeti</r_directory>
 	</brand>
 	<brand>
 		<category_name>オネット</category_name>
 		<brand_name>オネット/Honnete</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/honnete/honnete_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/honnete/honnete_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ho</r_image>
 		<r_category>ブランドをチェック\ア行\オネット</r_category>
 		<y_dictionary>ho-br.html</y_dictionary>
 		<y_path>オネット/Honnete</y_path>
+		<r_directory>honnete</r_directory>
 	</brand>
 	<brand>
 		<category_name>オリアン</category_name>
 		<brand_name>オリアン/Orian</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orian/orian_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orian/orian_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_or</r_image>
 		<r_category>ブランドをチェック\ア行\オリアン</r_category>
 		<y_dictionary>or-br.html</y_dictionary>
 		<y_path>オリアン/Orian</y_path>
+		<r_directory>orian</r_directory>
 		<y_brand_code>4024</y_brand_code>
+	</brand>
+	<brand>
+		<category_name>オリアン WOMEN'S</category_name>
+		<brand_name>オリアン/Orian WOMEN'S</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orian/orian_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_or</r_image>
+		<r_category>ブランドをチェック\ア行\オリアン WOMEN'S</r_category>
+		<y_dictionary>orw-br.html</y_dictionary>
+		<y_path>オリアン/Orian WOMEN'S</y_path>
+		<r_directory>zzorian</r_directory>
 	</brand>
 	<brand>
 		<category_name>オロビアンコ</category_name>
 		<brand_name>オロビアンコ/Orobianco</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orobianco/orobianco_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orobianco/orobianco_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ob</r_image>
 		<r_category>ブランドをチェック\ア行\オロビアンコ</r_category>
 		<y_dictionary>ob-br.html</y_dictionary>
 		<y_path>オロビアンコ/Orobianco</y_path>
-		<y_brand_code>541</y_brand_code>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-	</brand>
-	<brand>
-		<category_name>オロビアンコ・タイムオラ</category_name>
-		<brand_name>オロビアンコ・タイムオラ/Orobianco Timeora</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orobiancotimeora/orobiancotimeora_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orobiancotimeora/orobiancotimeora_cl.html&gt;コレクション紹介&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/orobiancotimeora/orobiancotimeora_pb.html&gt;パブリシティ掲載記事&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_to</r_image>
-		<r_category>ブランドをチェック\ア行\オロビアンコ・タイムオラ</r_category>
-		<y_dictionary>to-pb.html</y_dictionary>
-		<y_path>オロビアンコ・タイムオラ</y_path>
+		<r_directory>orobianc</r_directory>
 		<y_brand_code>541</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>オロブル</category_name>
 		<brand_name>オロブル/Oroblu</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/oroblu/oroblu_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/oroblu/oroblu_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ou</r_image>
 		<r_category>ブランドをチェック\ア行\オロブル</r_category>
 		<y_dictionary>ou-br.html</y_dictionary>
 		<y_path>オロブル/Oroblu</y_path>
-	</brand>
-	<brand>
-		<category_name>ガイモ WOMEN'S</category_name>
-		<brand_name>ガイモ/Gaimo</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gaimo/gaimo_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_3g</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\カ行\ガイモ</r_category>
-		<y_dictionary>3g-br.html</y_dictionary>
-		<y_path>ガイモ WOMEN'S</y_path>
+		<r_directory>oroblu</r_directory>
 	</brand>
 	<brand>
 		<category_name>カスタニエール</category_name>
 		<brand_name>カスタニエール/Castaner</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/castaner/castaner_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/castaner/castaner_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ct</r_image>
 		<r_category>ブランドをチェック\カ行\カスタニエール</r_category>
 		<y_dictionary>castaner-br.html</y_dictionary>
 		<y_path>カスタニエール/Castaner</y_path>
+		<r_directory>castaner</r_directory>
 	</brand>
 	<brand>
 		<category_name>カスタニエール WOMEN'S</category_name>
 		<brand_name>カスタニエール/Castaner</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/castaner/castaner_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/castaner/castaner_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ct</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\カ行\カスタニエール</r_category>
 		<y_dictionary>castaner-br.html</y_dictionary>
 		<y_path>カスタニエール WOMEN'S/Castaner</y_path>
+		<r_directory>zzcastan</r_directory>
 	</brand>
 	<brand>
 		<category_name>カナタ</category_name>
 		<brand_name>カナタ/Kanata</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kanata/kanata_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kanata/kanata_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_kn</r_image>
 		<r_category>ブランドをチェック\カ行\カナタ</r_category>
 		<y_dictionary>kn-br.html</y_dictionary>
 		<y_path>カナタ/Kanata</y_path>
+		<r_directory>kanata</r_directory>
 	</brand>
 	<brand>
 		<category_name>カナダグース</category_name>
 		<brand_name>カナダグース/Canada Goose</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/canadagoose/canadagoose_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/canadagoose/canadagoose_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cg</r_image>
 		<r_category>ブランドをチェック\カ行\カナダグース</r_category>
 		<y_dictionary>cg-br.html</y_dictionary>
 		<y_path>カナダグース/Canada Goose</y_path>
+		<r_directory>canadago</r_directory>
 		<y_brand_code>569</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>カナダグース WOMEN'S</category_name>
 		<brand_name>カナダグース WOMEN'S/Canada Goose WOMEN'S</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/canadagoose/canadagoose_wm_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/canadagoose/canadagoose_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cg</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\カ行\カナダグース　WOMEN'S</r_category>
 		<y_dictionary>wcg-br.html</y_dictionary>
 		<y_path>カナダグース/Canada Goose  WOMEN'S</y_path>
+		<r_directory>zzcanada</r_directory>
 		<y_brand_code>569</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>カミナンド</category_name>
-		<brand_name>カミナンド/Caminando</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/caminando/caminando_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_cd</r_image>
-		<r_category>ブランドをチェック\カ行\カミナンド</r_category>
-		<y_dictionary>cd-br.html</y_dictionary>
-		<y_path>カミナンド/Caminando</y_path>
 	</brand>
 	<brand>
 		<category_name>ガレリアント</category_name>
 		<brand_name>ガレリアント/Galleriant</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/galleriant/gal_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/galleriant/gal_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_gal</r_image>
 		<r_category>ブランドをチェック\カ行\ガレリアント</r_category>
 		<y_dictionary>gal-br.html</y_dictionary>
 		<y_path>ガレリアント/Galleriant</y_path>
-	</brand>
-	<brand>
-		<category_name>カルザノール</category_name>
-		<brand_name>カルザノール/Calzanor</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/calzanor/calzanor_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_cz</r_image>
-		<r_category>ブランドをチェック\カ行\カルザノール</r_category>
-		<y_dictionary>cz-br.html</y_dictionary>
-		<y_path>カルザノール/Calzanor</y_path>
+		<r_directory>galleria</r_directory>
 	</brand>
 	<brand>
 		<category_name>カルザノール WOMEN'S</category_name>
 		<brand_name>カルザノール/Calzanor</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/calzanor/calzanor_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/calzanor/calzanor_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cz</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\カ行\カルザノール</r_category>
 		<y_dictionary>cz-br.html</y_dictionary>
 		<y_path>カルザノール WOMEN'S</y_path>
+		<r_directory>zzcalzan</r_directory>
 	</brand>
 	<brand>
 		<category_name>カメルーチ・アキーボ</category_name>
 		<brand_name>カメルーチ・アキーボ/Camerucci Archivio</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/camerucci/camerucci_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/camerucci/camerucci_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_camerucci</r_image>
 		<r_category>ブランドをチェック\カ行\カメルーチ・アキーボ</r_category>
 		<y_dictionary>camerucci-br.html</y_dictionary>
 		<y_path>カメルーチ・アキーボ/Camerucci Archivio</y_path>
-		<r_directory>camerucci</r_directory>
+		<r_directory>camerucc</r_directory>
 	</brand>
 	<brand>
 		<category_name>ギ・ローバー</category_name>
 		<brand_name>ギ・ローバー/Guy Rover</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/guyrover/guyrover_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/guyrover/guyrover_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_gy</r_image>
 		<r_category>ブランドをチェック\カ行\ギ・ローバー</r_category>
 		<y_dictionary>guyrover-br.html</y_dictionary>
 		<y_path>ギ・ローバー/Guy Rover</y_path>
+		<r_directory>guyrover</r_directory>
 	</brand>
 	<brand>
 		<category_name>クラークス</category_name>
 		<brand_name>クラークス/Clarks</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/clarks/clarks_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/clarks/clarks_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ck</r_image>
 		<r_category>ブランドをチェック\カ行\クラークス</r_category>
 		<y_dictionary>ck-br.html</y_dictionary>
 		<y_path>クラークス</y_path>
+		<r_directory>clarks</r_directory>
 		<y_brand_code>649</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>グラソン</category_name>
 		<brand_name>グラソン/Glacon</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/glacon/glacon_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/glacon/glacon_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_gl</r_image>
 		<r_category>ブランドをチェック\カ行\グラソン</r_category>
 		<y_dictionary>gl-br.html</y_dictionary>
 		<y_path>グラソン/Glacon</y_path>
+		<r_directory>glacon</r_directory>
 	</brand>
 	<brand>
 		<category_name>グラミチ</category_name>
 		<brand_name>グラミチ/Gramicci</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gramicci/gramicci_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gramicci/gramicci_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_gr</r_image>
 		<r_category>ブランドをチェック\カ行\グラミチ</r_category>
 		<y_dictionary>gr-br.html</y_dictionary>
 		<y_path>グラミチ/Gramicci</y_path>
+		<r_directory>gramicci</r_directory>
 		<y_brand_code>664</y_brand_code>
 	</brand>
 	<brand>
-		<category_name>グラミチ WOMEN'S</category_name>
-		<brand_name>グラミチ/Gramicci</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gramicci/gramicci_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_gr</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\カ行\グラミチ</r_category>
-		<y_dictionary>gr-br.html</y_dictionary>
-		<y_path>ブランドをチェック　WOMEN'S\カ行\グラミチ</y_path>
-	</brand>
-	<brand>
-		<category_name>グリジオペルラ</category_name>
-		<brand_name>グリジオ・ペルラ/Grigio Perla</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/grigioperla/grigioperla_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_gp</r_image>
-		<r_category>ブランドをチェック\カ行\グリジオ・ペルラ</r_category>
-		<y_dictionary>gp-br.html</y_dictionary>
-		<y_path>グリジオ・ペルラ</y_path>
+		<category_name>グレンプリンス</category_name>
+		<brand_name>グレンプリンス/Glen Prince</brand_name>
+		<r_image>brand_top_glenprince</r_image>
+		<r_category>ブランドをチェック\カ行\グレンプリンス</r_category>
+		<y_path>グレンプリンス/Glen Prince</y_path>
+		<r_directory>glenprin</r_directory>
 	</brand>
 	<brand>
 		<category_name>クルチアーニ</category_name>
 		<brand_name>クルチアーニ/Cruciani</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cruciani_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cruciani_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cc</r_image>
 		<r_category>ブランドをチェック\カ行\クルチアーニ</r_category>
 		<y_dictionary>cc-br.html</y_dictionary>
 		<y_path>クルチアーニ/Cruciani</y_path>
+		<r_directory>cruciani</r_directory>
 		<y_brand_code>4033</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>グレンダ WOMEN'S</category_name>
-		<brand_name>グレンダ/Grendha</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/grendha/grendha_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_5g</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\カ行\グレンダ</r_category>
-	</brand>
-	<brand>
-		<category_name>グレンフェル</category_name>
-		<brand_name>グレンフェル/Grenfell</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/grenfell/grenfell_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_gf</r_image>
-		<r_category>ブランドをチェック\カ行\グレンフェル</r_category>
-		<y_dictionary>gren-br.html</y_dictionary>
-		<y_path>グレンフェル/Grenfell</y_path>
 	</brand>
 	<brand>
 		<category_name>グローバーオール</category_name>
 		<brand_name>グローバーオール/Gloverall</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gloverall/gloverallcompany.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gloverall/gloverallcompany.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ga</r_image>
 		<r_category>ブランドをチェック\カ行\グローバーオール</r_category>
 		<y_dictionary>ga-br.html</y_dictionary>
 		<y_path>グローバーオール/Gloverall</y_path>
+		<r_directory>gloveral</r_directory>
 		<y_brand_code>703</y_brand_code>
 	</brand>
 	<brand>
@@ -666,163 +472,117 @@
 &lt;tr&gt;
 &lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>GLOBERブックス</y_path>
+		<r_directory>globerbo</r_directory>
 	</brand>
 	<brand>
 		<category_name>クロケット＆ジョーンズ</category_name>
 		<brand_name>クロケット＆ジョーンズ/Crockett&amp;Jones</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_repair.html&gt;リペア&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_brand.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/crockett/cj_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cj</r_image>
 		<r_category>ブランドをチェック\カ行\クロケット＆ジョーンズ</r_category>
 		<y_dictionary>cj-mt.html</y_dictionary>
 		<y_path>クロケット＆ジョーンズ</y_path>
+		<r_directory>crockett</r_directory>
 		<y_brand_code>706</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>ケアレーベル</category_name>
 		<brand_name>ケアレーベル/Carelabel</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/carelabel/carelabel_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/carelabel/carelabel_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_carelabel</r_image>
 		<r_category>ブランドをチェック\カ行\ケアレーベル</r_category>
 		<y_dictionary>carelabel-br.html</y_dictionary>
 		<y_path>ケアレーベル/Carelabel</y_path>
+		<r_directory>carelabe</r_directory>
 	</brand>
 	<brand>
 		<category_name>ケプト</category_name>
 		<brand_name>ケプト/Kept</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kept/kept_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kept/kept_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_kept</r_image>
 		<r_category>ブランドをチェック\カ行\ケプト</r_category>
 		<y_dictionary>kept-br.html</y_dictionary>
 		<y_path>ケプト/kept</y_path>
+		<r_directory>kept</r_directory>
 	</brand>
 	<brand>
 		<category_name>ケント</category_name>
 		<brand_name>ケント/Kent</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kent/kent_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kent/kent_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kent/kent_brand.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/kent/kent_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_kt</r_image>
 		<r_category>ブランドをチェック\カ行\ケント</r_category>
 		<y_dictionary>kt-fa.html</y_dictionary>
 		<y_path>ケント/Kent</y_path>
+		<r_directory>kent</r_directory>
 	</brand>
 	<brand>
-		<category_name>コース バッグ WOMEN'S</category_name>
-		<brand_name>コース/Koos</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.htmlメンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ko</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\カ行\コース バッグ</r_category>
-		<y_dictionary>ks-mt.html</y_dictionary>
-		<y_path>コース バッグ　WOMEN'S/Koos</y_path>
-	</brand>
-	<brand>
-		<category_name>コース メンズ</category_name>
-		<brand_name>コース/Koos</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.htmlメンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ko</r_image>
-		<r_category>ブランドをチェック\カ行\コース</r_category>
-		<y_dictionary>ks-mt.html</y_dictionary>
-		<y_path>コース MEN'S/Koos</y_path>
+		<category_name>コユック</category_name>
+		<brand_name>コユック/Koyuk</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koyuk/koyuk_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_koyuk</r_image>
+		<r_category>ブランドをチェック\カ行\コユック</r_category>
+		<y_dictionary>koyuk-br.html</y_dictionary>
+		<y_path>コユック/Koyuk</y_path>
+		<r_directory>koyuk</r_directory>
 	</brand>
 	<brand>
 		<category_name>コース WOMEN'S</category_name>
 		<brand_name>コース/Koos</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.htmlメンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.htmlメンテナンス&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ko</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\カ行\コース WOMEN'S</r_category>
 		<y_dictionary>ks-mt.html</y_dictionary>
 		<y_path>コース WOMEN'S/Koos</y_path>
+		<r_directory>zzkoos</r_directory>
 	</brand>
 	<brand>
 		<category_name>ザネラート</category_name>
 		<brand_name>ザネラート/Zanellato</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/zanellato/zanellato_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/zanellato/zanellato_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_zanellato</r_image>
 		<r_category>ブランドをチェック\サ行\ザネラート</r_category>
 		<y_dictionary>zanellato-br.html</y_dictionary>
 		<y_path>ザネラート/Zanellato</y_path>
+		<r_directory>zanellat</r_directory>
 	</brand>
 	<brand>
 		<category_name>ザノーネ</category_name>
 		<brand_name>ザノーネ/Zanone</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/zanone/zanone_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/zanone/zanone_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_zan</r_image>
 		<r_category>ブランドをチェック\サ行\ザノーネ</r_category>
 		<y_dictionary>zanone-br.html</y_dictionary>
 		<y_path>ザノーネ/Zanone</y_path>
-	</brand>
-	<brand>
-		<category_name>サンダース</category_name>
-		<brand_name>サンダース/Sanders</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/sanders/sanders_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_sd</r_image>
-		<r_category>ブランドをチェック\サ行\サンダース</r_category>
-		<y_dictionary>sd-br.html</y_dictionary>
-		<y_path>サンダース/Sanders</y_path>
+		<r_directory>zanone</r_directory>
 	</brand>
 	<brand>
 		<category_name>サンバティ</category_name>
 		<brand_name>サンバティ/Smbati</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/smbati/smbati_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/smbati/smbati_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_smb</r_image>
 		<r_category>ブランドをチェック\サ行\サンバティ</r_category>
 		<y_dictionary>smbati-br.html</y_dictionary>
 		<y_path>サンバティ/Smbati</y_path>
+		<r_directory>smbati</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジーティーアー</category_name>
 		<brand_name>ジーティーアー/G.T.A</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gta/gta_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gta/gta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_seg</r_image>
 		<r_category>ブランドをチェック\サ行\ジーティーアー</r_category>
 		<y_dictionary>gt-br.html</y_dictionary>
 		<y_path>ジー・ティー・アー/G.T.A</y_path>
-	</brand>
-	<brand>
-		<category_name>シーグリーン</category_name>
-		<brand_name>シーグリーン/Seagreen</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/seagreen/seg_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_seg</r_image>
-		<r_category>ブランドをチェック\サ行\シーグリーン</r_category>
-		<y_dictionary>seg-br.html</y_dictionary>
-		<y_path>シーグリーン/Seagreen</y_path>
+		<r_directory>gta</r_directory>
 	</brand>
 	<brand>
 		<category_name>シセイ</category_name>
 		<brand_name>シセイ/Cisei</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cisei/cisei_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cisei/cisei_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ci</r_image>
 		<r_category>ブランドをチェック\サ行\シセイ</r_category>
 		<y_dictionary>ci-br.html</y_dictionary>
@@ -832,126 +592,93 @@
 	<brand>
 		<category_name>シビリア</category_name>
 		<brand_name>シビリア/Siviglia</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/siviglia/siviglia_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/siviglia/siviglia_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sv</r_image>
 		<r_category>ブランドをチェック\サ行\シビリア</r_category>
 		<y_dictionary>siviglia-br.html</y_dictionary>
 		<y_path>シビリア/Siviglia</y_path>
+		<r_directory>siviglia</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジャベツ・クリフ</category_name>
 		<brand_name>ジャベツクリフ/jabez cliff</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jabezcliff/jabezcliff_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jabezcliff/jabezcliff_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_jc</r_image>
 		<r_category>ブランドをチェック\サ行\ジャベツクリフ</r_category>
 		<y_dictionary>jabezcliff_br.html</y_dictionary>
 		<y_path>ジャベツクリフ/jabez cliff</y_path>
+		<r_directory>jabetzcl</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジャミーソンズ</category_name>
 		<brand_name>ジャミーソンズ/Jamieson's</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jamiesons/jamiesons_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/jamiesons/jamiesons_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ja</r_image>
 		<r_category>ブランドをチェック\サ行\ジャミーソンズ</r_category>
 		<y_dictionary>ja-br.html</y_dictionary>
 		<y_path>ジャミーソンズ/Jamieson's</y_path>
+		<r_directory>jamieson</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジャンネット・ポルトフィーノ</category_name>
 		<brand_name>ジャンネット・ポルトフィーノ/Giannetto Portofino</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/giannetto/giannetto_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/giannetto/giannetto_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_giannetto</r_image>
 		<r_category>ブランドをチェック\サ行\ジャンネット・ポルトフィーノ</r_category>
 		<y_dictionary>giannetto-br.html</y_dictionary>
 		<y_path>ジャンネット・ポルトフィーノ/Giannetto Portofino</y_path>
+		<r_directory>giannett</r_directory>
 	</brand>
 	<brand>
 		<category_name>シャンボール・セリエ</category_name>
 		<brand_name>シャンボール・セリエ/Chambord Sellier</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chambord/chambord_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chambord/chambord_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cm</r_image>
 		<r_category>ブランドをチェック\サ行\シャンボール・セリエ</r_category>
 		<y_dictionary>cm-br.html</y_dictionary>
 		<y_path>シャンボール・セリエ/Chambord Sellier</y_path>
+		<r_directory>chambord</r_directory>
 	</brand>
 	<brand>
 		<category_name>ショット</category_name>
 		<brand_name>ショット/Schott</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/schott/schott_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/schott/schott_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sc</r_image>
 		<r_category>ブランドをチェック\サ行\ショット</r_category>
 		<y_dictionary>sc-br.html</y_dictionary>
 		<y_path>ショット/Schott</y_path>
+		<r_directory>schott</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジョンストンズ</category_name>
 		<brand_name>ジョンストンズ/Johnstons</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnstons/johnstons_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnstons/johnstons_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_js</r_image>
 		<r_category>ブランドをチェック\サ行\ジョンストンズ</r_category>
 		<y_dictionary>js-br.html</y_dictionary>
 		<y_path>ジョンストンズ/Johnstons</y_path>
+		<r_directory>johnston</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジョンストンズ WOMEN'S</category_name>
 		<brand_name>ジョンストンズ/Johnstons</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnstons/johnstons_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnstons/johnstons_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_js</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\サ行\ジョンストンズ</r_category>
 		<y_dictionary>jm-br.html</y_dictionary>
 		<y_path>ジョンストンズ　WOMEN'S/Johnstons</y_path>
+		<r_directory>johnston</r_directory>
 	</brand>
 	<brand>
 		<category_name>ジョンスメドレー</category_name>
 		<brand_name>ジョンスメドレー/John Smedley</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_fb.html&gt;素材&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_mt.html&gt;メンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_fb.html&gt;素材&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsmedley/johnsmedley_mt.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_jh</r_image>
 		<r_category>ブランドをチェック\サ行\ジョンスメドレー</r_category>
 		<y_dictionary>jh-mt.html</y_dictionary>
 		<y_path>ジョンスメドレー/John Smedley</y_path>
+		<r_directory>johnsmed</r_directory>
 		<y_brand_code>973</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>ジョンソン・ウーレンミルズ</category_name>
-		<brand_name>ジョンソン・ウーレンミルズ/Johnson Woolen Mills</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/johnsonwoolenmills/johnsonwoolenmills_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_jw</r_image>
-		<r_category>ブランドをチェック\サ行\ジョンソン・ウーレンミルズ</r_category>
-		<y_dictionary>jw-br.html</y_dictionary>
-		<y_path>ジョンソン・ウーレンミルズ</y_path>
-	</brand>
-	<brand>
-		<category_name>スウェイン・アドニー・ブリッグ</category_name>
-		<brand_name>スウェイン・アドニー・ブリッグ/Swaine Adeney Brigg</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/swaine/sa_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_sa</r_image>
-		<r_category>ブランドをチェック\サ行\スウェイン・アドニー・ブリッグ</r_category>
-		<y_dictionary>sa-re.html</y_dictionary>
-		<y_path>スウェイン・アドニー・ブリッグ</y_path>
 	</brand>
 	<brand>
 		<category_name>ステファノガンバ</category_name>
@@ -964,74 +691,28 @@
 &lt;tr&gt;
 &lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>ステファノガンバ/Stefano Gamba</y_path>
+		<r_directory>stefanog</r_directory>
 	</brand>
 	<brand>
 		<category_name>ステファノビジ</category_name>
 		<brand_name>ステファノビジ/Stefano Bigi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/strom/stb_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/strom/stb_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_stb</r_image>
 		<r_category>ブランドをチェック\サ行\ステファノビジ</r_category>
 		<y_dictionary>stb-br.html</y_dictionary>
 		<y_path>ステファノビジ/Stefano Bigi</y_path>
-	</brand>
-	<brand>
-		<category_name>ストーム</category_name>
-		<brand_name>ストーム/Strom</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/strom/strom_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_so</r_image>
-		<r_category>ブランドをチェック\サ行\ストーム</r_category>
-		<y_dictionary>so-br.html</y_dictionary>
-		<y_path>ストーム/Storm</y_path>
+		<r_directory>stefanob</r_directory>
 	</brand>
 	<brand>
 		<category_name>スプリングコート</category_name>
 		<brand_name>スプリングコート/Spring Court</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_hi.html&gt;ヒストリー&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_hi.html&gt;ヒストリー&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sp</r_image>
 		<r_category>ブランドをチェック\サ行\スプリングコート</r_category>
 		<y_dictionary>sp-hi.html</y_dictionary>
 		<y_path>スプリングコート/Spring Court</y_path>
-	</brand>
-	<brand>
-		<category_name>スプリングコート WOMEN'S</category_name>
-		<brand_name>スプリングコート/Spring Court</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/springcourt/springcourt_hi.html&gt;ヒストリー&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_sp</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\サ行\スプリングコート</r_category>
-		<y_dictionary>sp-hi.html</y_dictionary>
-		<y_path>スプリングコート WOMEN'S/Spring Court</y_path>
-	</brand>
-	<brand>
-		<category_name>セッテフィーリ・カシミア</category_name>
-		<brand_name>セッテフィーリ・カシミア/Settefili Cashmere</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/settefilicashmere/settefilicashmere_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_settefilic</r_image>
-		<r_category>ブランドをチェック\サ行2\セッテフィーリ・カシミア</r_category>
-		<y_dictionary>settefilicashmere-br.html</y_dictionary>
-		<y_path>セッテフィーリ・カシミア</y_path>
-	</brand>
-	<brand>
-		<category_name>センシ</category_name>
-		<brand_name>センシ/Sensi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/sensi/sensi_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ss</r_image>
-		<r_category>ブランドをチェック\サ行\センシ</r_category>
-		<y_dictionary>ss-br.html</y_dictionary>
-		<y_path>センシ/Sensi</y_path>
+		<r_directory>springco</r_directory>
 	</brand>
 	<brand>
 		<category_name>セント・ジェームズ・コレクション</category_name>
@@ -1044,553 +725,391 @@
 &lt;tr&gt;
 &lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>セント・ジェームズ/St.James's</y_path>
+		<r_directory>stjamess</r_directory>
 	</brand>
 	<brand>
 		<category_name>ソッツィ</category_name>
 		<brand_name>ソッツィ/Sozzi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/sozzi/sozzi_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/sozzi/sozzi_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sz</r_image>
 		<r_category>ブランドをチェック\サ行\ソッツィ</r_category>
 		<y_dictionary>sz-br.html</y_dictionary>
 		<y_path>ソッツィ/Sozzi</y_path>
+		<r_directory>sozzi</r_directory>
 	</brand>
 	<brand>
 		<category_name>ソリード</category_name>
 		<brand_name>ソリード/Solido</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/solido/solido_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/solido/solido_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_sl</r_image>
 		<r_category>ブランドをチェック\サ行\ソリード</r_category>
 		<y_dictionary>sl-br.html</y_dictionary>
 		<y_path>ソリード/Solido</y_path>
+		<r_directory>solido</r_directory>
 	</brand>
 	<brand>
 		<category_name>ターンブル＆アッサー</category_name>
 		<brand_name>ターンブル＆アッサー/Turnbull&amp;Asser</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/turnbull/ta_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/turnbull/ta_history.html&gt;ファクトリー&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/turnbull/ta_brand.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/turnbull/ta_history.html&gt;ファクトリー&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ta</r_image>
 		<r_category>ブランドをチェック\タ行\ターンブル＆アッサー</r_category>
 		<y_dictionary>turn-history.html</y_dictionary>
 		<y_path>ターンブル＆アッサー/Turnbull&amp;Asser</y_path>
+		<r_directory>turnbull</r_directory>
 	</brand>
 	<brand>
 		<category_name>タイユアタイ</category_name>
 		<brand_name>タイ・ユア・タイ/Tie Your Tie</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tieyourtie/tieyourtie_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tieyourtie/tieyourtie_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ty</r_image>
 		<r_category>ブランドをチェック\タ行\タイ・ユア・タイ</r_category>
 		<y_dictionary>ty-br.html</y_dictionary>
 		<y_path>タイ・ユア・タイ/Tie Your Tie</y_path>
+		<r_directory>tieyourt</r_directory>
 	</brand>
 	<brand>
 		<category_name>タスティング</category_name>
 		<brand_name>タスティング/Tusting</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tusting/tusting_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tusting/tusting_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tu</r_image>
 		<r_category>ブランドをチェック\タ行\タスティング</r_category>
 		<y_dictionary>tusting-br.html</y_dictionary>
 		<y_path>タスティング/Tusting</y_path>
+		<r_directory>tusting</r_directory>
 	</brand>
 	<brand>
 		<category_name>タテオシアン</category_name>
 		<brand_name>タテオシアン/Tateossian</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tateossian/tt_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tateossian/tt_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tt</r_image>
 		<r_category>ブランドをチェック\タ行\タテオシアン</r_category>
 		<y_dictionary>tt-br.html</y_dictionary>
 		<y_path>タテオシアン/Tateossian</y_path>
+		<r_directory>tateossi</r_directory>
 		<y_brand_code>4034</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>タトラス</category_name>
 		<brand_name>タトラス/Tatras</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tatras/tatras_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tatras/tatras_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tatras</r_image>
 		<r_category>ブランドをチェック\タ行\タトラス</r_category>
 		<y_dictionary>tatras-br.html</y_dictionary>
 		<y_path>タトラス/Tatras</y_path>
+		<r_directory>tatras</r_directory>
 	</brand>
 	<brand>
 		<category_name>タトラス WOMEN'S</category_name>
 		<brand_name>タトラス WOMEN'S/Tatras WOMEN'S</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tatras/tatras_wm_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tatras/tatras_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tatras</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\タ行\タトラス　WOMEN'S</r_category>
 		<y_dictionary>tatras-wm-br.html</y_dictionary>
 		<y_path>タトラス WOMEN'S/Tatras WOMEN'S</y_path>
+		<r_directory>zztatras</r_directory>
 	</brand>
 	<brand>
 		<category_name>ダニエル＆ボブ</category_name>
 		<brand_name>ダニエル＆ボブ/Daniel&amp;Bob</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/danielandbob/danielandbob_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/danielandbob/danielandbob_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_db</r_image>
 		<r_category>ブランドをチェック\タ行\ダニエル＆ボブ</r_category>
 		<y_dictionary>db-br.html</y_dictionary>
 		<y_path>ダニエル＆ボブ/Daniel&amp;Bob</y_path>
+		<r_directory>danielbo</r_directory>
 		<y_brand_code>1137</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>ダノリス</category_name>
-		<brand_name>ダノリス/Danolis</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/danolis/danolis_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_dan</r_image>
-		<r_category>ブランドをチェック\タ行\ダノリス</r_category>
-		<y_dictionary>danolis-br.html</y_dictionary>
-		<y_path>ダノリス/Danolis</y_path>
 	</brand>
 	<brand>
 		<category_name>タリアトーレ</category_name>
 		<brand_name>タリアトーレ/Tagliatore</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tagliatore/tagliatore-br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tagliatore/tagliatore-br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tagliatore</r_image>
 		<r_category>ブランドをチェック\タ行2\タリアトーレ</r_category>
 		<y_dictionary>tagliatore-br.html</y_dictionary>
 		<y_path>タリアトーレ/Tagliatore</y_path>
+		<r_directory>tagliato</r_directory>
 	</brand>
 	<brand>
 		<category_name>チョッカ</category_name>
 		<brand_name>チョッカ/Ciocca</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ciocca/ciocca_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ciocca/ciocca_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ciocca</r_image>
 		<r_category>ブランドをチェック\タ行\チョッカ</r_category>
 		<y_dictionary>ciocca-br.html</y_dictionary>
 		<y_path>チョッカ/Ciocca</y_path>
+		<r_directory>ciocca</r_directory>
 	</brand>
 	<brand>
 		<category_name>チット・ラグジュアリー</category_name>
 		<brand_name>チット・ラグジュアリー/Cit Luxury</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/citluxury/citluxury_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/citluxury/citluxury_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cit</r_image>
 		<r_category>ブランドをチェック\タ行\チット・ラグジュアリー</r_category>
 		<y_dictionary>cit-br.html</y_dictionary>
 		<y_path>チット・ラグジュアリー/Cit Luxury</y_path>
+		<r_directory>citluxur</r_directory>
 	</brand>
 	<brand>
 		<category_name>チャムス</category_name>
 		<brand_name>チャムス/Chums</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chums/chums_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chums/chums_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cu</r_image>
 		<r_category>ブランドをチェック\タ行\チャムス</r_category>
 		<y_dictionary>cu-br.html</y_dictionary>
 		<y_path>チャムス/Chums</y_path>
-		<y_brand_code>1185</y_brand_code>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
+		<r_directory>chums</r_directory>
+		<y_brand_code>1185</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>チャムス WOMEN'S</category_name>
 		<brand_name>チャムス/Chums</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chums/chums_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chums/chums_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cu</r_image>
 		<r_category>ブランドをチェック　WOMEN'S\タ行\チャムス</r_category>
 		<y_dictionary>cu-br.html</y_dictionary>
 		<y_path>チャムス WOMEN'S/Chums</y_path>
+		<r_directory>zzchums</r_directory>
 	</brand>
 	<brand>
 		<category_name>チンクアンタ</category_name>
 		<brand_name>チンクアンタ/Cinquanta</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cinquanta/cinquanta_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cinquanta/cinquanta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_cq</r_image>
 		<r_category>ブランドをチェック\タ行\チンクアンタ</r_category>
 		<y_dictionary>cq-br.html</y_dictionary>
 		<y_path>チンクアンタ/Cinquanta</y_path>
-	</brand>
-	<brand>
-		<category_name>ディアドラ</category_name>
-		<brand_name>ディアドラ/Diadra</brand_name>
-		<r_image>brand_top_dd</r_image>
-		<r_category>ブランドをチェック\タ行\ディアドラ</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
-		<y_path>ディアドラ/Diadra</y_path>
-	</brand>
-	<brand>
-		<category_name>ティベリオ・フェレッティ</category_name>
-		<brand_name>ティベリオ・フェレッティ/Tiberio Ferretti</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tiberioferretti/tiberioferretti_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_tib</r_image>
-		<r_category>ブランドをチェック\タ行\ティベリオ・フェレッティ</r_category>
-		<y_dictionary>tiberioferretti-br.html</y_dictionary>
-		<y_path>ティベリオ・フェレッティ</y_path>
+		<r_directory>cinquant</r_directory>
 	</brand>
 	<brand>
 		<category_name>ディメッラ</category_name>
 		<brand_name>ディメッラ/Dimella</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dimella/dimella_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dimella/dimella_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_dim</r_image>
 		<r_category>ブランドをチェック\タ行\ディメッラ</r_category>
 		<y_dictionary>dimella-br.html</y_dictionary>
 		<y_path>ディメッラ/Dimella</y_path>
-	</brand>
-	<brand>
-		<category_name>デインズ＆ハザウェイ</category_name>
-		<brand_name>デインズ＆ハザウェイ/Daines&amp;Hathaway</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/daines/dh_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/daines/dh_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/daines/dh_repair.html&gt;リペア&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_dh</r_image>
-		<r_category>ブランドをチェック\タ行\デインズ＆ハザウェイ</r_category>
-		<y_dictionary>dh-re.html</y_dictionary>
-		<y_path>デインズ＆ハザウェイ/Daines&amp;Hathaway</y_path>
+		<r_directory>dimella</r_directory>
 	</brand>
 	<brand>
 		<category_name>ティントリア・マッテイ</category_name>
 		<brand_name>ティントリア・マッテイ/Tintoria Mattei</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tintoriamattei/tintoria_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tintoriamattei/tintoria_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tintoria</r_image>
 		<r_category>ブランドをチェック\タ行\ティントリア・マッテイ</r_category>
 		<y_dictionary>tintoria-br.html</y_dictionary>
 		<y_path>ティントリア・マッテイ/Tintoria Mattei</y_path>
+		<r_directory>tintoria</r_directory>
 	</brand>
 	<brand>
 		<category_name>デパートメント5</category_name>
 		<brand_name>デパートメント5/Department5</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/department5/department5_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/department5/department5_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_department</r_image>
 		<r_category>ブランドをチェック\タ行\デパートメント5</r_category>
 		<y_dictionary>department5-br.html</y_dictionary>
 		<y_path>デパートメント5/Department5</y_path>
+		<r_directory>departme</r_directory>
 	</brand>
 	<brand>
 		<category_name>デュカルス</category_name>
 		<brand_name>デュカルス/Ducal's</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ducals/ducals_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ducals/ducals_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ducals</r_image>
 		<r_category>ブランドをチェック\タ行\デュカルス</r_category>
 		<y_dictionary>duc-br.html</y_dictionary>
 		<y_path>デュカルス/Ducal's</y_path>
+		<r_directory>doucals</r_directory>
 		<y_brand_code>4023</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>デュベティカ</category_name>
 		<brand_name>デュベティカ/Duvetica</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/duvetica/duvetica_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/duvetica/duvetica_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_du</r_image>
 		<r_category>ブランドをチェック\タ行\デュベティカ</r_category>
 		<y_dictionary>du-br.html</y_dictionary>
 		<y_path>デュベティカ/Duvetica</y_path>
+		<r_directory>duvetica</r_directory>
 		<y_brand_code>4023</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>デュベティカ WOMEN'S</category_name>
-		<brand_name>デュベティカ/Duvetica</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/duvetica/duvetica_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_du</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\タ行\デュベティカ</r_category>
-		<y_dictionary>du-br.html</y_dictionary>
-		<y_path>デュベティカ　WOMEN'S/Duvetica</y_path>
 	</brand>
 	<brand>
 		<category_name>デラ・チアーナ</category_name>
 		<brand_name>デラ・チアーナ/Della Ciana</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dellaciana/dellaciana_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dellaciana/dellaciana_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_del</r_image>
 		<r_category>ブランドをチェック\タ行\デラ・チアーナ</r_category>
 		<y_dictionary>lt-br.html</y_dictionary>
 		<y_path>デラ・チアーナ/Della Ciana</y_path>
-	</brand>
-	<brand>
-		<category_name>デンツ</category_name>
-		<brand_name>デンツ/Dents</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dents/dents_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_dt</r_image>
-		<r_category>ブランドをチェック\タ行\デンツ</r_category>
-		<y_dictionary>dt-br.html</y_dictionary>
-		<y_path>デンツ/Dents</y_path>
-	</brand>
-	<brand>
-		<category_name>デンツ WOMEN'S</category_name>
-		<brand_name>デンツ/Dents</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dents/dents_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_dt</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\タ行\デンツ</r_category>
-		<y_dictionary>dt-br.html</y_dictionary>
-		<y_path>デンツ　WOMEN'S/Dents</y_path>
+		<r_directory>dellacia</r_directory>
 	</brand>
 	<brand>
 		<category_name>トゥファート</category_name>
 		<brand_name>トゥファート/Tuffato</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tuffato/tuffato_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tuffato/tuffato_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tuf</r_image>
 		<r_category>ブランドをチェック\タ行2\トゥファート</r_category>
 		<y_dictionary>lt-br.html</y_dictionary>
 		<y_path>トゥファート/Tuffato</y_path>
-	</brand>
-	<brand>
-		<category_name>トップサイダー</category_name>
-		<brand_name>トップサイダー/Top-Sider</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/topsider/topsider_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ts</r_image>
-		<r_category>ブランドをチェック\タ行\トップサイダー</r_category>
-		<y_dictionary>ts-br.html</y_dictionary>
-		<y_path>トップサイダー/Top-Sider</y_path>
-		<y_brand_code>1290</y_brand_code>
+		<r_directory>tuffato</r_directory>
 	</brand>
 	<brand>
 		<category_name>トラディショナル・ウェザーウェア</category_name>
 		<brand_name>トラディショナル・ウェザーウェア /Traditional Weather Wear</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/traditional/traditional_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/traditional/traditional_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tw</r_image>
 		<r_category>ブランドをチェック\タ行\トラディショナル・ウェザーウェア</r_category>
 		<y_dictionary>td-br.html</y_dictionary>
 		<y_path>トラディショナル・ウェザーウェア</y_path>
+		<r_directory>traditio</r_directory>
 		<y_brand_code>4031</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>トラモンターノ</category_name>
 		<brand_name>トラモンターノ/Tramontano</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tramontano/tramontano_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tramontano/tramontano_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_tm</r_image>
 		<r_category>ブランドをチェック\タ行\トラモンターノ</r_category>
 		<y_dictionary>tm-br.html</y_dictionary>
 		<y_path>トラモンターノ/Tramontano</y_path>
-	</brand>
-	<brand>
-		<category_name>トリッカーズ</category_name>
-		<brand_name>トリッカーズ/Tricker's</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/trickers/trcompany.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_tr</r_image>
-		<r_category>ブランドをチェック\タ行\トリッカーズ</r_category>
-		<y_dictionary>tr-br.html</y_dictionary>
-		<y_path>トリッカーズ/Tricker's</y_path>
-		<y_brand_code>1307</y_brand_code>
+		<r_directory>tramonta</r_directory>
 	</brand>
 	<brand>
 		<category_name>ドルモア</category_name>
 		<brand_name>ドルモア/Drumohr</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/drumohr/drumohr_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/drumohr/drumohr_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_dm</r_image>
 		<r_category>ブランドをチェック\タ行\ドルモア</r_category>
 		<y_dictionary>dm-br.html</y_dictionary>
 		<y_path>ドルモア/Drumohr</y_path>
+		<r_directory>drumohr</r_directory>
 	</brand>
 	<brand>
 		<category_name>ドレイクス</category_name>
 		<brand_name>ドレイクス/Drake's</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/drakes/dr_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/drakes/dr_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_dr</r_image>
 		<r_category>ブランドをチェック\タ行\ドレイクス</r_category>
 		<y_dictionary>dr-br.html</y_dictionary>
 		<y_path>ドレイクス/Drake's</y_path>
+		<r_directory>drakes</r_directory>
 		<y_brand_code>4032</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>ネロペルラ</category_name>
 		<brand_name>ネロペルラ/Nero Perla</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/neroperla/neroperla_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/neroperla/neroperla_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ner</r_image>
 		<r_category>ブランドをチェック\ナ行\ネロペルラ</r_category>
 		<y_dictionary>nf-br.html</y_dictionary>
 		<y_path>ネロペルラ/Nero Perla</y_path>
+		<r_directory>neroperl</r_directory>
 		<y_brand_code>7320</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>ノティファイ</category_name>
 		<brand_name>ノティファイ/Notify</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/notify/notify_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/notify/notify_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_nf</r_image>
 		<r_category>ブランドをチェック\ナ行\ノティファイ</r_category>
 		<y_dictionary>nf-br.html</y_dictionary>
 		<y_path>ノティファイ/Notify</y_path>
+		<r_directory>notify</r_directory>
 		<y_brand_code>7320</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>ノリコイケ</category_name>
 		<brand_name>ノリコイケ/Norikoike</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/norikoike/norikoike_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/norikoike/norikoike_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_nk</r_image>
 		<r_category>ブランドをチェック\ナ行\ノリコイケ</r_category>
 		<y_dictionary>nk-br.html</y_dictionary>
 		<y_path>ノリコイケ/Norikoike</y_path>
+		<r_directory>norikoik</r_directory>
 		<y_brand_code>7324</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>バーク</category_name>
 		<brand_name>バーク/Bark</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/bark/bark_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/bark/bark_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_bar</r_image>
 		<r_category>ブランドをチェック\ハ行2\バーク</r_category>
 		<y_dictionary>bark-br.html</y_dictionary>
 		<y_path>バーク/Bark</y_path>
+		<r_directory>bark</r_directory>
 	</brand>
 	<brand>
 		<category_name>バーフィールド</category_name>
 		<brand_name>バーフィールド/Burfield</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/burfield/burfield_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/burfield/burfield_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_bf</r_image>
 		<r_category>ブランドをチェック\ハ行\バーフィールド</r_category>
 		<y_dictionary>bf-br.html</y_dictionary>
 		<y_path>バーフィールド/Burfield</y_path>
+		<r_directory>burfield</r_directory>
 	</brand>
 	<brand>
 		<category_name>ハケット</category_name>
 		<brand_name>ハケット/Hackett</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/hackett/hackett_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/hackett/hackett_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_hc</r_image>
 		<r_category>ブランドをチェック\ハ行\ハケット</r_category>
 		<y_dictionary>hackett-br.html</y_dictionary>
 		<y_path>ハケット/Hackett</y_path>
+		<r_directory>hackett</r_directory>
 	</brand>
 	<brand>
 		<category_name>バブアー</category_name>
 		<brand_name>バブアー/Barbour</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/barbour/barbour_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/barbour/barbour_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_bab</r_image>
 		<r_category>ブランドをチェック\ハ行\バブアー</r_category>
 		<y_dictionary>barbour-br.html</y_dictionary>
 		<y_path>バブアー/Barbour</y_path>
-	</brand>
-	<brand>
-		<category_name>パブリック</category_name>
-		<brand_name>パブリック/Publik</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/publik/publik_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_pb</r_image>
-		<r_category>ブランドをチェック\ハ行\パブリック</r_category>
-		<y_dictionary>pb-br.html</y_dictionary>
-		<y_path>パブリック/Publik</y_path>
+		<r_directory>barbour</r_directory>
 	</brand>
 	<brand>
 		<category_name>バルスター/バルスタリーノ</category_name>
 		<brand_name>バルスター/バルスタリーノ</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/valstarino/valstarino_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/valstarino/valstarino_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_vs</r_image>
 		<r_category>ブランドをチェック\ハ行\バルスター/バルスタリーノ</r_category>
 		<y_dictionary>valstar-br.html</y_dictionary>
 		<y_path>バルスター/バルスタリーノ</y_path>
+		<r_directory>valstari</r_directory>
 	</brand>
 	<brand>
 		<category_name>バルバ</category_name>
 		<brand_name>バルバ/Barba</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/barba/barba_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/barba/barba_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ba</r_image>
 		<r_category>ブランドをチェック\ハ行\バルバ</r_category>
 		<y_dictionary>ba-br.html</y_dictionary>
 		<y_path>バルバ/Barba</y_path>
+		<r_directory>barba</r_directory>
 		<y_brand_code>4025</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>バロンズ・ハンター</category_name>
-		<brand_name>バロンズ・ハンター/Barrons Hunter</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/barronsh/barronsh_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_bh</r_image>
-		<r_category>ブランドをチェック\ハ行\バロンズ・ハンター</r_category>
-		<y_dictionary>barronsh-br.html</y_dictionary>
-		<y_path>バロンズ・ハンター/Barrons Hunter</y_path>
 	</brand>
 	<brand>
 		<category_name>パンセレラ</category_name>
 		<brand_name>パンセレラ/Pantherella</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/pantherella/pt_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/pantherella/pt_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_pt</r_image>
 		<r_category>ブランドをチェック\ハ行\パンセレラ</r_category>
 		<y_dictionary>pt-br.html</y_dictionary>
 		<y_path>パンセレラ/Pantherella</y_path>
+		<r_directory>panthere</r_directory>
 	</brand>
 	<brand>
 		<category_name>ピー・エイチ・デザイン</category_name>
 		<brand_name>ピー・エイチ・デザイン/P.H design</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/phdesign/phdesign_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/phdesign/phdesign_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ph</r_image>
 		<r_category>ブランドをチェック\ハ行\ピー・エイチ・デザイン</r_category>
 		<y_dictionary>ph-br.html</y_dictionary>
 		<y_path>ピー・エイチ・デザイン/P.H design</y_path>
+		<r_directory>phdesign</r_directory>
 	</brand>
 	<brand>
 		<category_name>ピーエルセルズ</category_name>
@@ -1603,586 +1122,351 @@
 &lt;tr&gt;
 &lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>ピーエルセルズ/PLSells</y_path>
+		<r_directory>plsells</r_directory>
 	</brand>
 	<brand>
 		<category_name>ビルケンシュトック・タタミ</category_name>
 		<brand_name>ビルケンシュトック・タタミ/Birkenstock Tatami</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_fu.html&gt;機能性と特徴&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_rp.html&gt;リペア&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_fa.html&gt;FAQ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_he.html&gt;足の健康&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_ch.html&gt;靴の選び方&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_fu.html&gt;機能性と特徴&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_rp.html&gt;リペア&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_fa.html&gt;FAQ&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_he.html&gt;足の健康&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/birkenstocktatami/birkenstocktatami_ch.html&gt;靴の選び方&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_bt</r_image>
 		<r_category>ブランドをチェック\ハ行\ビルケンシュトック・タタミ</r_category>
 		<y_dictionary>bt-ch.html</y_dictionary>
 		<y_path>ビルケンシュトック・タタミ</y_path>
+		<r_directory>birkenst</r_directory>
 		<y_brand_code>1572</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>ファーロ</category_name>
 		<brand_name>ファーロ/Faro</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/faro/faro_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/faro/faro_lt.html&gt;レザー&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/faro/faro_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/faro/faro_lt.html&gt;レザー&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fr</r_image>
 		<r_category>ブランドをチェック\ハ行\ファーロ</r_category>
 		<y_dictionary>fr-lt.html</y_dictionary>
 		<y_path>ファーロ/Faro</y_path>
+		<r_directory>faro</r_directory>
 	</brand>
 	<brand>
 		<category_name>フィデリティー</category_name>
 		<brand_name>フィデリティー/Fidelity</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fidelity/fidelity_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fidelity/fidelity_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fi</r_image>
 		<r_category>ブランドをチェック\ハ行\フィデリティー</r_category>
 		<y_dictionary>fi-br.html</y_dictionary>
 		<y_path>フィデリティー/Fidelity</y_path>
+		<r_directory>fidelity</r_directory>
 	</brand>
 	<brand>
 		<category_name>フィナモレ</category_name>
 		<brand_name>フィナモレ/Finamore</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/finamore/finamore_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/finamore/finamore_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fn</r_image>
 		<r_category>ブランドをチェック\ハ行\フィナモレ</r_category>
 		<y_dictionary>fn-br.html</y_dictionary>
 		<y_path>フィナモレ/Finamore</y_path>
-	</brand>
-	<brand>
-		<category_name>フィリアム</category_name>
-		<brand_name>フィリアム/Filiam</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/filiam/filiam_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_fl</r_image>
-		<r_category>ブランドをチェック\ハ行\フィリアム</r_category>
-		<y_dictionary>fl-br.html</y_dictionary>
-		<y_path>フィリアム/Filiam</y_path>
+		<r_directory>finamore</r_directory>
 	</brand>
 	<brand>
 		<category_name>フェランテ</category_name>
 		<brand_name>フェランテ/Ferrante</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ferrante/ferrante_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/ferrante/ferrante_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ft</r_image>
 		<r_category>ブランドをチェック\ハ行\フェランテ</r_category>
 		<y_dictionary>ft-br.html</y_dictionary>
 		<y_path>フェランテ/Ferrante</y_path>
+		<r_directory>ferrante</r_directory>
 	</brand>
 	<brand>
 		<category_name>フェリージ</category_name>
 		<brand_name>フェリージ/Felisi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/buttero/felisi_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/felisi/felisi_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_felisi</r_image>
 		<r_category>ブランドをチェック\ハ行\フェリージ</r_category>
 		<y_dictionary>felisi-br.html</y_dictionary>
 		<y_path>フェリージ/Felisi</y_path>
+		<r_directory>felisi</r_directory>
 	</brand>
 	<brand>
 		<category_name>フォックス・アンブレラズ</category_name>
 		<brand_name>フォックス・アンブレラズ/Fox Umbrellas</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/foxumbrellas_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html&gt;リペア&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/foxumbrellas_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fx</r_image>
 		<r_category>ブランドをチェック\ハ行\フォックス・アンブレラズ</r_category>
 		<y_dictionary>fx-re.html</y_dictionary>
 		<y_path>フォックス・アンブレラズ/Fox Umbrellas</y_path>
+		<r_directory>foxumbre</r_directory>
 	</brand>
 	<brand>
 		<category_name>ブッテロ</category_name>
 		<brand_name>ブッテロ/Buttero</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/buttero/buttero_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/buttero/buttero_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_but</r_image>
 		<r_category>ブランドをチェック\ハ行2\ブッテロ</r_category>
 		<y_dictionary>but-br.html</y_dictionary>
 		<y_path>ブッテロ/Buttero</y_path>
+		<r_directory>buttero</r_directory>
 	</brand>
 	<brand>
 		<category_name>フラカップ</category_name>
 		<brand_name>フラカップ/Fracap</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fracap/fracap_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fracap/fracap_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fracap</r_image>
 		<r_category>ブランドをチェック\ハ行2\フラカップ</r_category>
 		<y_dictionary>fracap-br.html</y_dictionary>
 		<y_path>フラカップ/Fracap</y_path>
-	</brand>
-	<brand>
-		<category_name>ブラックシープ</category_name>
-		<brand_name>ブラックシープ/Black Sheep</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/blacksheep/blacksheep_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_bs</r_image>
-		<r_category>ブランドをチェック\ハ行\ブラックシープ</r_category>
-		<y_dictionary>bs-br.html</y_dictionary>
-		<y_path>ブラックシープ/BlackSheep</y_path>
+		<r_directory>fracap</r_directory>
 	</brand>
 	<brand>
 		<category_name>フランコ・バッシ</category_name>
 		<brand_name>フランコ・バッシ/Franco Bassi</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/francoba/francoba_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/francoba/francoba_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fb</r_image>
 		<r_category>ブランドをチェック\ハ行\フランコバッシ</r_category>
 		<y_dictionary>franc-br.html</y_dictionary>
 		<y_path>フランコ・バッシ/Franco Bassi</y_path>
+		<r_directory>franco</r_directory>
 	</brand>
 	<brand>
 		<category_name>ブリーフィング</category_name>
 		<brand_name>ブリーフィング/Briefing</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/briefing/briefing_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/briefing/briefing_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_br</r_image>
 		<r_category>ブランドをチェック\ハ行\ブリーフィング</r_category>
 		<y_dictionary>br-br.html</y_dictionary>
 		<y_path>ブリーフィング/Briefing</y_path>
-		<y_brand_code>4007</y_brand_code>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
 		<r_directory>briefing</r_directory>
+		<y_brand_code>4007</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>フレッドペリー</category_name>
 		<brand_name>フレッドペリー/Fred Perry</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fredperry/fredperry_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fredperry/fredperry_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_fp</r_image>
 		<r_category>ブランドをチェック\ハ行\フレッドペリー</r_category>
 		<y_dictionary>fp-br.html</y_dictionary>
 		<y_path>フレッドペリー/Fred Perry</y_path>
+		<r_directory>fredperr</r_directory>
 		<y_brand_code>1727</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>フレッドペリー WOMEN'S</category_name>
-		<brand_name>フレッドペリー/Fred Perry</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/fredperry/fredperry_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_fp</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\ハ行\フレッドペリー</r_category>
-		<y_dictionary>fp-br.html</y_dictionary>
-		<y_path>フレッドペリー　WOMEN'S/Fred Perry</y_path>
 	</brand>
 	<brand>
 		<category_name>ベグ・スコットランド</category_name>
 		<brand_name>ベグ・スコットランド/Begg Scotland</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/beggscotland/beggscotland_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/beggscotland/beggscotland_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_be</r_image>
 		<r_category>ブランドをチェック\ハ行\ベグ・スコットランド</r_category>
 		<y_dictionary>be-br.html</y_dictionary>
 		<y_path>ベグ・スコットランド/Begg Scotland</y_path>
-	</brand>
-	<brand>
-		<category_name>ベルスタッフ</category_name>
-		<brand_name>ベルスタッフ/Belstaff</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/belstaff/belstaff_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_bl</r_image>
-		<r_category>ブランドをチェック\ハ行\ベルスタッフ</r_category>
-		<y_dictionary>bl-br.html</y_dictionary>
-		<y_path>ベルスタッフ/Belstaff</y_path>
+		<r_directory>beggscot</r_directory>
 	</brand>
 	<brand>
 		<category_name>ヘルノ</category_name>
 		<brand_name>ヘルノ/Herno</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/herno/herno_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/herno/herno_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_hn</r_image>
 		<r_category>ブランドをチェック\ハ行\ヘルノ</r_category>
 		<y_dictionary>hn-br.html</y_dictionary>
 		<y_path>ヘルノ/Herno</y_path>
+		<r_directory>herno</r_directory>
 	</brand>
 	<brand>
 		<category_name>ベルベスト</category_name>
 		<brand_name>ベルベスト/Belvest</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/belvest/belvest_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/belvest/belvest_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_bv</r_image>
 		<r_category>ブランドをチェック\ハ行\ベルベスト</r_category>
 		<y_dictionary>bv-br.html</y_dictionary>
 		<y_path>ベルベスト/Belvest</y_path>
+		<r_directory>belvest</r_directory>
 	</brand>
 	<brand>
 		<category_name>ペッレモルビダ</category_name>
 		<brand_name>ペッレモルビダ/Pelle Morbida</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/pellemorbida/pellemorbida_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/pellemorbida/pellemorbida_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_pell</r_image>
 		<r_category>ブランドをチェック\ハ行\ペッレモルビダ</r_category>
 		<y_dictionary>pellemorbida-br.html</y_dictionary>
 		<y_path>ペッレモルビダ/Pelle Morbida</y_path>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-	</brand>
-	<brand>
-		<category_name>ベン・デイビス</category_name>
-		<brand_name>ベン・デイビス/Ben Davis</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/bendavis/bendavis_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_bn</r_image>
-		<r_category>ブランドをチェック\ハ行\ベン・デイビス</r_category>
-		<y_dictionary>bn-br.html</y_dictionary>
-		<y_path>ベン・デイビス/Ben Davis</y_path>
-	</brand>
-	<brand>
-		<category_name>ボリオリ</category_name>
-		<brand_name>ボリオリ/Boglioli</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/boglioli/boglioli_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_bo</r_image>
-		<r_category>ブランドをチェック\ハ行\ボリオリ</r_category>
-		<y_dictionary>bo-br.html</y_dictionary>
-		<y_path>ボリオリ/Boglioli</y_path>
+		<r_directory>pellemor</r_directory>
 	</brand>
 	<brand>
 		<category_name>ポルペッタ</category_name>
 		<brand_name>ポルペッタ/Polpetta</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/polpetta/polpetta_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/polpetta/polpetta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_polpetta</r_image>
 		<r_category>ブランドをチェック\ハ行2\ポルペッタ</r_category>
 		<y_dictionary>polpetta-br.html</y_dictionary>
 		<y_path>ポルペッタ/Polpetta</y_path>
+		<r_directory>polpetta</r_directory>
 	</brand>
 	<brand>
 		<category_name>ホワイトハウスコックス</category_name>
 		<brand_name>ホワイトハウスコックス/Whitehouse Cox</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_brand.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_lt.html&gt;レザー&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_repair.html&gt;リペア&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_lt.html&gt;レザー&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_wc</r_image>
 		<r_category>ブランドをチェック\ハ行\ホワイトハウスコックス</r_category>
 		<y_dictionary>wc-re.html</y_dictionary>
 		<y_path>ホワイトハウスコックス</y_path>
+		<r_directory>whitehou</r_directory>
 		<y_brand_code>1858</y_brand_code>
-	</brand>
-	<brand>
-		<category_name>マーク・バーンスタイン</category_name>
-		<brand_name>マーク・バーンスタイン/Marc Bernstein</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/marcbernstein/marcbernstein_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_mb</r_image>
-		<r_category>ブランドをチェック\マ行\マーク・バーンスタイン</r_category>
-		<y_dictionary>marcbernstein-br.html</y_dictionary>
-		<y_path>マーク・バーンスタイン/Marc Bernstein</y_path>
-	</brand>
-	<brand>
-		<category_name>マージャーズ</category_name>
-		<brand_name>マージャーズ/Magyars</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/magyars/magyars_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_my</r_image>
-		<r_category>ブランドをチェック\マ行\マージャーズ</r_category>
-		<y_dictionary>my-br.html</y_dictionary>
-		<y_path>マージャーズ/Magyars</y_path>
-	</brand>
-	<brand>
-		<category_name>マージャーズ</category_name>
-		<brand_name>マージャーズ/Magyars</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/magyars/magyars_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_my</r_image>
-		<r_category>ブランドをチェック\マ行\マージャーズ</r_category>
-		<y_dictionary>my-br.html</y_dictionary>
-		<y_path>マージャーズ/Magyars</y_path>
 	</brand>
 	<brand>
 		<category_name>マーティン・フェイジー</category_name>
 		<brand_name>マーティン・フェイジー/Martin Faizey</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mainetti/maf_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mainetti/maf_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_maf</r_image>
 		<r_category>ブランドをチェック\マ行\マーティン・フェイジー</r_category>
 		<y_dictionary>maf-br.html</y_dictionary>
 		<y_path>マーティン・フェイジー/Martin Faizey</y_path>
+		<r_directory>martinfa</r_directory>
+	</brand>
+	<brand>
+		<category_name>マイネッティ</category_name>
+		<brand_name>マイネッティ/Mainetti</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mainetti/mainetti_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_mn</r_image>
+		<r_category>ブランドをチェック\マ行\マイネッティ</r_category>
+		<y_dictionary>mn-br.html</y_dictionary>
+		<y_path>マイネッティ/Mainetti</y_path>
+		<r_directory>mainetti</r_directory>
 	</brand>
 	<brand>
 		<category_name>マッキントッシュ</category_name>
 		<brand_name>マッキントッシュ/Mackintosh</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mackintosh/mackintosh_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mackintosh/mackintosh_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_mk</r_image>
 		<r_category>ブランドをチェック\マ行\マッキントッシュ</r_category>
 		<y_dictionary>mk-br.html</y_dictionary>
 		<y_path>マッキントッシュ/Mackintosh</y_path>
+		<r_directory>mackinto</r_directory>
 		<y_brand_code>1901</y_brand_code>
 	</brand>
 	<brand>
-		<category_name>マッキントッシュ WOMEN'S</category_name>
-		<brand_name>マッキントッシュ/Mackintosh</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mackintosh/mackintosh_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_mk</r_image>
-		<r_category>ブランドをチェック　WOMEN'S\マ行\マッキントッシュ</r_category>
-		<y_dictionary>mk-br.html</y_dictionary>
-		<y_path>マッキントッシュ　WOMEN'S/Mackintosh</y_path>
-	</brand>
-	<brand>
-		<category_name>マドヴァ</category_name>
-		<brand_name>マドヴァ/Madova</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/madova/madova_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_madova</r_image>
-		<r_category>ブランドをチェック\マ行\マドヴァ</r_category>
-		<y_dictionary>mdv-br.html</y_dictionary>
-		<y_path>マドヴァ/Madova</y_path>
-	</brand>
-	<brand>
-		<category_name>マニラ</category_name>
-		<brand_name>マニラ/Manila</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/manila/manila_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ml</r_image>
-		<r_category>ブランドをチェック\マ行\マニラ</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
-		<y_path>マニラ/Manila</y_path>
-	</brand>
-	<brand>
-		<category_name>マリオ・ムスカリエッロ</category_name>
-		<brand_name>マリオ・ムスカリエッロ/Mario Muscariello</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mariomus/mariomus_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_mm</r_image>
-		<r_category>ブランドをチェック\マ行\マリオ・ムスカリエッロ</r_category>
-		<y_dictionary>mariomus-br.html</y_dictionary>
-		<y_path>マリオ・ムスカリエッロ/Mario Muscariello</y_path>
+		<category_name>マッシモ</category_name>
+		<brand_name>マッシモ/Massimo</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/massimo/massimo_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_massimo</r_image>
+		<r_category>ブランドをチェック\マ行\マッシモ</r_category>
+		<y_dictionary>massimo-br.html</y_dictionary>
+		<y_path>マッシモ/Massimo</y_path>
+		<r_directory>massimo</r_directory>
 	</brand>
 	<brand>
 		<category_name>ムータ</category_name>
 		<brand_name>ムータ/Muta</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/muta/muta_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/muta/muta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_mu</r_image>
 		<r_category>ブランドをチェック\マ行\ムータ</r_category>
 		<y_dictionary>mu-br.html</y_dictionary>
 		<y_path>ムータ/Muta</y_path>
+		<r_directory>muta</r_directory>
 	</brand>
 	<brand>
 		<category_name>ムーレー</category_name>
 		<brand_name>ムーレー/Moorer</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/moorer/moorer_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/moorer/moorer_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_moorer</r_image>
 		<r_category>ブランドをチェック\マ行\ムーレー</r_category>
 		<y_dictionary>moorer-br.html</y_dictionary>
 		<y_path>ムーレー/Moorer</y_path>
+		<r_directory>moorer</r_directory>
 	</brand>
 	<brand>
 		<category_name>ムンガイ</category_name>
 		<brand_name>ムンガイ/Mungai</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mungai/mungai_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mungai/mungai_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_mg</r_image>
 		<r_category>ブランドをチェック\マ行\ムンガイ</r_category>
 		<y_dictionary>mg-br.html</y_dictionary>
 		<y_path>ムンガイ/Mungai</y_path>
-	</brand>
-	<brand>
-		<category_name>モンテドーロ</category_name>
-		<brand_name>モンテドーロ/Montedoro</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/montedoro/montedoro_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_mon</r_image>
-		<r_category>ブランドをチェック\マ行\モンテドーロ</r_category>
-		<y_dictionary>montedoro_br.html</y_dictionary>
-		<y_path>モンテドーロ/Montedoro</y_path>
-	</brand>
-	<brand>
-		<category_name>ヤーモ</category_name>
-		<brand_name>ヤーモ/Yarmo</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/yarmo/yarmo_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_ym</r_image>
-		<r_category>ブランドをチェック\ヤ行\ヤーモ</r_category>
-		<y_dictionary>ym-br.html</y_dictionary>
-		<y_path>ヤーモ/Yarmo</y_path>
-	</brand>
-	<brand>
-		<category_name>ラットフォーティーポイントエイト</category_name>
-		<brand_name>ラットフォーティーポイントエイト/Lat40.8</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lat408/lat408_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_l4</r_image>
-		<r_category>ブランドをチェック\ラ行\ラットフォーティーポイントエイト</r_category>
-		<y_dictionary>lat408-br.html</y_dictionary>
-		<y_path>ラットフォーティーポイントエイト/Lat40.8</y_path>
+		<r_directory>mungai</r_directory>
 	</brand>
 	<brand>
 		<category_name>ラコステ</category_name>
 		<brand_name>ラコステ/Lacoste</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lacoste/lacoste_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lacoste/lacoste_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_lacoste</r_image>
 		<r_category>ブランドをチェック\ラ行\ラコステ</r_category>
 		<y_dictionary>lacoste-br.html</y_dictionary>
 		<y_path>ラコステ/Lacoste</y_path>
+		<r_directory>lacoste</r_directory>
 	</brand>
 	<brand>
 		<category_name>ラルコバレーノ</category_name>
 		<brand_name>ラルコバレーノ/L'arcobaleno</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/larcobaleno/larcobaleno_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/larcobaleno/larcobaleno_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_lc</r_image>
 		<r_category>ブランドをチェック\ラ行\ラルコバレーノ</r_category>
 		<y_dictionary>lc-br.html</y_dictionary>
 		<y_path>ラルコバレーノ/L'arcobaleno</y_path>
+		<r_directory>larcobal</r_directory>
 	</brand>
 	<brand>
 		<category_name>ラルディーニ</category_name>
 		<brand_name>ラルディーニ/Lardini</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lardini/lardini_br.html&gt;ブランド&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lardini/lardini_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_ld</r_image>
 		<r_category>ブランドをチェック\ラ行\ラルディーニ</r_category>
 		<y_dictionary>ld-br.html</y_dictionary>
 		<y_path>ラルディーニ/Lardini</y_path>
-		<y_brand_code>8444</y_brand_code>
 		<r_directory>lardini</r_directory>
-	</brand>
-	<brand>
-		<category_name>リカルド</category_name>
-		<brand_name>リカルド/Riccardo</brand_name>
-		<r_image>brand_top_rc</r_image>
-		<r_category>ブランドをチェック\ラ行\リカルド</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
-		<y_path>リカルド/Riccardo</y_path>
+		<y_brand_code>8444</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>リビエラ</category_name>
 		<brand_name>リビエラ/Rivieras</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/rivieras/rivieras_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/rivieras/rivieras_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_rivieras</r_image>
 		<r_category>ブランドをチェック\ラ行\リビエラ</r_category>
 		<y_dictionary>rivieras-br.html</y_dictionary>
 		<y_path>リビエラ/Rivieras</y_path>
-	</brand>
-	<brand>
-		<category_name>リプラス</category_name>
-		<brand_name>リプラス/Replus</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/replus/replus_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_rp</r_image>
-		<r_category>ブランドをチェック\ラ行\リプラス</r_category>
-		<y_dictionary>rp-br.html</y_dictionary>
-		<y_path>リプラス/Replus</y_path>
-	</brand>
-	<brand>
-		<category_name>リモワ</category_name>
-		<brand_name>リモワ/Rimowa</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/rimowa/rimowa_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/rimowa/rimowa_rp.html&gt;リペア &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_rm</r_image>
-		<r_category>ブランドをチェック\ラ行\リモワ</r_category>
-		<y_dictionary>rm-rp.html</y_dictionary>
-		<y_path>リモワ/Rimowa</y_path>
-		<y_brand_code>2160</y_brand_code>
-		<brand_point>10</brand_point>
-		<brand_point_term>startday_finishday</brand_point_term>
+		<r_directory>rivieras</r_directory>
 	</brand>
 	<brand>
 		<category_name>ルイジ・ボレッリ</category_name>
 		<brand_name>ルイジ・ボレッリ/Luigi Borrelli</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lb/lb_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lb/lb_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_lb</r_image>
 		<r_category>ブランドをチェック\ラ行\ルイジ・ボレッリ</r_category>
 		<y_dictionary>lb-br.html</y_dictionary>
 		<y_path>ルイジ・ボレッリ/Luigi Borrelli</y_path>
+		<r_directory>luigibor</r_directory>
+	</brand>
+	<brand>
+		<category_name>レイク</category_name>
+		<brand_name>レイク/Lake</brand_name>
+		<r_image>brand_top_lake</r_image>
+		<r_category>ブランドをチェック\ラ行\レイク</r_category>
+		<y_dictionary>lake-br.html</y_dictionary>
+		<y_path>レイク/Lake</y_path>
+		<r_directory>lake</r_directory>
 	</brand>
 	<brand>
 		<category_name>ルトロワ</category_name>
 		<brand_name>ルトロワ/Letroyes</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/letroyes/letroyes_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/letroyes/letroyes_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_lt</r_image>
 		<r_category>ブランドをチェック\ラ行\ルトロワ</r_category>
 		<y_dictionary>lt-br.html</y_dictionary>
 		<y_path>ルトロワ/Letroyes</y_path>
+		<r_directory>letroyes</r_directory>
 	</brand>
 	<brand>
-		<category_name>ロダ</category_name>
-		<brand_name>ロダ/Roda</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/roda/roda_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_rd</r_image>
-		<r_category>ブランドをチェック\ラ行\ロダ</r_category>
-		<y_dictionary>rd-br.html</y_dictionary>
-		<y_path>ロダ/Roda</y_path>
-	</brand>
-	<brand>
-		<category_name>ロレンツォ・アゾラ</category_name>
-		<brand_name>ロダ/Roda</brand_name>
-		<r_dictionary>&lt;ul class="link1"&gt;
-&lt;li&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/lorenzoasora/lorenzoasora_br.html&gt;ブランド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</r_dictionary>
-		<r_image>brand_top_lr</r_image>
-		<r_category>ブランドをチェック\ラ行\ロレンツォ・アゾラ</r_category>
-		<y_dictionary>lr-br.html</y_dictionary>
-		<y_path>ロレンツォ・アゾラ/Lorenzo Asola</y_path>
+		<category_name>ルトロワ WOMEN'S</category_name>
+		<brand_name>ルトロワ/Letroyes</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/letroyes/letroyes_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_lt</r_image>
+		<r_category>ブランドをチェック\ラ行\ルトロワ</r_category>
+		<y_dictionary>lt-br.html</y_dictionary>
+		<y_path>ルトロワ/Letroyes</y_path>
+		<r_directory>letroyes</r_directory>
 	</brand>
 </brand_info>
