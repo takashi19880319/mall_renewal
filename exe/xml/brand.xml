@@ -108,9 +108,9 @@
 		<r_category>ブランドをチェック\ア行\アニアリ</r_category>
 		<y_dictionary>aniary-br.html</y_dictionary>
 		<y_path>アニアリ/Aniary</y_path>
+		<r_directory>aniary</r_directory>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-		<r_directory>aniary</r_directory>
 	</brand>
 	<brand>
 		<category_name>ストックトン</category_name>
@@ -186,7 +186,7 @@
 	<brand>
 		<category_name>ヴィガーノ</category_name>
 		<brand_name>ヴィガーノ/Vigano</brand_name>
-		<r_dictionary>&lt;ul class="link2"&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/vigano/vigano_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/vigano/vigano_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_image>brand_top_vigano</r_image>
 		<r_category>ブランドをチェック\ア行\ヴィガーノ</r_category>
 		<y_dictionary>vigano-br.html</y_dictionary>
@@ -292,9 +292,9 @@
 		<r_category>ブランドをチェック\ア行\オロビアンコ</r_category>
 		<y_dictionary>ob-br.html</y_dictionary>
 		<y_path>オロビアンコ/Orobianco</y_path>
+		<r_directory>orobianc</r_directory>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-		<r_directory>orobianc</r_directory>
 		<y_brand_code>541</y_brand_code>
 	</brand>
 	<brand>
@@ -466,11 +466,6 @@
 		<brand_name>GLOBERブックス/GLOBER Books</brand_name>
 		<r_image>brand_top_globerbook</r_image>
 		<r_category>ブランドをチェック\カ行\GLOBERブックス</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>GLOBERブックス</y_path>
 		<r_directory>globerbo</r_directory>
 	</brand>
@@ -685,11 +680,6 @@
 		<brand_name>ステファノガンバ/Stefano Gamba</brand_name>
 		<r_image>brand_top_sg</r_image>
 		<r_category>ブランドをチェック\サ行\ステファノガンバ</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>ステファノガンバ/Stefano Gamba</y_path>
 		<r_directory>stefanog</r_directory>
 	</brand>
@@ -719,11 +709,6 @@
 		<brand_name>セント・ジェームズ/St.James's Collection</brand_name>
 		<r_image>brand_top_sj</r_image>
 		<r_category>ブランドをチェック\サ行\セント・ジェームズ・コレクション</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>セント・ジェームズ/St.James's</y_path>
 		<r_directory>stjamess</r_directory>
 	</brand>
@@ -858,9 +843,9 @@
 		<r_category>ブランドをチェック\タ行\チャムス</r_category>
 		<y_dictionary>cu-br.html</y_dictionary>
 		<y_path>チャムス/Chums</y_path>
+		<r_directory>chums</r_directory>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-		<r_directory>chums</r_directory>
 		<y_brand_code>1185</y_brand_code>
 	</brand>
 	<brand>
@@ -1116,11 +1101,6 @@
 		<brand_name>ピーエルセルズ/PLSells</brand_name>
 		<r_image>brand_top_pls</r_image>
 		<r_category>ブランドをチェック\ハ行\ピーエルセルズ</r_category>
-		<y_dictionary>&lt;!--タイトルここから --&gt;
-&lt;br&gt;
-&lt;table width="600" border="0" cellspacing="0" cellpadding="0"&gt;
-&lt;tr&gt;
-&lt;td class="brand_BIG-T"&gt;&lt;span style="font-size:medium;"&gt;&lt;strong&gt;</y_dictionary>
 		<y_path>ピーエルセルズ/PLSells</y_path>
 		<r_directory>plsells</r_directory>
 	</brand>
@@ -1239,9 +1219,9 @@
 		<r_category>ブランドをチェック\ハ行\ブリーフィング</r_category>
 		<y_dictionary>br-br.html</y_dictionary>
 		<y_path>ブリーフィング/Briefing</y_path>
+		<r_directory>briefing</r_directory>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-		<r_directory>briefing</r_directory>
 		<y_brand_code>4007</y_brand_code>
 	</brand>
 	<brand>
@@ -1293,9 +1273,9 @@
 		<r_category>ブランドをチェック\ハ行\ペッレモルビダ</r_category>
 		<y_dictionary>pellemorbida-br.html</y_dictionary>
 		<y_path>ペッレモルビダ/Pelle Morbida</y_path>
+		<r_directory>pellemor</r_directory>
 		<brand_point>10</brand_point>
 		<brand_point_term>startday_finishday</brand_point_term>
-		<r_directory>pellemor</r_directory>
 	</brand>
 	<brand>
 		<category_name>ポルペッタ</category_name>
@@ -1445,7 +1425,6 @@
 		<brand_name>レイク/Lake</brand_name>
 		<r_image>brand_top_lake</r_image>
 		<r_category>ブランドをチェック\ラ行\レイク</r_category>
-		<y_dictionary>lake-br.html</y_dictionary>
 		<y_path>レイク/Lake</y_path>
 		<r_directory>lake</r_directory>
 	</brand>

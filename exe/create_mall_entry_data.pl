@@ -970,6 +970,171 @@ sub add_rakuten_item_data {
 ## 楽天用select.csvファイルにデータを追加
 ##############################
 sub add_rakuten_select_data {
+	my $subcode="";
+	my $color_str = "カラー";
+	Encode::from_to( $color_str, 'utf8', 'shiftjis' );
+	my $size_str = "サイズ";
+	Encode::from_to( $size_str, 'utf8', 'shiftjis' );
+	# バリエーション商品のみ処理
+	if($global_entry_goods_variationflag) {		
+		# カラー、サイズ共にバリエーション有の場合
+		# registに登録されている5桁を含む9桁コードをgoods.csvから抽出して配列に入れる
+		if(keys(%global_entry_parents_color_variation)>=2 && keys(%global_entry_parents_size_variation)>=2) {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+				foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($global_entry_parents_color_variation{$color_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine($color_key) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_size_variation{$size_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					$output_select_csv->combine($size_key) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
+				}
+			}
+		}
+		elsif(keys(%global_entry_parents_color_variation)>=2 && keys(%global_entry_parents_size_variation)==1) {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($color_str) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_color_variation{$color_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					my $digit_4 = $color_key.get_8_9digit($global_entry_goods_code);
+					$output_select_csv->combine($digit_4) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
+			}		
+		}
+		elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2) {
+			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($size_str) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_size_variation{$size_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					my $digit_4 = get_6_7digit($global_entry_goods_code).$size_key;
+					$output_select_csv->combine($digit_4) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
+			}	
+		}
+	}
+	return 0;
+}
+=pod
+sub add_rakuten_select_data {
 	# SKU(5桁)の商品のみ追加
 	if ($global_entry_goods_variationflag == 1) {
 		# registに登録されている5桁を含む9桁コードをgoods.csvから抽出して配列に入れる
@@ -1083,6 +1248,7 @@ sub add_rakuten_select_data {
 	}
 	return 0;
 }
+=cut
 
 ##############################
 ## 楽天用item-cat.csvファイルにデータを追加
@@ -3079,7 +3245,10 @@ sub create_y_explanation {
 	my $coron="：";
 	Encode::from_to( $coron, 'utf8', 'shiftjis' );
 	my $paragraph="<br />";
-	my $entry_code =$global_entry_goods_code;
+	my $entry_code = "";
+	if ($global_entry_goods_variationflag)
+	{$entry_code = &get_5code($global_entry_goods_code);}
+	else{$entry_code = $global_entry_goods_code;}
 	$smp_yahoo_spec .= "$str_goods_code"."$coron"."$entry_code"."\n";
 	# カラーを追加
 	if ($global_entry_goods_color ne "") {
