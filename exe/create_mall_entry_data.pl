@@ -3721,7 +3721,9 @@ HTML_STR_3_1
 	my $img_url_list_y_code = $img_url_list_y[0] || 0;
 	my $p_loc = index($img_url_list_y_code,".",0);
 	my $img_code = substr(&get_y_target_image_filename($img_url_list_y_code),0,$p_loc);
-	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" /></p>";
+#	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" /></p>";
+	# テスト環境用コード
+	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" /></p>";
 	$iframe_html .= $html_str3_1."\n";
 	foreach (my $i=0; $i<=$img_url_list_y_count-1; $i++){
 		my $color_name ="";
@@ -3776,41 +3778,57 @@ HTML_STR_3_1
 		if ($i>=0 && $i<5){
 			if($color_name ne ""){
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
+#				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
+				# テスト環境用コード
+				$html_str_3 .="<li><a rev=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $img_file_name_thum = "$img_code"."s.jpg";
-				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+#				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+				# テスト環境用コード
+				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
 			}
 			else{
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
+#				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
+				# テスト環境用コード
+				$html_str_3 .="<li><a rev=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $img_file_name_thum = "$img_code"."s.jpg";
-				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+#				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+				# テスト環境用コード
+				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
 			}
 		}
 		else {
 			if ($color_name ne ""){
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\" href=\"javascript:;\">";
+#				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\" href=\"javascript:;\">";
+				# テスト環境用コード
+				$html_str_3 .="<li><a rev=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\" href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $suffix_pos = rindex(get_y_target_image_filename($img_url_list_y[$i]), '.');
 				my $img_url_list_file_name = substr(get_y_target_image_filename($img_url_list_y[$i]),0,$suffix_pos);
 				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
-				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+#				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+				# テスト環境用コード
+				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
 			}
 			else{
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\"  href=\"javascript:;\">";
+#				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\"  href=\"javascript:;\">";
+				# テスト環境用コード
+				$html_str_3 .="<li><a rev=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\"  href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $suffix_pos = rindex(get_y_target_image_filename($img_url_list_y[$i]), '.');
 				my $img_url_list_file_name = substr(get_y_target_image_filename($img_url_list_y[$i]),0,$suffix_pos);
 				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
-				$html_str_3 .="<img src=\"http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+#				$html_str_3 .="<img src=\"http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+				# テスト環境用コード
+				$html_str_3 .="<img src=\"http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
 			}
 		}
 	}
