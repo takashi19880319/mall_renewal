@@ -432,6 +432,16 @@
 		<y_brand_code>664</y_brand_code>
 	</brand>
 	<brand>
+		<category_name>グランサッソ</category_name>
+		<brand_name>グランサッソ/Gran Sasso</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gransass/gransass_br.html target=_blank&gt;お直しについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_gransass</r_image>
+		<r_category>ブランドをチェック\カ行\グランサッソ</r_category>
+		<y_dictionary>gransass-br.html</y_dictionary>
+		<y_path>グランサッソ/Gran Sasso</y_path>
+		<r_directory>gransass</r_directory>
+	</brand>
+	<brand>
 		<category_name>グレンプリンス</category_name>
 		<brand_name>グレンプリンス/Glen Prince</brand_name>
 		<r_image>brand_top_glenprince</r_image>
@@ -814,6 +824,16 @@
 		<y_dictionary>tagliatore-br.html</y_dictionary>
 		<y_path>タリアトーレ/Tagliatore</y_path>
 		<r_directory>tagliato</r_directory>
+	</brand>
+	<brand>
+		<category_name>チルコロ1901</category_name>
+		<brand_name>チルコロ1901/Circolo1901</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/circolo/circolo_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_image>brand_top_circolo</r_image>
+		<r_category>ブランドをチェック\タ行\チルコロ1901</r_category>
+		<y_dictionary>circolo-br.html</y_dictionary>
+		<y_path>チルコロ1901/Circolo1901</y_path>
+		<r_directory>circolo</r_directory>
 	</brand>
 	<brand>
 		<category_name>チョッカ</category_name>
