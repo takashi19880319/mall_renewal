@@ -533,7 +533,16 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 		# 商品コードが合致したらコードを保持する
 		if (get_5code($global_entry_goods_code) eq $goods_supp_code_5) {
 			# goods_supp.csvの商品情報を保持(SKUのものは一つ目に合致した商品の情報を保持)
-			push(@global_entry_goods_supp_info, (@$goods_supp_line[1],@$goods_supp_line[2]));
+				##### goods_suppファイルの修正
+				my $goods_supp = @$goods_supp_line[1];
+				$goods_supp =~ s/<\/br>/<br \/>/g;
+				$goods_supp =~ s/<\/font><\/a><\/li><\/ul>/<\/font><\/a>/g;
+				my $before_str = "承ります。<br />詳しくはこちら。</font></span>";
+				Encode::from_to( $before_str, 'utf8', 'shiftjis' );
+				my $after_str = "承ります。<br />詳しくはこちら。</font></a></span>";
+				Encode::from_to( $after_str, 'utf8', 'shiftjis' );
+				$goods_supp =~ s/$before_str/$after_str/g;
+			push(@global_entry_goods_supp_info, ($goods_supp,@$goods_supp_line[2]));
 			last;
 		}
 	}
@@ -1805,6 +1814,10 @@ HTML_STR_6
 	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
 	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
 	$goods_comment_1 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
 	# 商品コメント1を追加
 	$spec_str .= "$html_str6"."$goods_comment_1";
 	# 5000円未満の商品は送料無料の注意書きを入れる。
@@ -2355,6 +2368,10 @@ HTML_STR_2
 	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
 	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
 	$goods_comment_1 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
 	# 商品コメント1を追加
 	$smp_goods_spec .= $goods_comment_1;
 	# 5000円未満の商品は送料無料の注意書きを入れる。
@@ -2405,8 +2422,8 @@ HTML_STR_end
 		Encode::from_to( $warn, 'utf8', 'shiftjis' );
 		&output_log("$warn\n");
 	}
-	my $after_rep_str10="<br /><br />";
-	my $before_rep_str10="<br /><br /><br /><br />";
+	my $after_rep_str11="<br /><br />";
+	my $before_rep_str11="<br /><br /><br /><br />";
 	$smp_goods_spec =~ s/$before_rep_str10/$after_rep_str10/g;
 	return $smp_goods_spec;
 }
@@ -3070,7 +3087,43 @@ HTML_STR_7
 	#　消費税増税バナーを削除
 	my $after_rep_str_2="";
 	my $before_rep_str_2="</span>";	
-	$goods_info0 =~ s/$before_rep_str_2/$after_rep_str_2/g;	
+	$goods_info0 =~ s/$before_rep_str_2/$after_rep_str_2/g;
+	# フェリージのリンク変換1
+	my $after_rep_str4="";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp";
+	$goods_info0 =~ s/$before_rep_str4/$after_rep_str4/g;
+	# フェリージのリンク変換2
+	my $after_rep_str4_1="";
+	my $before_rep_str4_1="style=\"border-style: none;\" ";
+	$goods_info0 =~ s/$before_rep_str4_1/$after_rep_str1/g;
+	# フェリージのリンク変換3
+	my $after_rep_str5="http://shopping.c.yimg.jp/lib/hff/felisi_seal.gif";
+	my $before_rep_str5="http://seal.felisi.net/FCSSeal/images/fcs_230x60_json.gif";
+	$goods_info0 =~ s/$before_rep_str5/$after_rep_str5/g;
+	# フォックスのリンク変換
+	my $after_rep_str6="http://store.shopping.yahoo.co.jp/hff/fx-re.html";
+	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
+	$goods_info0 =~ s/$before_rep_str6/$after_rep_str6/;
+	# ジョンストンズのリンク削除
+	my $after_rep_str7="";
+	my $before_rep_str7="<br /><br />.*alt=\"johnstons\">";
+	$goods_info0 =~ s/$before_rep_str7/$after_rep_str7/g;
+	# 返品交換のリンク置換
+	my $after_rep_str8="http://store.shopping.yahoo.co.jp/hff/howto4.html";
+	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
+	$goods_info0 =~ s/$before_rep_str8/$after_rep_str8/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9 ="";
+	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/?cat=72\"><img.*</p><br />";
+	$goods_info0 =~ s/$before_rep_str9/$after_rep_str9/g;
+	# クルチアーニのリンク削除
+	my $after_rep_str9_2 ="http://store.shopping.yahoo.co.jp/hff/146701111.html";
+	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
+	$goods_info0 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://store.shopping.yahoo.co.jp/hff/inforepair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_info0 =~ s/$before_rep_str10/$after_rep_str10/g;
 	$spec_str .="$html_str7"."$goods_info0";
 	if ($global_entry_goods_price <= 5000){
 			my $price_attention ="<br /><br />※5,000円以上のお買い上げで送料無料";
