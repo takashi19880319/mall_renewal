@@ -1490,6 +1490,7 @@ sub create_r_mbcatch_copy {
 	my $jstr1="【正規販売店】";
 	Encode::from_to( $jstr1, 'utf8', 'shiftjis' );
 	$catch_copy .= "$jstr1";
+	my $catch_copy_pre = $catch_copy;
 	# 5,000円以上は送料無料の文言を付与
 	if($global_entry_goods_price >= 5000) {
 	  my $jstr2="【送料無料】";
@@ -1501,7 +1502,12 @@ sub create_r_mbcatch_copy {
 	my $jstr3="【あす楽対応】";
 	Encode::from_to( $jstr3, 'utf8', 'shiftjis' );
 	$catch_copy .= "$jstr3";
-	return $catch_copy;
+	if(length($catch_copy) >= 60){
+		return $catch_copy_pre;
+	}
+	else {
+		return $catch_copy;
+	}
 }
 
 ##############################
@@ -1818,6 +1824,16 @@ HTML_STR_6
 	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
 	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
 	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_comment_1 =~ s/<u>//g;
+	# </u>変換
+	$goods_comment_1 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_comment_1 =~ s/$before_rep_str11/$after_rep_str11/g;
 	# 商品コメント1を追加
 	$spec_str .= "$html_str6"."$goods_comment_1";
 	# 5000円未満の商品は送料無料の注意書きを入れる。
@@ -2073,10 +2089,10 @@ HTML_STR_9
 	
 	#WHC, COOSの場合は文言追加
 	if (&get_info_from_xml("brand_name") eq $whc_str){
-		$spec_str="$html_str8"."$spec_str"."$html_str_whc"."$html_str9";
+#		$spec_str ="$spec_str"."$html_str8"."$html_str_whc"."$html_str9";
 	}
 	elsif (&get_info_from_xml("brand_name") eq $coos_str) {
-		$spec_str="$html_str8"."$spec_str"."$html_str_coos"."$html_str9";
+		$spec_str ="$spec_str"."$html_str8"."$html_str_coos"."$html_str9";
 	}	
 
 	return $spec_str;
@@ -2362,7 +2378,7 @@ HTML_STR_2
 	$goods_comment_1 =~ s/$before_rep_str8/$after_rep_str8/g;
 	# クルチアーニの画像削除
 	my $after_rep_str9 ="";
-	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/?cat=72\"><img.*</p><br />";
+	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/\?cat=72\"><img.*</p><br />";
 	$goods_comment_1 =~ s/$before_rep_str9/$after_rep_str9/g;
 	# クルチアーニのリンク削除
 	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
@@ -2372,6 +2388,16 @@ HTML_STR_2
 	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
 	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
 	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_comment_1 =~ s/<u>//g;
+	# </u>変換
+	$goods_comment_1 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_comment_1 =~ s/$before_rep_str11/$after_rep_str11/g;
 	# 商品コメント1を追加
 	$smp_goods_spec .= $goods_comment_1;
 	# 5000円未満の商品は送料無料の注意書きを入れる。
@@ -2422,9 +2448,9 @@ HTML_STR_end
 		Encode::from_to( $warn, 'utf8', 'shiftjis' );
 		&output_log("$warn\n");
 	}
-	my $after_rep_str11="<br /><br />";
-	my $before_rep_str11="<br /><br /><br /><br />";
-	$smp_goods_spec =~ s/$before_rep_str10/$after_rep_str10/g;
+	my $after_rep_str12="<br /><br />";
+	my $before_rep_str12="<br /><br /><br /><br />";
+	$smp_goods_spec =~ s/$before_rep_str12/$after_rep_str12/g;
 	return $smp_goods_spec;
 }
 
@@ -3124,6 +3150,16 @@ HTML_STR_7
 	my $after_rep_str10 ="http://store.shopping.yahoo.co.jp/hff/inforepair.html";
 	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
 	$goods_info0 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_info0 =~ s/<u>//g;
+	# </u>変換
+	$goods_info0 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_info0 =~ s/$before_rep_str11/$after_rep_str11/g;
 	$spec_str .="$html_str7"."$goods_info0";
 	if ($global_entry_goods_price <= 5000){
 			my $price_attention ="<br /><br />※5,000円以上のお買い上げで送料無料";
