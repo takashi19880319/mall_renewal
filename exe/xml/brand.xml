@@ -73,13 +73,13 @@
 		<r_directory>altea</r_directory>
 	</brand>
 	<brand>
-		<category_name>アルテア</category_name>
-		<brand_name>アルテア/Altea</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/altea/altea_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
-		<r_category>ブランドをチェック\ア行\アルテア</r_category>
-		<y_dictionary>altea-br.html</y_dictionary>
-		<y_path>アルテア/Altea</y_path>
-		<r_directory>altea</r_directory>
+		<category_name>アラン</category_name>
+		<brand_name>アラン/Alain</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alain/alain_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ア行\アラン</r_category>
+		<y_dictionary>alain-br.html</y_dictionary>
+		<y_path>アラン/Alain</y_path>
+		<r_directory>alain</r_directory>
 	</brand>
 	<brand>
 		<category_name>アルポ</category_name>
@@ -634,6 +634,7 @@
 		<r_category>ブランドをチェック\サ行\シンプソン・ロンドン</r_category>
 		<y_dictionary>simpson-br.html</y_dictionary>
 		<y_path>シンプソン・ロンドン</y_path>
+		<r_directory>simpson</r_directory>
 	</brand>
 	<brand>
 		<category_name>ステファノガンバ</category_name>
