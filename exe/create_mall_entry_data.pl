@@ -1789,8 +1789,8 @@ HTML_STR_6
 	my $before_rep_str3="</span>";
 	$goods_comment_1 =~ s/$before_rep_str3/$after_rep_str3/g;
 	# フェリージのリンク変換1
-	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/";
-	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp";
+	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/\">";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
 	$goods_comment_1 =~ s/$before_rep_str4/$after_rep_str4/g;
 	# フェリージのリンク変換2
 	my $after_rep_str4_1="";
@@ -2353,8 +2353,8 @@ HTML_STR_2
 	my $before_rep_str3="</span>";
 	$goods_comment_1 =~ s/$before_rep_str3/$after_rep_str3/g;
 	# フェリージのリンク変換1
-	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/";
-	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp";
+	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/\">";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
 	$goods_comment_1 =~ s/$before_rep_str4/$after_rep_str4/g;
 	# フェリージのリンク変換2
 	my $after_rep_str4_1="";
@@ -2975,13 +2975,19 @@ sub create_y_headline {
 	my $jstr1="【正規販売店】";
 	Encode::from_to( $jstr1, 'utf8', 'shiftjis' );
 	$headline .= "$jstr1";
+	my $headline_pre = $headline;
 	# 5,000円以上は送料無料の文言を付与
 	if($global_entry_goods_price >= 5000) {
 		my $jstr2="【送料無料】";
 		Encode::from_to( $jstr2, 'utf8', 'shiftjis' );
 		$headline .= "$jstr2";
 	}
-	return $headline;
+	if (length($headline) >= 60){
+		return $headline_pre;
+	}
+	else {
+		return $headline;
+	}
 }
 
 ##############################
@@ -3116,7 +3122,7 @@ HTML_STR_7
 	$goods_info0 =~ s/$before_rep_str_2/$after_rep_str_2/g;
 	# フェリージのリンク変換1
 	my $after_rep_str4="";
-	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
 	$goods_info0 =~ s/$before_rep_str4/$after_rep_str4/g;
 	# フェリージのリンク変換2
 	my $after_rep_str4_1="";
