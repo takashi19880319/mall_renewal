@@ -1816,6 +1816,10 @@ HTML_STR_6
 	my $after_rep_str9 ="";
 	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/?cat=72\"><img.*</p><br />";
 	$goods_comment_1 =~ s/$before_rep_str9/$after_rep_str9/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9_1 ="";
+	my $before_rep_str9_1 = "<p><a href=\"http://blog.glober.jp/?cat=72\" /><img.*</p><br />";
+	$goods_comment_1 =~ s/$before_rep_str9_1/$after_rep_str9_1/g;
 	# クルチアーニのリンク削除
 	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
 	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
