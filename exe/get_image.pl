@@ -456,7 +456,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 								$y_thumb_file_name = get_5code($target_code_7)."_".get_target_image_prefix($y_file_count).$y_file_count."s.jpg";
 								$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;
 
-							}				
+							}		
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($y_file_count < 6) {
@@ -494,7 +494,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 							$y_file_name = get_5code($target_code_7)."_".get_target_image_prefix($sub_jpg_num).$sub_jpg_num.".jpg";
 							$y_full_file_name = get_y_image_folder_name($sub_jpg_num)."/".$y_file_name;
 							$y_thumb_file_name = get_5code($target_code_7)."_".get_target_image_prefix($sub_jpg_num).$sub_jpg_num."s.jpg";
-							$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;							
+							$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($sub_jpg_num < 6) {
@@ -526,7 +526,11 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 }
 
 # ZIPファイルのクローズ
+my %count;
+@y_img_list = grep( !$count{$_}++, @y_img_list );
 &terminate_y_zip(@y_img_list);
+my %count_s;
+@y_6over_img_list = grep( !$count_s{$_}++, @y_6over_img_list );
 &terminate_y_s_over6_zip(@y_6over_img_list);
 #&terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
 #&terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");

@@ -161,7 +161,7 @@
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/incotex/incotex_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\ア行\インコテックス</r_category>
 		<y_dictionary>inc-br.html</y_dictionary>
-		<y_path>インコテックス/incotex</y_path>
+		<y_path>インコテックス</y_path>
 		<r_directory>incotex</r_directory>
 		<y_brand_code>4030</y_brand_code>
 	</brand>
@@ -173,6 +173,15 @@
 		<y_dictionary>vigano-br.html</y_dictionary>
 		<y_path>ヴィガーノ/Vigano</y_path>
 		<r_directory>vigano</r_directory>
+	</brand>
+	<brand>
+		<category_name>ウイリアム</category_name>
+		<brand_name>ウイリアム/William</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/william/william_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ア行\ウイリアム</r_category>
+		<y_dictionary>william-br.html</y_dictionary>
+		<y_path>ウィリアム/William</y_path>
+		<r_directory>william</r_directory>
 	</brand>
 	<brand>
 		<category_name>エイドス</category_name>
@@ -198,7 +207,7 @@
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/amb/amb_wm_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\ア行\エーエムビー</r_category>
 		<y_dictionary>amb2-br.html</y_dictionary>
-		<y_path>エーエムビー/Amb</y_path>
+		<y_path>エーエムビー WOMEN'S/Amb  WOMEN'S</y_path>
 		<r_directory>zzamb</r_directory>
 	</brand>
 	<brand>
@@ -401,7 +410,7 @@
 	<brand>
 		<category_name>グランサッソ</category_name>
 		<brand_name>グランサッソ/Gran Sasso</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gransass/gransass_br.html target=_blank&gt;お直しについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gransass/gransass_br.html target=_blank&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\カ行\グランサッソ</r_category>
 		<y_dictionary>gransass-br.html</y_dictionary>
 		<y_path>グランサッソ/Gran Sasso</y_path>
@@ -494,7 +503,7 @@
 		<category_name>コース WOMEN'S</category_name>
 		<brand_name>コース/Koos</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;
-&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.htmlメンテナンス&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/koos/koos_mt.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック　WOMEN'S\カ行\コース WOMEN'S</r_category>
 		<y_dictionary>ks-mt.html</y_dictionary>
 		<y_path>コース WOMEN'S/Koos</y_path>
@@ -578,7 +587,7 @@
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/giannetto/giannetto_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\サ行\ジャンネット・ポルトフィーノ</r_category>
 		<y_dictionary>giannetto-br.html</y_dictionary>
-		<y_path>ジャンネット・ポルトフィーノ/Giannetto Portofino</y_path>
+		<y_path>ジャンネット・ポルトフィーノ/Giannetto</y_path>
 		<r_directory>giannett</r_directory>
 	</brand>
 	<brand>
@@ -825,7 +834,7 @@
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tiberioferretti/tiberioferretti_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\タ行\ティベリオ・フェレッティ</r_category>
 		<y_dictionary>tiberioferretti-br.html</y_dictionary>
-		<y_path>ティベリオ・フェレッティ/Tiberio Ferretti</y_path>
+		<y_path>ティベリオ・フェレッティ</y_path>
 		<r_directory>tiberio</r_directory>
 	</brand>
 	<brand>
@@ -880,7 +889,7 @@
 		<brand_name>デラ・チアーナ/Della Ciana</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dellaciana/dellaciana_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\タ行\デラ・チアーナ</r_category>
-		<y_dictionary>lt-br.html</y_dictionary>
+		<y_dictionary>dellaciana-br.html</y_dictionary>
 		<y_path>デラ・チアーナ/Della Ciana</y_path>
 		<r_directory>dellacia</r_directory>
 	</brand>
@@ -889,7 +898,7 @@
 		<brand_name>トゥファート/Tuffato</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tuffato/tuffato_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\タ行2\トゥファート</r_category>
-		<y_dictionary>lt-br.html</y_dictionary>
+		<y_dictionary>tuffato-br.html</y_dictionary>
 		<y_path>トゥファート/Tuffato</y_path>
 		<r_directory>tuffato</r_directory>
 	</brand>
@@ -1105,7 +1114,9 @@
 	<brand>
 		<category_name>フォックス・アンブレラズ</category_name>
 		<brand_name>フォックス・アンブレラズ/Fox Umbrellas</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/foxumbrellas_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/foxumbrellas_br.html&gt;このブランドについて&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_maintenance.html&gt;メンテナンス&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\ハ行\フォックス・アンブレラズ</r_category>
 		<y_dictionary>fx-re.html</y_dictionary>
 		<y_path>フォックス・アンブレラズ/Fox Umbrellas</y_path>
@@ -1210,7 +1221,11 @@
 	<brand>
 		<category_name>ホワイトハウスコックス</category_name>
 		<brand_name>ホワイトハウスコックス/Whitehouse Cox</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_brand.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_factory.html&gt;ファクトリー&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_lt.html&gt;レザー&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_maintenance.html&gt;メンテナンス&lt;/a&gt;&lt;/span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_brand.html&gt;このブランドについて&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_factory.html&gt;ファクトリー&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_lt.html&gt;レザー&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_maintenance.html&gt;メンテナンス&lt;/a&gt;
+&lt;br /&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/whitehouse/wc_repair.html&gt;リペア&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\ハ行\ホワイトハウスコックス</r_category>
 		<y_dictionary>wc-re.html</y_dictionary>
 		<y_path>ホワイトハウスコックス</y_path>
@@ -1220,7 +1235,7 @@
 	<brand>
 		<category_name>マーティン・フェイジー</category_name>
 		<brand_name>マーティン・フェイジー/Martin Faizey</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/mainetti/maf_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/martinfaizey/mf_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\マ行\マーティン・フェイジー</r_category>
 		<y_dictionary>maf-br.html</y_dictionary>
 		<y_path>マーティン・フェイジー/Martin Faizey</y_path>
