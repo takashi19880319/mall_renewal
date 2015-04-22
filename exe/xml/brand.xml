@@ -672,6 +672,15 @@
 		<r_directory>springco</r_directory>
 	</brand>
 	<brand>
+		<category_name>セラピアン</category_name>
+		<brand_name>セラピアン/Serapian</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/serapian/serapian_br.html&gt;このブランドについて&lt;/a&gt;&lt;br /&gt;</r_dictionary>
+		<r_category>ブランドをチェック\サ行\セラピアン</r_category>
+		<y_dictionary>serapian.html</y_dictionary>
+		<y_path>セラピアン/Serapian</y_path>
+		<r_directory>serapian</r_directory>
+	</brand>
+	<brand>
 		<category_name>セント・ジェームズ・コレクション</category_name>
 		<brand_name>セント・ジェームズ/St.James's Collection</brand_name>
 		<r_category>ブランドをチェック\サ行\セント・ジェームズ・コレクション</r_category>
@@ -885,13 +894,13 @@
 		<y_brand_code>4023</y_brand_code>
 	</brand>
 	<brand>
-		<category_name>デラ・チアーナ</category_name>
-		<brand_name>デラ・チアーナ/Della Ciana</brand_name>
-		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/dellaciana/dellaciana_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
-		<r_category>ブランドをチェック\タ行\デラ・チアーナ</r_category>
-		<y_dictionary>dellaciana-br.html</y_dictionary>
-		<y_path>デラ・チアーナ/Della Ciana</y_path>
-		<r_directory>dellacia</r_directory>
+		<category_name>テンデンス</category_name>
+		<brand_name>テンデンス/Tendence</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tendence/tendence_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\タ行\テンデンス</r_category>
+		<y_dictionary>tendence-br.html</y_dictionary>
+		<y_path>テンデンス/Tendence</y_path>
+		<r_directory>tendence</r_directory>
 	</brand>
 	<brand>
 		<category_name>トゥファート</category_name>
