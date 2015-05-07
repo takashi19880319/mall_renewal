@@ -332,6 +332,7 @@ my $output_deleteitem_file_name="$output_rakuten_data_dir"."/"."delete-item.csv"
 my $output_select_file_name="$output_rakuten_data_dir"."/"."select.csv";
 my $output_itemcat_file_name="$output_rakuten_data_dir"."/"."item-cat.csv";
 my $output_ydata_file_name="$output_yahoo_data_dir"."/"."ydata.csv";
+my $output_ydelete_file_name="$output_yahoo_data_dir"."/"."delete-ydata.csv";
 my $output_yquantity_file_name="$output_yahoo_data_dir"."/"."yquantity.csv";
 #出力先ディレクトリの作成
 unless(-d $output_rakuten_data_dir) {
@@ -355,6 +356,7 @@ my $output_deleteitem_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_select_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_itemcat_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_ydata_csv = Text::CSV_XS->new({ binary => 1 });
+my $output_ydelete_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_yquantity_csv = Text::CSV_XS->new({ binary => 1 });
 #出力ファイルのオープン
 my $output_item_file_disc;
@@ -384,6 +386,11 @@ if (!open $output_itemcat_file_disc, ">", $output_itemcat_file_name) {
 }	
 my $output_ydata_file_disc;
 if (!open $output_ydata_file_disc, ">", $output_ydata_file_name) {
+	&output_log("ERROR!!($!) $output_ydata_file_name open failed.");
+	exit 1;
+}
+my $output_ydelete_file_disc;
+if (!open $output_ydelete_file_disc, ">", $output_ydelete_file_name) {
 	&output_log("ERROR!!($!) $output_ydata_file_name open failed.");
 	exit 1;
 }	
@@ -500,6 +507,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	if ($global_entry_goods_controlcolumn eq "d") {
 		#コントロールカラムdの商品の場合はdelete-item.csvの出力のみ行う
 		&add_rakuten_delete_data();
+		#コントロールカラムdの商品の場合はdelete-ydata.csvの出力のみ行う
+		&add_yahoo_delete_data();
 		next;
 	}
 	
@@ -594,6 +603,7 @@ $output_deleteitem_csv->eof;
 $output_select_csv->eof;
 $output_itemcat_csv->eof;
 $output_ydata_csv->eof;
+$output_ydelete_csv->eof;
 $output_yquantity_csv->eof;
 # 入力ファイルのクローズ
 close $input_goods_file_disc;
@@ -608,6 +618,7 @@ close $output_deleteitem_file_disc;
 close $output_select_file_disc;
 close $output_itemcat_file_disc;
 close $output_ydata_file_disc;
+close $output_ydelete_file_disc;
 close $output_yquantity_file_disc;
 # 処理終了
 output_log("Process is Success!!\n");
@@ -751,6 +762,8 @@ sub add_r_csv_name {
 sub add_y_csv_name {
 	# Yahoo用のydata.csvに項目名を出力
 	&add_y_datacsv_name();
+	# ヤフー用のdelete-item.csvに項目名を出力
+	&add_ydelete_csv_name();
 	# Yahoo用のyquantity.csvに項目名を出力
 	&add_y_quantitycsv_name();
 	return 0;
@@ -773,6 +786,29 @@ sub add_y_datacsv_name {
 			$post_fix_str=",";
 		}
 		print $output_ydata_file_disc $output_ydata_csv->string(), $post_fix_str;
+	}
+	return 0;
+}
+
+##############################
+## ヤフー削除用delete-ydataファイルに項目名を追加
+##############################
+
+sub add_ydelete_csv_name {
+	my @csv_ydelete_name=("path","name","code","price","sale-price");
+	my $csv_ydelete_num=@csv_ydelete_name;
+	my $csv_ydelete_name_count=0;
+	for my $csv_ydelete_name_str (@csv_ydelete_name) {
+		Encode::from_to( $csv_ydelete_name_str, 'utf8', 'shiftjis' );
+		$output_ydelete_csv->combine($csv_ydelete_name_str) or die $output_ydelete_csv->error_diag();
+		my $post_fix_str="";
+		if (++$csv_ydelete_name_count >= $csv_ydelete_num) {
+			$post_fix_str="\n";
+		}
+		else {
+			$post_fix_str=",";
+		}
+		print $output_ydelete_file_disc $output_ydelete_csv->string(), $post_fix_str;
 	}
 	return 0;
 }
@@ -1224,6 +1260,31 @@ sub add_yahoo_data {
 	&add_yquantity_data();
 	
 	return 0;
+}
+
+##############################
+## ヤフー削除用ファイルdelete-itemファイルにデータを追加
+##############################
+sub add_yahoo_delete_data {
+	# 各値をCSVファイルに書き出す
+	# path
+	$output_ydelete_csv->combine("") or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# name
+	$output_ydelete_csv->combine(&create_ry_goods_name()) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# code
+	$output_ydelete_csv->combine($global_entry_goods_code) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# price
+	$output_ydelete_csv->combine($global_entry_goods_price) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# sale-price
+	$output_ydelete_csv->combine("") or die $output_ydelete_csv->error_diag();
+	#最後に改行を追加
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), "\n";
+	return 0;
+	
 }
 
 ##############################
