@@ -332,6 +332,7 @@ my $output_deleteitem_file_name="$output_rakuten_data_dir"."/"."delete-item.csv"
 my $output_select_file_name="$output_rakuten_data_dir"."/"."select.csv";
 my $output_itemcat_file_name="$output_rakuten_data_dir"."/"."item-cat.csv";
 my $output_ydata_file_name="$output_yahoo_data_dir"."/"."ydata.csv";
+my $output_ydelete_file_name="$output_yahoo_data_dir"."/"."delete-ydata.csv";
 my $output_yquantity_file_name="$output_yahoo_data_dir"."/"."yquantity.csv";
 #出力先ディレクトリの作成
 unless(-d $output_rakuten_data_dir) {
@@ -355,6 +356,7 @@ my $output_deleteitem_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_select_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_itemcat_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_ydata_csv = Text::CSV_XS->new({ binary => 1 });
+my $output_ydelete_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_yquantity_csv = Text::CSV_XS->new({ binary => 1 });
 #出力ファイルのオープン
 my $output_item_file_disc;
@@ -384,6 +386,11 @@ if (!open $output_itemcat_file_disc, ">", $output_itemcat_file_name) {
 }	
 my $output_ydata_file_disc;
 if (!open $output_ydata_file_disc, ">", $output_ydata_file_name) {
+	&output_log("ERROR!!($!) $output_ydata_file_name open failed.");
+	exit 1;
+}
+my $output_ydelete_file_disc;
+if (!open $output_ydelete_file_disc, ">", $output_ydelete_file_name) {
 	&output_log("ERROR!!($!) $output_ydata_file_name open failed.");
 	exit 1;
 }	
@@ -419,7 +426,7 @@ our @globel_spec_sort=&get_spec_sort_from_xml();
 #################################################################
 &output_log("**********START**********\n");
 # 楽天用の出力CSVファイルに項目名を出力
-&add_r_csv_name();
+ &add_r_csv_name();
 # Yahoo!用の出力CSVファイルに項目名を出力
  &add_y_csv_name();
 # 登録済みの商品をリストに入れる
@@ -488,11 +495,11 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 				close($tmp_goods_file_disc);
 				$tmp_goods_csv->eof;
 			}
-			
+=pod			
 			foreach my $key(keys(%global_entry_parents_size_variation)){
 				print "=====$global_entry_goods_code key=$key, value= $global_entry_parents_size_variation{$key}\n";
 			}
-			
+=cut			
 			
 			last;
 		}
@@ -500,6 +507,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	if ($global_entry_goods_controlcolumn eq "d") {
 		#コントロールカラムdの商品の場合はdelete-item.csvの出力のみ行う
 		&add_rakuten_delete_data();
+		#コントロールカラムdの商品の場合はdelete-ydata.csvの出力のみ行う
+		&add_yahoo_delete_data();
 		next;
 	}
 	
@@ -533,7 +542,16 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 		# 商品コードが合致したらコードを保持する
 		if (get_5code($global_entry_goods_code) eq $goods_supp_code_5) {
 			# goods_supp.csvの商品情報を保持(SKUのものは一つ目に合致した商品の情報を保持)
-			push(@global_entry_goods_supp_info, (@$goods_supp_line[1],@$goods_supp_line[2]));
+				##### goods_suppファイルの修正
+				my $goods_supp = @$goods_supp_line[1];
+				$goods_supp =~ s/<\/br>/<br \/>/g;
+				$goods_supp =~ s/<\/font><\/a><\/li><\/ul>/<\/font><\/a>/g;
+				my $before_str = "承ります。<br />詳しくはこちら。</font></span>";
+				Encode::from_to( $before_str, 'utf8', 'shiftjis' );
+				my $after_str = "承ります。<br />詳しくはこちら。</font></a></span>";
+				Encode::from_to( $after_str, 'utf8', 'shiftjis' );
+				$goods_supp =~ s/$before_str/$after_str/g;
+			push(@global_entry_goods_supp_info, ($goods_supp,@$goods_supp_line[2]));
 			last;
 		}
 	}
@@ -567,7 +585,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	}
 
 	# 楽天用データを追加
-#	&add_rakuten_data();
+	&add_rakuten_data();
 	# Yahoo!用データを追加
 	&add_yahoo_data();
 }
@@ -585,6 +603,7 @@ $output_deleteitem_csv->eof;
 $output_select_csv->eof;
 $output_itemcat_csv->eof;
 $output_ydata_csv->eof;
+$output_ydelete_csv->eof;
 $output_yquantity_csv->eof;
 # 入力ファイルのクローズ
 close $input_goods_file_disc;
@@ -599,6 +618,7 @@ close $output_deleteitem_file_disc;
 close $output_select_file_disc;
 close $output_itemcat_file_disc;
 close $output_ydata_file_disc;
+close $output_ydelete_file_disc;
 close $output_yquantity_file_disc;
 # 処理終了
 output_log("Process is Success!!\n");
@@ -742,6 +762,8 @@ sub add_r_csv_name {
 sub add_y_csv_name {
 	# Yahoo用のydata.csvに項目名を出力
 	&add_y_datacsv_name();
+	# ヤフー用のdelete-item.csvに項目名を出力
+	&add_ydelete_csv_name();
 	# Yahoo用のyquantity.csvに項目名を出力
 	&add_y_quantitycsv_name();
 	return 0;
@@ -764,6 +786,29 @@ sub add_y_datacsv_name {
 			$post_fix_str=",";
 		}
 		print $output_ydata_file_disc $output_ydata_csv->string(), $post_fix_str;
+	}
+	return 0;
+}
+
+##############################
+## ヤフー削除用delete-ydataファイルに項目名を追加
+##############################
+
+sub add_ydelete_csv_name {
+	my @csv_ydelete_name=("path","name","code","price","sale-price");
+	my $csv_ydelete_num=@csv_ydelete_name;
+	my $csv_ydelete_name_count=0;
+	for my $csv_ydelete_name_str (@csv_ydelete_name) {
+		Encode::from_to( $csv_ydelete_name_str, 'utf8', 'shiftjis' );
+		$output_ydelete_csv->combine($csv_ydelete_name_str) or die $output_ydelete_csv->error_diag();
+		my $post_fix_str="";
+		if (++$csv_ydelete_name_count >= $csv_ydelete_num) {
+			$post_fix_str="\n";
+		}
+		else {
+			$post_fix_str=",";
+		}
+		print $output_ydelete_file_disc $output_ydelete_csv->string(), $post_fix_str;
 	}
 	return 0;
 }
@@ -970,116 +1015,166 @@ sub add_rakuten_item_data {
 ## 楽天用select.csvファイルにデータを追加
 ##############################
 sub add_rakuten_select_data {
-	# SKU(5桁)の商品のみ追加
-	if ($global_entry_goods_variationflag == 1) {
+	my $subcode="";
+	my $color_str = "カラー";
+	Encode::from_to( $color_str, 'utf8', 'shiftjis' );
+	my $size_str = "サイズ";
+	Encode::from_to( $size_str, 'utf8', 'shiftjis' );
+	# バリエーション商品のみ処理
+	if($global_entry_goods_variationflag) {		
+		# カラー、サイズ共にバリエーション有の場合
 		# registに登録されている5桁を含む9桁コードをgoods.csvから抽出して配列に入れる
-		my $tmp_goods_file_disc;
-		if (!open $tmp_goods_file_disc, "<", $input_goods_file_name) {
-			&output_log("ERROR!!($!) $input_goods_file_name open failed.");
-			exit 1;
-		}	
-		seek $tmp_goods_file_disc,0,0;
-		my $find_done_flag=0;
-		my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-		while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-			# 登録情報から商品コード読み出し
-			if (get_5code($global_entry_goods_code) eq get_5code(@$goods_line[0])) {
-				# 項目選択肢用コントロールカラム
-				$output_select_csv->combine("n") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 商品管理番号（商品URL）
-				$output_select_csv->combine(get_5code(@$goods_line[0])) or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 選択肢タイプ
-				$output_select_csv->combine("i") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# Select/Checkbox用項目名
-				$output_select_csv->combine("") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# Select/Checkbox用選択肢
-				$output_select_csv->combine("") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用横軸選択肢
-				my $size_color_var = &create_r_lateral_name();
-				my $color_str = "カラー";
-				Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-				my $size_str = "サイズ";
-				Encode::from_to( $size_str, 'utf8', 'shiftjis' );
-				if(@$goods_line[5] ne ""){
-					if($size_color_var eq $color_str){
-						$output_select_csv->combine(@$goods_line[6]) or die $output_select_csv->error_diag();
-					}
-					else {
-						$output_select_csv->combine($size_str) or die $output_select_csv->error_diag();
-					}
-				}
-				else{
-					$output_select_csv->combine($color_str) or die $output_select_csv->error_diag();
-				}
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用横軸選択肢子番号
-				if(@$goods_line[5] ne ""){
-					my $size_color_var = &create_r_lateral_name();
-					# カラーバリエーションがあってかつサイズバリエーションがある商品
-					if ($size_color_var eq $color_str){
-						$output_select_csv->combine(&get_6_7digit(@$goods_line[0])) or die $output_select_csv->error_diag();
-					}
-					else {
-						$output_select_csv->combine("") or die $output_select_csv->error_diag();
-					}
-				}
-				# カラーバリエーションがある商品
-				else{
+		if(keys(%global_entry_parents_color_variation)>=2 && keys(%global_entry_parents_size_variation)>=2) {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+				foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
 					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($global_entry_parents_color_variation{$color_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine($color_key) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_size_variation{$size_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					$output_select_csv->combine($size_key) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
 				}
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用縦軸選択肢
-				if(@$goods_line[5] ne ""){
-					$output_select_csv->combine(@$goods_line[5]) or die $output_select_csv->error_diag();
-				}
-				else{
-					$output_select_csv->combine(@$goods_line[6]) or die $output_select_csv->error_diag();
-				}
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用縦軸選択肢子番号
-				if(@$goods_line[5] ne ""){
-					my $size_color_var = &create_r_lateral_name();
-					# カラーバリエーションがあってかつサイズバリエーションがある商品
-					my $color_str = "カラー";
-					Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-					if ($size_color_var eq $color_str){
-						$output_select_csv->combine(&get_8_9digit(@$goods_line[0])) or die $output_select_csv->error_diag();
-					}
-					else{
-						$output_select_csv->combine(&get_4digit(@$goods_line[0])) or die $output_select_csv->error_diag();
-					}
-				}
-				else{
-					$output_select_csv->combine(&get_4digit(@$goods_line[0])) or die $output_select_csv->error_diag();
-				}
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用取り寄せ可能表示
-				$output_select_csv->combine("") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 項目選択肢別在庫用在庫数
-				$output_select_csv->combine("0") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 在庫戻しフラグ
-				$output_select_csv->combine("0") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 在庫切れ時の注文受付
-				$output_select_csv->combine("0") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 在庫あり時納期管理番号
-				$output_select_csv->combine("14") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), ",";
-				# 在庫切れ時納期管理番号
-				$output_select_csv->combine("") or die $output_select_csv->error_diag();
-				print $output_select_file_disc $output_select_csv->string(), "\n";
-
 			}
 		}
-		close $tmp_goods_file_disc;
+		elsif(keys(%global_entry_parents_color_variation)>=2 && keys(%global_entry_parents_size_variation)==1) {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($color_str) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_color_variation{$color_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					my $digit_4 = $color_key.get_8_9digit($global_entry_goods_code);
+					$output_select_csv->combine($digit_4) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
+			}		
+		}
+		elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2) {
+			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+					# 項目選択肢用コントロールカラム
+					$output_select_csv->combine("n") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 商品管理番号（商品URL）
+					$output_select_csv->combine(get_5code($global_entry_goods_code)) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 選択肢タイプ
+					$output_select_csv->combine("i") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用項目名
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# Select/Checkbox用選択肢
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
+					$output_select_csv->combine($size_str) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用横軸選択肢子番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢
+					$output_select_csv->combine($global_entry_parents_size_variation{$size_key}) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用縦軸選択肢子番号
+					my $digit_4 = get_6_7digit($global_entry_goods_code).$size_key;
+					$output_select_csv->combine($digit_4) or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用取り寄せ可能表示
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 項目選択肢別在庫用在庫数
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫戻しフラグ
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時の注文受付
+					$output_select_csv->combine("0") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫あり時納期管理番号
+					$output_select_csv->combine("14") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), ",";
+					# 在庫切れ時納期管理番号
+					$output_select_csv->combine("") or die $output_select_csv->error_diag();
+					print $output_select_file_disc $output_select_csv->string(), "\n";
+			}	
+		}
 	}
 	return 0;
 }
@@ -1100,8 +1195,8 @@ sub add_rakuten_itemcat_data {
 			if ($global_entry_goods_variationflag == 0){
 			$output_itemcat_csv->combine("$global_entry_goods_code") or die $output_itemcat_csv->error_diag();
 			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		}
-		else{
+			}
+			else{
 			$output_itemcat_csv->combine(&get_5code($global_entry_goods_code)) or die $output_itemcat_csv->error_diag();
 			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
 		}
@@ -1168,6 +1263,31 @@ sub add_yahoo_data {
 }
 
 ##############################
+## ヤフー削除用ファイルdelete-itemファイルにデータを追加
+##############################
+sub add_yahoo_delete_data {
+	# 各値をCSVファイルに書き出す
+	# path
+	$output_ydelete_csv->combine("") or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# name
+	$output_ydelete_csv->combine(&create_ry_goods_name()) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# code
+	$output_ydelete_csv->combine($global_entry_goods_code) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# price
+	$output_ydelete_csv->combine($global_entry_goods_price) or die $output_ydelete_csv->error_diag();
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), ",";
+	# sale-price
+	$output_ydelete_csv->combine("") or die $output_ydelete_csv->error_diag();
+	#最後に改行を追加
+	print $output_ydelete_file_disc $output_ydelete_csv->string(), "\n";
+	return 0;
+	
+}
+
+##############################
 ## Yahoo!用ydata.csvファイルにデータを追加
 ##############################
 sub add_ydata_data {
@@ -1223,7 +1343,7 @@ sub add_ydata_data {
 	$output_ydata_csv->combine("") or die $output_ydata_csv->error_diag();
 	print $output_ydata_file_disc $output_ydata_csv->string(), ",";
 	# relevant-links
-	$output_ydata_csv->combine(&create_y_relevant_links()) or die $output_ydata_csv->error_diag();
+	$output_ydata_csv->combine("") or die $output_ydata_csv->error_diag();
 	print $output_ydata_file_disc $output_ydata_csv->string(), ",";
 	# ship-weight
 	$output_ydata_csv->combine("") or die $output_ydata_csv->error_diag();
@@ -1431,6 +1551,7 @@ sub create_r_mbcatch_copy {
 	my $jstr1="【正規販売店】";
 	Encode::from_to( $jstr1, 'utf8', 'shiftjis' );
 	$catch_copy .= "$jstr1";
+	my $catch_copy_pre = $catch_copy;
 	# 5,000円以上は送料無料の文言を付与
 	if($global_entry_goods_price >= 5000) {
 	  my $jstr2="【送料無料】";
@@ -1442,7 +1563,12 @@ sub create_r_mbcatch_copy {
 	my $jstr3="【あす楽対応】";
 	Encode::from_to( $jstr3, 'utf8', 'shiftjis' );
 	$catch_copy .= "$jstr3";
-	return $catch_copy;
+	if(length($catch_copy) >= 60){
+		return $catch_copy_pre;
+	}
+	else {
+		return $catch_copy;
+	}
 }
 
 ##############################
@@ -1706,23 +1832,73 @@ my $html_str6=
 <p>
 HTML_STR_6
 	Encode::from_to( $html_str6, 'utf8', 'shiftjis' );
-	# 商品コメント1を追加
+	# 商品コメント1を出力する。
 	my $goods_comment_1 = $global_entry_goods_supp_info[0] || "";
 	my $before_rep_str0="<ul class=\"link1\">.*<\/ul>";
 	my $after_rep_str0="";
 	$goods_comment_1 =~ s/$before_rep_str0/$after_rep_str0/g;
-	# <span>タグの削除
-	my $before_rep_str1="<span class=\"itemComment\">";
-	my $after_rep_str1="";
-	$goods_comment_1 =~ s/$before_rep_str1/$after_rep_str1/g;
-	# </span>タグの削除
-	my $before_rep_str2="</span>";
-	my $after_rep_str2="";
-	$goods_comment_1 =~ s/$before_rep_str2/$after_rep_str2/g;
 	#　消費税増税バナーを削除
-	my $after_cut_exp="";
-	my $before_cut_exp="<br \/><br \/><p>.*<\/p>";	
-	$goods_comment_1 =~ s/$before_cut_exp/$after_cut_exp/g;	
+	my $after_rep_str1="";
+	my $before_rep_str1="<br \/><br \/><p>.*<\/p>";	
+	$goods_comment_1 =~ s/$before_rep_str1/$after_rep_str1/g;	
+	#　<span class="itemComment">を削除
+	my $after_rep_str2="";
+	my $before_rep_str2="<span class=\"itemComment\">";
+	$goods_comment_1 =~ s/$before_rep_str2/$after_rep_str2/g;
+	#　</span>を削除
+	my $after_rep_str3="";
+	my $before_rep_str3="</span>";
+	$goods_comment_1 =~ s/$before_rep_str3/$after_rep_str3/g;
+	# フェリージのリンク変換1
+	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/\">";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
+	$goods_comment_1 =~ s/$before_rep_str4/$after_rep_str4/g;
+	# フェリージのリンク変換2
+	my $after_rep_str4_1="";
+	my $before_rep_str4_1="style=\"border-style: none;\" ";
+	$goods_comment_1 =~ s/$before_rep_str4_1/$after_rep_str1/g;
+	# フェリージのリンク変換3
+	my $after_rep_str5="http://image.rakuten.co.jp/hff/cabinet/pic/felisi/felisi_seal.gif";
+	my $before_rep_str5="http://seal.felisi.net/FCSSeal/images/fcs_230x60_json.gif";
+	$goods_comment_1 =~ s/$before_rep_str5/$after_rep_str5/g;
+	# フォックスのリンク変換
+	my $after_rep_str6="http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html";
+	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
+	$goods_comment_1 =~ s/$before_rep_str6/$after_rep_str6/;
+	# ジョンストンズのリンク削除
+	my $after_rep_str7="";
+	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
+	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
+	# 返品交換のリンク置換
+	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/howto4.html";
+	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
+	$goods_comment_1 =~ s/$before_rep_str8/$after_rep_str8/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9 ="";
+	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/?cat=72\"><img.*</p><br />";
+	$goods_comment_1 =~ s/$before_rep_str9/$after_rep_str9/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9_1 ="";
+	my $before_rep_str9_1 = "<p><a href=\"http://blog.glober.jp/?cat=72\" /><img.*</p><br />";
+	$goods_comment_1 =~ s/$before_rep_str9_1/$after_rep_str9_1/g;
+	# クルチアーニのリンク削除
+	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
+	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
+	$goods_comment_1 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_comment_1 =~ s/<u>//g;
+	# </u>変換
+	$goods_comment_1 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_comment_1 =~ s/$before_rep_str11/$after_rep_str11/g;
 	# 商品コメント1を追加
 	$spec_str .= "$html_str6"."$goods_comment_1";
 	# 5000円未満の商品は送料無料の注意書きを入れる。
@@ -1734,7 +1910,7 @@ HTML_STR_6
 	# ブランド辞典を追加
 	my $brand_dic = &get_info_from_xml("r_dictionary");
 	if ($brand_dic ne "") {
-		$spec_str .="$brand_dic";
+		$spec_str .="</p>$brand_dic";
 	}
 my $html_str6_2=
 <<"HTML_STR_6_2";
@@ -1750,10 +1926,10 @@ HTML_STR_6_2
 	my $test="\n";
 	#####
 	# 商品コメント2を取得
-	my $goods_info = $global_entry_goods_supp_info[1];
-	my $before_rep_str3="\n\n";
-	my $after_rep_str3="\n";
-	$goods_info =~ s/$before_rep_str3/$after_rep_str3/g;
+	my $goods_info = $global_entry_goods_supp_info[1] || ""; 
+	my $before_rep_str_3="\n\n";
+	my $after_rep_str_3="\n";
+	$goods_info =~ s/$before_rep_str_3/$after_rep_str_3/g;
 	if ($goods_info ne "") {
 		# 改行で分割してリストに入れる
 		my $goods_info_str = "<table class=\"materialDetail f11\">\n";
@@ -1762,7 +1938,8 @@ HTML_STR_6_2
 		#####test用
 		$test.=$goods_info_str;
 		#####		
-		my @goods_info_str_list = split(/\n/, $goods_info); 
+		my @goods_info_str_list = ();
+		@goods_info_str_list = split(/\n/, $goods_info); 
 		# リストの数を取得
 		my $goods_info_str_list_count=@goods_info_str_list;
 		for (my $i=1; $i < $goods_info_str_list_count-2; $i++) {
@@ -1833,7 +2010,7 @@ HTML_STR_6_2
 my $html_str7=
 <<"HTML_STR_7";
 <div>
-<p class="campaign"><img src="http://www.rakuten.ne.jp/gold/hff/img/common/bnr_campaign.jpg" alt="Special Campaign レビューを書いて商品券をGET! VJAギフトカード 5,000円分が20名様に当たる！！" /></p>
+<p class="campaign"><a href ="http://www.rakuten.ne.jp/gold/hff/review/review2014.html"><img src="http://www.rakuten.ne.jp/gold/hff/img/common/new_main_coupon_w726b.gif" alt="Special Campaign レビューを書いて商品券をGET! VJAギフトカード 5,000円分が5名様に当たる！！" /></a></p>
 <div class="textInfo">
 <ul>
 <li>当店では、他店舗と在庫データを共有しているため、まれに売り切れや入荷待ちの場合がございます。</li>
@@ -1977,10 +2154,10 @@ HTML_STR_9
 	
 	#WHC, COOSの場合は文言追加
 	if (&get_info_from_xml("brand_name") eq $whc_str){
-		$spec_str="$html_str8"."$spec_str"."$html_str_whc"."$html_str9";
+#		$spec_str ="$spec_str"."$html_str8"."$html_str_whc"."$html_str9";
 	}
 	elsif (&get_info_from_xml("brand_name") eq $coos_str) {
-		$spec_str="$html_str8"."$spec_str"."$html_str_coos"."$html_str9";
+		$spec_str ="$spec_str"."$html_str8"."$html_str_coos"."$html_str9";
 	}	
 
 	return $spec_str;
@@ -2098,13 +2275,65 @@ HTML_STR_coos
 ##############################
 sub create_ry_smp_goods_spec {
 	my $smp_goods_spec = "";
+	# tableのタグを追加
+	$smp_goods_spec .= "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+	# 商品コメント2を取得
+	my $goods_info_smp = $global_entry_goods_supp_info[1] || "";
+	# サイズチャートがgoods_suppに入力されている場合
+	if ($goods_info_smp ne "") {
+		# <span>タグの削除
+		my $before_rep_smp_1="<span>";
+		my $after_rep_smp_1="";
+		$goods_info_smp =~ s/$before_rep_smp_1/$after_rep_smp_1/g;
+		# </span>タグの削除
+		my $before_rep_smp_2="</span>";
+		my $after_rep_smp_2="";
+		$goods_info_smp =~ s/$before_rep_smp_2/$after_rep_smp_2/g;
+		$smp_goods_spec .= "<tr><td>\n";
+		# スマホ用サイズチャートのヘッダー
+		my $before_rep_smp_3="<table class=\"infoTable\"><tr><td><table>";
+		my $after_rep_smp_3 = "<table width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">" || "";
+		$goods_info_smp =~ s/$before_rep_smp_3/$after_rep_smp_3/g;
+		# スマホ用サイズチャートの項目先頭
+		my $before_rep_smp_4="<tr><th class=\"col01\">";
+		my $after_rep_smp_4 = "<tr bgcolor=\"#cfcfcf\" align=\"center\"><th>";
+		$goods_info_smp =~ s/$before_rep_smp_4/$after_rep_smp_4/g;
+		# スマホ用サイズチャートの項目
+		my $before_rep_smp_5="<th>";
+		my $after_rep_smp_5 = "<th><font size=\"1\">";
+		$goods_info_smp =~ s/$before_rep_smp_5/$after_rep_smp_5/g;
+		# スマホ用サイズチャートの項目</>の変更
+		my $before_rep_smp_6="</th>";
+		my $after_rep_smp_6 = "</font></th>";
+		$goods_info_smp =~ s/$before_rep_smp_6/$after_rep_smp_6/g;
+		# スマホ用サイズチャートの内容
+		my $before_rep_smp_7="<tr><td class=\"col01\">";
+		my $after_rep_smp_7 = "<tr bgcolor=\"#f0f0f0\" height=\"30\" align=\"center\"><td>";
+		$goods_info_smp =~ s/$before_rep_smp_7/$after_rep_smp_7/g;
+		# スマホ用サイズチャートの内容
+		my $before_rep_smp_8="</table></td></tr></table>";
+		my $after_rep_smp_8 = "</table>";
+		$goods_info_smp =~ s/$before_rep_smp_8/$after_rep_smp_8/g;
+		#タグを追加
+		$smp_goods_spec .= $goods_info_smp."\n"."</td></tr>"."\n";
+	}
+my $html_str_1=
+<<"HTML_STR_1";
+<tr><td height="7"></td></tr>
+<tr><td>
+<hr size="1" color="#dfdfdf">
+</td></tr>
+<tr><td height="2"></td></tr>
+<tr><td>
+<table>
+HTML_STR_1
+	#HTMLを追加
+	$smp_goods_spec .= $html_str_1;
 	# 商品番号を追加
 	my $str_goods_code = "商品番号";
 	Encode::from_to( $str_goods_code, 'utf8', 'shiftjis' );
 	my $coron="：";
 	Encode::from_to( $coron, 'utf8', 'shiftjis' );
-	my $slash="／";
-	Encode::from_to( $slash, 'utf8', 'shiftjis' );
 	my $entry_code =0;
 	if ($global_entry_goods_variationflag == 1){
 		$entry_code = get_5code($global_entry_goods_code);
@@ -2112,7 +2341,13 @@ sub create_ry_smp_goods_spec {
         else {
 		$entry_code = get_9code($global_entry_goods_code);
         }
-	$smp_goods_spec .= "$str_goods_code"."$coron"."$entry_code"."$slash";
+	$smp_goods_spec .= "<tr valign=\"top\">\n"."<td>"."$str_goods_code"."</td>\n"."<td>"."$coron"."</td>"."<td>"."$entry_code"."</td>\n"."</tr>"."\n";
+	# カラーを追加
+	if ($global_entry_goods_color ne "") {
+		my $color_str = "カラー";
+		Encode::from_to( $color_str, 'utf8', 'shiftjis' );
+		$smp_goods_spec .= "<tr valign=\"top\">\n"."<td>"."$color_str"."</td>\n"."<td>"."$coron"."</td>"."<td>"."$global_entry_goods_color"."</td>\n"."</tr>"."\n";
+	}
 	# 商品スペックを追加
 	my @specs;
 	my $spec_count = @global_entry_goods_spec_info;
@@ -2150,32 +2385,86 @@ sub create_ry_smp_goods_spec {
 	my $specs_count = @specs;
 	for (my $i=0; $i < $specs_count; $i+=2) {
 		my $spec_info = $specs[$i+1];
-		my $before_rep_str_spec1="<br>";
-		my $after_rep_str_spec1=" ";
-		$spec_info =~ s/$before_rep_str_spec1/$after_rep_str_spec1/g;
-		my $before_rep_str_spec2="<br />";
-		my $after_rep_str_spec2=" ";
-		$spec_info =~ s/$before_rep_str_spec2/$after_rep_str_spec2/g;
-		$smp_goods_spec .= "$specs[$i]"."$coron"."$spec_info";
-		# 最後以外は／で区切る
-		if (($i+2) < $specs_count) {
-			$smp_goods_spec .= $slash;
-		}
+		$smp_goods_spec .= "<tr valign=\"top\">\n"."<td>"."$specs[$i]"."</td>\n"."<td>"."$coron"."</td>"."<td>"."$spec_info"."</td>\n"."</tr>"."\n";
 	}
+	$smp_goods_spec .="</table>";
+my $html_str_2=
+<<"HTML_STR_2";
+</td></tr>
+<tr><td height="7"></td></tr>
+<tr><td>
+<hr size="1" color="#dfdfdf">
+</td></tr>
+<tr><td height="4"></td></tr>
+<tr><td>
+HTML_STR_2
+	# HTMLの追加
+	$smp_goods_spec .= $html_str_2;
 	# 商品コメント1を出力する。
 	my $goods_comment_1 = $global_entry_goods_supp_info[0] || "";
 	my $before_rep_str0="<ul class=\"link1\">.*<\/ul>";
 	my $after_rep_str0="";
 	$goods_comment_1 =~ s/$before_rep_str0/$after_rep_str0/g;
-	# <span>タグの削除
-	my $before_rep_str1="<span class=\"itemComment\">";
+	#　消費税増税バナーを削除
 	my $after_rep_str1="";
-	$goods_comment_1 =~ s/$before_rep_str1/$after_rep_str1/g;
-	# </span>タグの削除
-	my $before_rep_str2="</span>";
+	my $before_rep_str1="<br \/><br \/><p>.*<\/p>";	
+	$goods_comment_1 =~ s/$before_rep_str1/$after_rep_str1/g;	
+	#　<span class="itemComment">を削除
 	my $after_rep_str2="";
+	my $before_rep_str2="<span class=\"itemComment\">";
 	$goods_comment_1 =~ s/$before_rep_str2/$after_rep_str2/g;
-	$smp_goods_spec .= "<br /><br />"."$goods_comment_1";
+	#　</span>を削除
+	my $after_rep_str3="";
+	my $before_rep_str3="</span>";
+	$goods_comment_1 =~ s/$before_rep_str3/$after_rep_str3/g;
+	# フェリージのリンク変換1
+	my $after_rep_str4="<a href=\"http://link.rakuten.co.jp/0/048/566/\">";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
+	$goods_comment_1 =~ s/$before_rep_str4/$after_rep_str4/g;
+	# フェリージのリンク変換2
+	my $after_rep_str4_1="";
+	my $before_rep_str4_1="style=\"border-style: none;\" ";
+	$goods_comment_1 =~ s/$before_rep_str4_1/$after_rep_str1/g;
+	# フェリージのリンク変換3
+	my $after_rep_str5="http://image.rakuten.co.jp/hff/cabinet/pic/felisi/felisi_seal.gif";
+	my $before_rep_str5="http://seal.felisi.net/FCSSeal/images/fcs_230x60_json.gif";
+	$goods_comment_1 =~ s/$before_rep_str5/$after_rep_str5/g;
+	# フォックスのリンク変換
+	my $after_rep_str6="http://www.rakuten.ne.jp/gold/hff/brand/foxumbrellas/fx_repair.html";
+	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
+	$goods_comment_1 =~ s/$before_rep_str6/$after_rep_str6/;
+	# ジョンストンズのリンク削除
+	my $after_rep_str7="";
+	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
+	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
+	# 返品交換のリンク置換
+	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/howto4.html";
+	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
+	$goods_comment_1 =~ s/$before_rep_str8/$after_rep_str8/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9 ="";
+	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/\?cat=72\"><img.*</p><br />";
+	$goods_comment_1 =~ s/$before_rep_str9/$after_rep_str9/g;
+	# クルチアーニのリンク削除
+	my $after_rep_str9_2 ="http://item.rakuten.co.jp/hff/146701111/";
+	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
+	$goods_comment_1 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://www.rakuten.ne.jp/gold/hff/repair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_comment_1 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_comment_1 =~ s/<u>//g;
+	# </u>変換
+	$goods_comment_1 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_comment_1 =~ s/$before_rep_str11/$after_rep_str11/g;
+	# 商品コメント1を追加
+	$smp_goods_spec .= $goods_comment_1;
 	# 5000円未満の商品は送料無料の注意書きを入れる。
 	if ($global_entry_goods_price < 5000){
 		my $additional_str = "<br /><br />※5,000円以上のお買い上げで送料無料";
@@ -2200,295 +2489,33 @@ HTML_STR_coos
 	
 	#WHC, COOSの場合は文言追加
 	if (&get_info_from_xml("brand_name") eq $whc_str){
-		$smp_goods_spec .= "<br>";
+		$smp_goods_spec .= "<br />";
 		$smp_goods_spec .= "$html_str_whc";
-		$smp_goods_spec .= "<br><br>";
 	}
 	elsif (&get_info_from_xml("brand_name") eq $coos_str) {
-		$smp_goods_spec .= "<br>";
+		$smp_goods_spec .= "<br />";
 		$smp_goods_spec .= "$html_str_coos";
-		$smp_goods_spec .= "<br><br>";
 	}
 	#　※※※$smp_goods_specにすべての項目を格納し出力する。※※※
-	# 商品コメント2を取得
-	my $goods_info_smp = $global_entry_goods_supp_info[1] || "";
-	my $before_rep_str3="\n\n";
-	my $after_rep_str3="\n";
-	$goods_info_smp =~ s/$before_rep_str3/$after_rep_str3/g;
-	# 1行ごとにサイズ要素のみの配列を作る
-	my $before_str4="<table class=\"infoTable\"><tr><td><table>";
-	Encode::from_to( $before_str4, 'utf8', 'shiftjis' );
-	my $after_str4="";	
-	Encode::from_to( $after_str4, 'utf8', 'shiftjis' );
-	$goods_info_smp =~ s/$before_str4/$after_str4/g;
-	# 1行ごとにサイズ要素のみの配列を作る
-	my $before_str5="<\/table><\/td><\/tr><\/table>";
-	Encode::from_to( $before_str5, 'utf8', 'shiftjis' );
-	my $after_str5="";	
-	Encode::from_to( $after_str5, 'utf8', 'shiftjis' );
-	$goods_info_smp =~ s/$before_str5/$after_str5/g;
-	# サイズチャートがgoods_suppに入力されている場合
-	if ($goods_info_smp ne "") {
-		# スマホ用サイズチャートのヘッダー
-		my $smp_sizechart_header = "<br /><br />【サイズチャート】\n" || "";
-		Encode::from_to( $smp_sizechart_header, 'utf8', 'shiftjis' );
-		# GLOBERのサイズチャートを改行で分割して配列にする
-		my @goods_info_str_list_tr = split(/<tr>/, $goods_info_smp);
-		my @goods_info_str_list_sub = split(/<\/th>/, $goods_info_str_list_tr[1]);
-		# GLOBERのサイズチャートの行数を格納する
-		my $goods_info_str_list_count=@goods_info_str_list_tr;
-		# スマホサイズチャートを宣言
-		my $smp_sizechart ="$smp_sizechart_header";
-		#GLOBERのサイズチャートを<tr>の行ごとに読み込み、1行ずつ処理して変数に追加していく。
-		my $i=2;
-		# 1行<tr>にあたりにおけるサイズの項目数
-		my $size_i=0;
-		while ($i <= $goods_info_str_list_count-1){
-			# 1行ごとにサイズ要素のみの配列を作る
-			my $before_str1="<\/tr>";
-			Encode::from_to( $before_str1, 'utf8', 'shiftjis' );
-			my $after_str1="";	
-			Encode::from_to( $after_str1, 'utf8', 'shiftjis' );
-			$goods_info_str_list_tr[$i] =~ s/$before_str1/$after_str1/g;
-			my @goods_info_str_list_size = split(/<\/td><td>/, $goods_info_str_list_tr[$i]);
-			# サイズの要素数を格納する
-			my $goods_info_str_list_size_count=@goods_info_str_list_size;
-			# サイズ要素数が1つのとき
-			if ($goods_info_str_list_size_count ==2){
-				if ($size_i==0){
-					my $before_str_1="<td class=\'col01\'>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $before_str_2="<td class=\"col01\">";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str="<br />";	
-					Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_1/$after_str/g;
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str/g;
-					$goods_info_str_list_size[$size_i] = "$goods_info_str_list_size[$size_i]";
-					$smp_sizechart .= $goods_info_str_list_size[$size_i];
-					$size_i++;
-					next;
-				}
-				else {
-					# サイズ項目の余計な文字列を削除
-					my $before_str="<th>";
-					Encode::from_to( $before_str, 'utf8', 'shiftjis' );
-					my $after_str="";	
-					Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str/$after_str/g;
-					# サイズ項目の余計な文字列を削除
-					my $before_str_1="<\/tr>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $after_str_1="";	
-					Encode::from_to( $after_str_1, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_2="<\/td><\/tr>";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str_2="";	
-					Encode::from_to( $after_str_2, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_3="<\/td>";
-					Encode::from_to( $before_str_3, 'utf8', 'shiftjis' );
-					my $after_str_3="";	
-					Encode::from_to( $after_str_3, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_4="<\/tr>";
-					Encode::from_to( $before_str_4, 'utf8', 'shiftjis' );
-					my $after_str_4="";	
-					Encode::from_to( $after_str_4, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
-					chomp($goods_info_str_list_size[$size_i]);
-					$smp_sizechart .= "("."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]".")"."\n";
-					$size_i=0;
-					$i++;
-				}
-			}
-			# サイズ要素数が2以上のとき
-			else{
-				# サイズ要素のみの配列を1つずつサイズの要素とサイズ項目を組み合わせてスマホ用サイズチャートを作る
-				# 1番目はサイズで余分な文字列を省き、ヘッダーを追加してサイズチャートに格納する
-				if ($size_i==0){
-					my $before_str_1="<td class=\'col01\'>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $before_str_2="<td class=\"col01\">";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str="<br />";	
-					Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_1/$after_str/g;
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str/g;
-					$goods_info_str_list_size[$size_i] = "$goods_info_str_list_size[$size_i]";
-					$smp_sizechart .= $goods_info_str_list_size[$size_i];
-					$size_i++;
-					next;
-				}
-				# 2番目はサイズ要素のスタートなので、（をつけて1番目のサイズ項目を組み合わせてサイズチャートに格納する
-				elsif($size_i==1 ){
-					# サイズ項目の余計な文字列を削除
-					my $before_str="<th>";
-					Encode::from_to( $before_str, 'utf8', 'shiftjis' );
-					my $after_str="";	
-					Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str/$after_str/g;
-					# サイズ項目の余計な文字列を削除
-					my $before_str_1="<\/tr>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $after_str_1="";	
-					Encode::from_to( $after_str_1, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_2="<\/td><\/tr>";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str_2="";	
-					Encode::from_to( $after_str_2, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_3="<\/td>";
-					Encode::from_to( $before_str_3, 'utf8', 'shiftjis' );
-					my $after_str_3="";	
-					Encode::from_to( $after_str_3, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_4="<\/tr>";
-					Encode::from_to( $before_str_4, 'utf8', 'shiftjis' );
-					my $after_str_4="";	
-					Encode::from_to( $after_str_4, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
-					chomp($goods_info_str_list_size[$size_i]);
-					$smp_sizechart .= "("."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]";
-					$size_i++;
-					next;
-				}
-				elsif($size_i<$goods_info_str_list_size_count-1){
-					# サイズ項目の余計な文字列を削除
-					my $before_str_0="<th>";
-					Encode::from_to( $before_str_0, 'utf8', 'shiftjis' );
-					my $after_str_0="";	
-					Encode::from_to( $after_str_0, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_0/$after_str_0/g;
-					# サイズ項目の余計な文字列を削除
-					my $before_str_1="<\/tr>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $after_str_1="";	
-					Encode::from_to( $after_str_1, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_2="<\/tr>";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str_2="";	
-					Encode::from_to( $after_str_2, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_3="<\/td><\/tr>";
-					Encode::from_to( $before_str_3, 'utf8', 'shiftjis' );
-					my $after_str_3="";	
-					Encode::from_to( $after_str_3, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
-					chomp($goods_info_str_list_size[$size_i]);
-					$smp_sizechart .= "/"."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]";
-					$size_i++;
-					next;
-				}
-				else{
-					# サイズ項目の余計な文字列を削除
-					my $before_str_0="<th>";
-					Encode::from_to( $before_str_0, 'utf8', 'shiftjis' );
-					my $after_str_0="";	
-					Encode::from_to( $after_str_0, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_0/$after_str_0/g;
-					# サイズ項目の余計な文字列を削除
-					my $before_str_1="<\tr>";
-					Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-					my $after_str_1="";	
-					Encode::from_to( $after_str_1, 'utf8', 'shiftjis' );
-					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_2="<\/td><\/tr>";
-					Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-					my $after_str_2="";	
-					Encode::from_to( $after_str_2, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_3="<\/tr>";
-					Encode::from_to( $before_str_3, 'utf8', 'shiftjis' );
-					my $after_str_3="";	
-					Encode::from_to( $after_str_3, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
-					# サイズ要素の余計な文字列を削除
-					my $before_str_4="<\/td>";
-					Encode::from_to( $before_str_4, 'utf8', 'shiftjis' );
-					my $after_str_4="";	
-					Encode::from_to( $after_str_4, 'utf8', 'shiftjis' );
-					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
-					chomp($goods_info_str_list_size[$size_i]);
-					$smp_sizechart .= "/"."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]".")"."\n";
-					$size_i=0;
-					$i++;
-				}
-			}
-		}
 my $html_str_end=
 <<"HTML_STR_end";
-<br><br>・ディスプレイにより、実物と色、イメージが異なる事がございます。あらかじめご了承ください。
-<br>・当店では、他店舗と在庫データを共有しているため、まれに売り切れや入荷待ちの場合がございます。
+<br /><br />・ディスプレイにより、実物と色、イメージが異なる事がございます。あらかじめご了承ください。
+<br />・当店では、他店舗と在庫データを共有しているため、まれに売り切れや入荷待ちの場合がございます。
 HTML_STR_end
-		Encode::from_to( $html_str_end, 'utf8', 'shiftjis' );
-		$smp_sizechart .=$html_str_end;
-		$smp_goods_spec .="$smp_sizechart"."\n";
-=pod
-			# サイズを変数に格納する
-			my $smp_size_location =index($smp_sizechart,"<",5);
-			# 24ならOK
-			#80ならOK
-			my $smp_size = substr($smp_sizechart,22,$smp_size_location-22);
-			exit;
-			if($i==2) {
-				#3行目の変換処理
-				my $before_str_1="<tr><td class=\'col01\'>";
-				Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-				my $before_str_2="<tr><td class=\"col01\">";
-				Encode::from_to( $before_str_2, 'utf8', 'shiftjis' );
-				my $after_str="<br />";	
-				Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-				$smp_sizechart =~ s/$before_str_1/$after_str/g;
-				$smp_sizechart =~ s/$before_str_2/$after_str/g;
-				my $sub_count_end=@goods_info_str_list_sub;
-				for (my $sub_count=0; $sub_count < $sub_count_end-1; $sub_count++){
-					my $smp_sizechart_sub = $goods_info_str_list_sub[$sub_count];
-					if($sub_count==0) {
-						my $before_str="<\/td><td>";
-						Encode::from_to( $before_str_1, 'utf8', 'shiftjis' );
-						my $after_str="("."$smp_sizechart_sub";	
-						Encode::from_to( $after_str, 'utf8', 'shiftjis' );
-						$smp_sizechart =~ s/$before_str_1/$after_str/g;
-						$smp_sizechart =~ s/$before_str_2/$after_str/g;
-				
-				}
-
-				foreach my $var(@smp_sizechart_str){
-				}
-				#　<td>つきの各項目の要素を配列にする
-				my @smp_sizechart_list = split(/<td>/|/<\/td>/, $smp_sizechart);
-				foreach my $var(@smp_sizechart_list){
-				}
-
-				#　各項目の要素のみ配列にする
-				my @smp_sizechart_int = split(/<td>/, $smp_sizechart_list);
-				foreach my $var(@smp_sizechart_list){
-				}
-=cut
-				$smp_sizechart.="\n";
-	}
+	Encode::from_to( $html_str_end, 'utf8', 'shiftjis' );
+	$smp_goods_spec .=$html_str_end;
+	$smp_goods_spec .= "</td><td width=\"5\"></td></tr></table>";
 	# 5120byte制限チェック
 	my $len = length $smp_goods_spec;
 	if ($len > 5120) {
 		# ログファイル出力
-		my $warn = "モバイル用商品説明文がサイズ制限(5120byte)を超えています。商品番号：$global_entry_goods_code サイズ：$len(byte)";
+		my $warn = "スマートフォン用商品説明文がサイズ制限(5120byte)を超えています。商品番号：$entry_code サイズ：$len(byte)";
 		Encode::from_to( $warn, 'utf8', 'shiftjis' );
 		&output_log("$warn\n");
 	}
+	my $after_rep_str12="<br /><br />";
+	my $before_rep_str12="<br /><br /><br /><br />";
+	$smp_goods_spec =~ s/$before_rep_str12/$after_rep_str12/g;
 	return $smp_goods_spec;
 }
 
@@ -2580,7 +2607,7 @@ HTML_STR_2
 my $html_str3=
 <<"HTML_STR_3";
 <div id="detailSlide">
-<iframe src="http://www.rakuten.ne.jp/gold/_shop_3603/iframe/
+<iframe src="http://www.rakuten.ne.jp/gold/hff/iframe/brand/
 HTML_STR_3
         Encode::from_to( $html_str3, 'utf8', 'shiftjis' );
         chomp($html_str3);
@@ -2624,7 +2651,7 @@ sub create_riframe {
 	if ($brand_name eq "") {
 		$brand_name = "other"
 	}
-	my $output_iframe_data_dir = $output_rakuten_data_dir."/iframe/".$brand_name;
+	my $output_iframe_data_dir = $output_rakuten_data_dir."/iframe/brand/".$brand_name;
 	#出力先ディレクトリの作成
 	unless(-d $output_iframe_data_dir) {
 	# 存在しない場合はフォルダ作成
@@ -2647,17 +2674,17 @@ my $html_str1=
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
-<link rel="stylesheet" href="../css/style.css" media="all" />
+<link rel="stylesheet" href="../../css/style.css" media="all" />
 <!--[if lte IE 7]>
-<link rel="stylesheet" href="../css/ie7.css" media="all" />
+<link rel="stylesheet" href="../../css/ie7.css" media="all" />
 <![endif]-->
-<script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
-<script type="text/javascript" src="../js/fixHeight.js"></script>
-<script type="text/javascript" src="../js/swapimage.js"></script>
-<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="../../js/fixHeight.js"></script>
+<script type="text/javascript" src="../../js/swapimage.js"></script>
+<script type="text/javascript" src="../../js/jquery.js"></script>
 <script language="JavaScript" type="text/javascript">jQuery.noConflict();</script>
-<script type="text/javascript" src="../js/lookupzip.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../../js/lookupzip.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
 HTML_STR_1
         chomp($html_str1);
         # 固定のスタイルシートを追加
@@ -2680,7 +2707,8 @@ HTML_STR_2
 	# 画像部分のHTMLを追加する
 	my $html_str_3 ="";
 	# 商品画像URLとして出力する画像を配列に入れる
-	my @img_url_list = split(/\//,$global_entry_goods_rimagefilename);
+	my @img_url_list = ();
+	@img_url_list = split(/\//,$global_entry_goods_rimagefilename);
 	# 商品画像の数を格納する
 	my $img_url_list_count = @img_url_list;
 	# ブランドのディレクトリを格納する
@@ -2692,7 +2720,7 @@ HTML_STR_3_1
 	chomp($html_str3_1);
 my $html_str3_2=
 <<"HTML_STR_3_2";
-<li><a href="javascript:;" rev="http://image.rakuten.co.jp/_shop_3603/cabinet/pic/
+<li><a href="javascript:;" rev="http://image.rakuten.co.jp/hff/cabinet/pic/
 HTML_STR_3_2
 	chomp($html_str3_2);
 my $html_str3_3=
@@ -2702,12 +2730,12 @@ HTML_STR_3_3
 	chomp($html_str3_3);
 my $html_str3_4=
 <<"HTML_STR_3_4";
-<img src="http://image.rakuten.co.jp/_shop_3603/cabinet/pic/
+<img src="http://image.rakuten.co.jp/hff/cabinet/pic/
 HTML_STR_3_4
 	chomp($html_str3_4);
 	foreach (my $i=0; $i<=$img_url_list_count-1; $i++){
 		if ($i == 0){
-			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/_shop_3603/cabinet/pic/"."$img_dir"."/1"."/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
+			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/1"."/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
 			$iframe_html .= $html_str3_1."\n";
 		}
 		my $img_num = get_r_image_num_from_filename($img_url_list[$i]);
@@ -2794,7 +2822,7 @@ HTML_STR_4
 ## (楽天)商品画像URLの生成
 ##############################
 sub create_r_goods_image_url {
-	my $html_str1 = "http://image.rakuten.co.jp/_shop_3603/cabinet/pic/";
+	my $html_str1 = "http://image.rakuten.co.jp/hff/cabinet/pic/";
         chomp($html_str1);
         my $image_url_str="";
 	# ブランドのディレクトリを格納する
@@ -3008,6 +3036,7 @@ sub create_y_headline {
 			$headline .= " "."$y_category_name";
 		}
 	}
+	my $headline_pre = $headline;
 	# 定型文言
 	my $jstr1="【正規販売店】";
 	Encode::from_to( $jstr1, 'utf8', 'shiftjis' );
@@ -3018,7 +3047,12 @@ sub create_y_headline {
 		Encode::from_to( $jstr2, 'utf8', 'shiftjis' );
 		$headline .= "$jstr2";
 	}
-	return $headline;
+	if (length($headline) >= 60){
+		return $headline_pre;
+	}
+	else {
+		return $headline;
+	}
 }
 
 ##############################
@@ -3100,6 +3134,7 @@ my $html_str5_1=
 <tr>
 <th align="left" valign="top" style="border-bottom:1px solid #D9D9D9;border-right: 2px solid #FFF;color:#BA9B76;font-weight:bold;padding:6px 10px 1px 16px;line-height:1.5;">
 HTML_STR_5_1
+chomp $html_str5_1;
 
 my $html_str5_2=
 <<"HTML_STR_5_2";
@@ -3110,6 +3145,7 @@ my $html_str5_3=
 <<"HTML_STR_5_3";
 <td valign="top" width="229" style="border-bottom:1px solid #D9D9D9;padding:6px 0 1px 4px;line-height:1.3;">
 HTML_STR_5_3
+chomp $html_str5_3;
 
 my $html_str5_4=
 <<"HTML_STR_5_4";
@@ -3119,7 +3155,7 @@ HTML_STR_5_4
 	# 商品スペックを追加
 	my $specs_count = @specs;
 	for (my $i=0; $i < $specs_count; $i+=2) {
-		$spec_str .= "$html_str5_1"."$specs[$i]"."$html_str5_2"."\n"."$html_str5_3"."$specs[$i+1]"."$html_str5_4"."\n";
+		$spec_str .= "$html_str5_1"."$specs[$i]"."$html_str5_2"."$html_str5_3"."$specs[$i+1]"."$html_str5_4";
 	}
 
 my $html_str6=
@@ -3136,7 +3172,7 @@ my $html_str7=
 HTML_STR_7
 	Encode::from_to( $html_str7, 'utf8', 'shiftjis' );
 	# 商品コメント1を追加
-	my $goods_info0 = $global_entry_goods_supp_info[0];
+	my $goods_info0 = $global_entry_goods_supp_info[0] || "";
 	# <span>タグの削除
 	my $before_rep_str0="<span class=\"itemComment\">";
 	my $after_rep_str0="";
@@ -3148,7 +3184,53 @@ HTML_STR_7
 	#　消費税増税バナーを削除
 	my $after_rep_str_2="";
 	my $before_rep_str_2="</span>";	
-	$goods_info0 =~ s/$before_rep_str_2/$after_rep_str_2/g;	
+	$goods_info0 =~ s/$before_rep_str_2/$after_rep_str_2/g;
+	# フェリージのリンク変換1
+	my $after_rep_str4="";
+	my $before_rep_str4="<a href=\"http://seal.*FCS&f2=glober.jp\" target=\"_blank\">";
+	$goods_info0 =~ s/$before_rep_str4/$after_rep_str4/g;
+	# フェリージのリンク変換2
+	my $after_rep_str4_1="";
+	my $before_rep_str4_1="style=\"border-style: none;\" ";
+	$goods_info0 =~ s/$before_rep_str4_1/$after_rep_str1/g;
+	# フェリージのリンク変換3
+	my $after_rep_str5="http://shopping.c.yimg.jp/lib/hff/felisi_seal.gif";
+	my $before_rep_str5="http://seal.felisi.net/FCSSeal/images/fcs_230x60_json.gif";
+	$goods_info0 =~ s/$before_rep_str5/$after_rep_str5/g;
+	# フォックスのリンク変換
+	my $after_rep_str6="http://store.shopping.yahoo.co.jp/hff/fx-re.html";
+	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
+	$goods_info0 =~ s/$before_rep_str6/$after_rep_str6/;
+	# ジョンストンズのリンク削除
+	my $after_rep_str7="";
+	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
+	$goods_info0 =~ s/$before_rep_str7/$after_rep_str7/g;
+	# 返品交換のリンク置換
+	my $after_rep_str8="http://store.shopping.yahoo.co.jp/hff/howto4.html";
+	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
+	$goods_info0 =~ s/$before_rep_str8/$after_rep_str8/g;
+	# クルチアーニの画像削除
+	my $after_rep_str9 ="";
+	my $before_rep_str9 = "<p><a href=\"http://blog.glober.jp/?cat=72\"><img.*</p><br />";
+	$goods_info0 =~ s/$before_rep_str9/$after_rep_str9/g;
+	# クルチアーニのリンク削除
+	my $after_rep_str9_2 ="http://store.shopping.yahoo.co.jp/hff/146701111.html";
+	my $before_rep_str9_2 = "http://glober.jp/g/g14670/";
+	$goods_info0 =~ s/$before_rep_str9_2/$after_rep_str9_2/g;
+	# お直しのリンク変換
+	my $after_rep_str10 ="http://store.shopping.yahoo.co.jp/hff/inforepair.html";
+	my $before_rep_str10 = "http://glober.jp/info/repair.aspx";
+	$goods_info0 =~ s/$before_rep_str10/$after_rep_str10/g;
+	# <u>変換
+	$goods_info0 =~ s/<u>//g;
+	# </u>変換
+	$goods_info0 =~ s/<\/u>//g;
+	# 【GLOBER別注】
+	my $after_rep_str11 ="【GLOBER別注】";
+	Encode::from_to( $after_rep_str11, 'utf8', 'shiftjis' );
+	my $before_rep_str11 = "<h5>【GLOBER別注】</h5>";
+	Encode::from_to( $before_rep_str11, 'utf8', 'shiftjis' );
+	$goods_info0 =~ s/$before_rep_str11/$after_rep_str11/g;
 	$spec_str .="$html_str7"."$goods_info0";
 	if ($global_entry_goods_price <= 5000){
 			my $price_attention ="<br /><br />※5,000円以上のお買い上げで送料無料";
@@ -3162,7 +3244,7 @@ my $html_str8=
 <<"HTML_STR_8";
 <span style="display:block;width:100%;margin:0;padding:5px 0 4px;background:url(http://shopping.geocities.jp/hff/img/common/bg_dot01.gif) repeat-x 0 100%;"><a href="
 HTML_STR_8
-	Encode::from_to( $html_str8, 'utf8', 'shiftjis' );
+	chomp $html_str8;
 my $html_str9=
 <<"HTML_STR_9";
 " target="_parent" style="margin-left:4px;padding-left:10px;background:url(http://shopping.geocities.jp/hff/img/common/icon_arrow01.gif) no-repeat 0 0.5em;color:#362E2B;text-decoration:none;" ="this.style.textDecoration='underline';" ="this.style.textDecoration='none';">このブランドについて</a></span></td>
@@ -3185,6 +3267,7 @@ HTML_STR_10
 ##############################
 ## (Yahoo)explanation情報の生成
 ##############################
+=pod
 sub create_y_explanation {
 	my $explanation=create_ry_mb_goods_spec();
 	# <br>タグは使用可能？？
@@ -3197,13 +3280,276 @@ sub create_y_explanation {
 	# T.B.D <a>タグの削除はどうする？
 	return $explanation;
 }
+=cut
+sub create_y_explanation {
+	my $smp_yahoo_spec = "";
+	# 商品番号を追加
+	my $str_goods_code = "商品番号";
+	Encode::from_to( $str_goods_code, 'utf8', 'shiftjis' );
+	my $coron="：";
+	Encode::from_to( $coron, 'utf8', 'shiftjis' );
+	my $paragraph="<br />";
+	my $entry_code = "";
+	if ($global_entry_goods_variationflag)
+	{$entry_code = &get_5code($global_entry_goods_code);}
+	else{$entry_code = $global_entry_goods_code;}
+	$smp_yahoo_spec .= "$str_goods_code"."$coron"."$entry_code"."\n";
+	# 商品スペックを追加
+	my @specs;
+	my $spec_count = @global_entry_goods_spec_info;
+	foreach my $spec_sort_num ( @globel_spec_sort ) {
+		for (my $i=0; $i < $spec_count; $i+=2) {
+			my $spec_num = $global_entry_goods_spec_info[$i];
+			my $spec_name = &get_spec_info_from_xml($spec_num);
+			my $spec_info="";
+			if ($spec_num ne $spec_sort_num) {
+				next;
+			}
+			if ($spec_num == 7) {
+				# ギフトのパッケージ名を変換
+				my $gift_name="GLOBERオリジナルパッケージ";
+				Encode::from_to( $gift_name, 'utf8', 'shiftjis' );
+				chomp $global_entry_goods_spec_info[$i+1];
+				if ($global_entry_goods_spec_info[$i+1] eq $gift_name) {
+					$spec_info = "当店オリジナルパッケージ";
+					Encode::from_to( $spec_info, 'utf8', 'shiftjis' );
+				}
+				else {
+					$spec_info = $global_entry_goods_spec_info[$i+1];
+				}
+			}
+			else {
+				$spec_info = $global_entry_goods_spec_info[$i+1];
+				chomp $spec_info;
+			}
+			push(@specs, $spec_name);
+			push(@specs, $spec_info);
+			last;
+		}
+	}
+	# 商品スペックを追加
+	my $specs_count = @specs;
+	for (my $i=0; $i < $specs_count; $i+=2) {
+		my $spec_info = $specs[$i+1];
+		my $before_rep_str_spec1="<br \/>";
+		my $after_rep_str_spec1=" ";
+		$spec_info =~ s/$before_rep_str_spec1/$after_rep_str_spec1/g;
+		my $before_rep_str_spec2="<br>";
+		my $after_rep_str_spec2=" ";
+		$spec_info =~ s/$before_rep_str_spec2/$after_rep_str_spec2/g;
+		$smp_yahoo_spec .= "$specs[$i]"."$coron"."$spec_info";
+		# 最後以外は／で区切る
+		if (($i+2) < $specs_count) {
+			$smp_yahoo_spec .= "\n";
+		}
+	}
+	$smp_yahoo_spec .= "\n\n";
+	# 商品コメント2を取得
+	my $goods_info_smp = $global_entry_goods_supp_info[1] || "";
+	my $before_rep_str8="\\n\\n";
+	my $after_rep_str8="\\n";
+	$goods_info_smp =~ s/$before_rep_str8/$after_rep_str8/g;
+	# <span>タグの削除
+	my $before_rep_str8_1="<span>";
+	my $after_rep_str8_1="";
+	$goods_info_smp =~ s/$before_rep_str8_1/$after_rep_str8_1/g;
+	# </span>タグの削除
+	my $before_rep_str8_2="</span>";
+	my $after_rep_str8_2="";
+	$goods_info_smp =~ s/$before_rep_str8_2/$after_rep_str8_2/g;
+	# 1行ごとにサイズ要素のみの配列を作る
+	my $before_str9="<table class=\"infoTable\"><tr><td><table>";
+	my $after_str9="";
+	$goods_info_smp =~ s/$before_str9/$after_str9/g;
+	# 1行ごとにサイズ要素のみの配列を作る
+	my $before_str10="<\/table><\/td><\/tr><\/table>";
+	my $after_str10="";	
+	$goods_info_smp =~ s/$before_str10/$after_str10/g;
+	# サイズチャートがgoods_suppに入力されている場合
+	if ($goods_info_smp ne "") {
+		# スマホ用サイズチャートのヘッダー
+		my $smp_sizechart_header = "【サイズチャート】\n" || "";
+		Encode::from_to( $smp_sizechart_header, 'utf8', 'shiftjis' );
+		# GLOBERのサイズチャートを改行で分割して配列にする
+		my @goods_info_str_list_tr = split(/<tr>/, $goods_info_smp);
+		my $list_tr = $goods_info_str_list_tr[1] || "";
+		my @goods_info_str_list_sub = split(/<\/th>/, $list_tr);
+		# GLOBERのサイズチャートの行数を格納する
+		my $goods_info_str_list_count=@goods_info_str_list_tr;
+		# スマホサイズチャートを宣言
+		my $smp_sizechart ="$smp_sizechart_header";
+		#GLOBERのサイズチャートを<tr>の行ごとに読み込み、1行ずつ処理して変数に追加していく。
+		my $i=2;
+		# 1行<tr>にあたりにおけるサイズの項目数
+		my $size_i=0;
+		while ($i <= $goods_info_str_list_count-1){
+			# 1行ごとにサイズ要素のみの配列を作る
+			my $before_str1="<\/tr>";
+			my $after_str1="";	
+			$goods_info_str_list_tr[$i] =~ s/$before_str1/$after_str1/g;
+			my @goods_info_str_list_size = ();
+			@goods_info_str_list_size = split(/<\/td><td>/, $goods_info_str_list_tr[$i]);
+			# サイズの要素数を格納する
+			my $goods_info_str_list_size_count=@goods_info_str_list_size;
+			# サイズ要素数が1つのとき
+			if ($goods_info_str_list_size_count ==2){
+				if ($size_i==0){
+					my $before_str_1="<td class=\'col01\'>";
+					my $before_str_2="<td class=\"col01\">";
+					my $after_str="<br />";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_1/$after_str/g;
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str/g;
+					$goods_info_str_list_size[$size_i] = "$goods_info_str_list_size[$size_i]";
+					$smp_sizechart .= $goods_info_str_list_size[$size_i];
+					$size_i++;
+					next;
+				}
+				else {
+					# サイズ項目の余計な文字列を削除
+					my $before_str="<th>";
+					my $after_str="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str/$after_str/g;
+					# サイズ項目の余計な文字列を削除
+					my $before_str_1="<\/tr>";
+					my $after_str_1="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_2="<\/td><\/tr>";
+					my $after_str_2="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_3="<\/td>";
+					my $after_str_3="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_4="<\/tr>";
+					my $after_str_4="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
+					chomp($goods_info_str_list_size[$size_i]);
+					$smp_sizechart .= "("."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]".")"."\n";
+					$size_i=0;
+					$i++;
+				}
+			}
+			# サイズ要素数が2以上のとき
+			else{
+				# サイズ要素のみの配列を1つずつサイズの要素とサイズ項目を組み合わせてスマホ用サイズチャートを作る
+				# 1番目はサイズで余分な文字列を省き、ヘッダーを追加してサイズチャートに格納する
+				if ($size_i==0){
+					my $before_str_1="<td class=\'col01\'>";
+					my $before_str_2="<td class=\"col01\">";
+					my $after_str="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_1/$after_str/g;
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str/g;
+					$goods_info_str_list_size[$size_i] = "$goods_info_str_list_size[$size_i]";
+					$smp_sizechart .= $goods_info_str_list_size[$size_i];
+					$size_i++;
+					next;
+				}
+				# 2番目はサイズ要素のスタートなので、（をつけて1番目のサイズ項目を組み合わせてサイズチャートに格納する
+				elsif($size_i==1 ){
+					# サイズ項目の余計な文字列を削除
+					my $before_str="<th>";
+					my $after_str="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str/$after_str/g;
+					# サイズ項目の余計な文字列を削除
+					my $before_str_1="<\/tr>";
+					my $after_str_1="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_2="<\/td><\/tr>";
+					my $after_str_2="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_3="<\/td>";
+					my $after_str_3="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_4="<\/tr>";
+					my $after_str_4="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
+					chomp($goods_info_str_list_size[$size_i]);
+					$smp_sizechart .= "("."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]";
+					$size_i++;
+					next;
+				}
+				elsif($size_i<$goods_info_str_list_size_count-1){
+					# サイズ項目の余計な文字列を削除
+					my $before_str_0="<th>";
+					my $after_str_0="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_0/$after_str_0/g;
+					# サイズ項目の余計な文字列を削除
+					my $before_str_1="<\/tr>";
+					my $after_str_1="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_2="<\/tr>";
+					my $after_str_2="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_3="<\/td><\/tr>";
+					my $after_str_3="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
+					chomp($goods_info_str_list_size[$size_i]);
+					$smp_sizechart .= "/"."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]";
+					$size_i++;
+					next;
+				}
+				else{
+					# サイズ項目の余計な文字列を削除
+					my $before_str_0="<th>";
+					my $after_str_0="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_0/$after_str_0/g;
+					# サイズ項目の余計な文字列を削除
+					my $before_str_1="<\tr>";
+					my $after_str_1="";	
+					$goods_info_str_list_sub[$size_i] =~ s/$before_str_1/$after_str_1/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_2="<\/td><\/tr>";
+					my $after_str_2="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_2/$after_str_2/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_3="<\/tr>";
+					my $after_str_3="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_3/$after_str_3/g;
+					# サイズ要素の余計な文字列を削除
+					my $before_str_4="<\/td>";
+					my $after_str_4="";	
+					$goods_info_str_list_size[$size_i] =~ s/$before_str_4/$after_str_4/g;
+					chomp($goods_info_str_list_size[$size_i]);
+					$smp_sizechart .= "/"."$goods_info_str_list_sub[$size_i]"."$goods_info_str_list_size[$size_i]".")"."\n";
+					$size_i=0;
+					$i++;
+				}
+			}
+		}
+		$smp_sizechart =~ s/\n\)/\)/g;
+		$smp_yahoo_spec .= $smp_sizechart."\n";
+	}
+my $html_str_end=
+<<"HTML_STR_end";
+・ディスプレイにより、実物と色、イメージが異なる事がございます。あらかじめご了承ください。
+・当店では、他店舗と在庫データを共有しているため、まれに売り切れや入荷待ちの場合がございます。
+HTML_STR_end
+	Encode::from_to( $html_str_end, 'utf8', 'shiftjis' );
+	$smp_yahoo_spec .=$html_str_end;
+	# 5120byte制限チェック
+	my $len = length $smp_yahoo_spec;
+	if ($len > 5120) {
+		# ログファイル出力
+		my $warn = "スマートフォン用商品説明文がサイズ制限(5120byte)を超えています。商品番号：$global_entry_goods_code サイズ：$len(byte)";
+		Encode::from_to( $warn, 'utf8', 'shiftjis' );
+		&output_log("$warn\n");
+	}
+	return $smp_yahoo_spec;
+}
 
 ##############################
 ## (Yahoo)additional1の生成
 ##############################
 sub create_y_additional1 {
 	my $additonal_1 ="";
-	my $goods_info = $global_entry_goods_supp_info[1];
+	my $goods_info = $global_entry_goods_supp_info[1] || "";
 	# 商品コメント2がなければ何も出力しない
 	if ($goods_info eq "") {
 		return "";
@@ -3230,8 +3576,8 @@ sub create_y_additional1 {
 		# GLOBERのサイズチャートの項目数
 		my $goods_info_str_list_count = @goods_info_str_list;
 		# <th>とサイズ項目を含む配列となっている
-		my @goods_info_str_list_sub=();
-		@goods_info_str_list_sub = split(/<\/th>/, $goods_info_str_list[1]);
+		my $str_list = $goods_info_str_list[1] || "";
+		my @goods_info_str_list_sub = split(/<\/th>/, $str_list);
 		#サイズの項目数
 		my $goods_info_str_list_sub_count = @goods_info_str_list_sub;
 		# サイズチャートのヘッダーを作る
@@ -3254,7 +3600,8 @@ sub create_y_additional1 {
 		while($i<=$goods_info_str_list_count-1){
 			$additonal_1 .="<tr>";
 			# サイズチャートを</td>で分割する
-			my @goods_info_str_list_td = split(/<\/td>/, $goods_info_str_list[$i]);
+			my @goods_info_str_list_td = ();
+			@goods_info_str_list_td = split(/<\/td>/, $goods_info_str_list[$i]);
 			# サイズチャート<td>をカウント
 			my $goods_info_str_list_td = @goods_info_str_list_td;
 			my $i_td =0;
@@ -3288,7 +3635,7 @@ sub create_y_additional2 {
 	my $additional_2 ="";
 my $html_str1_1=
 <<"HTML_STR_1_1";
-<iframe src="http://shopping.geocities.jp/hff/iframe/
+<iframe src="http://shopping.geocities.jp/hff/iframe/brand/
 HTML_STR_1_1
         Encode::from_to( $html_str1_1, 'utf8', 'shiftjis' );
         chomp($html_str1_1);
@@ -3309,10 +3656,12 @@ HTML_STR_1_3
 		$code = &get_5code($global_entry_goods_code)
         }
         else{
-        	$code = &get_5code($global_entry_goods_code)
+        	$code = &get_9code($global_entry_goods_code)
         }
-        $additional_2 .= "$html_str1_1"."$code"."_1"."$html_str1_2"."\n";
-        $additional_2 .= "$html_str1_1"."$code"."_2"."$html_str1_3";
+        # ブランド毎にiframeのhtmlの格納先を変える
+        my $iframe_dir = &get_info_from_xml("r_directory");
+        $additional_2 .= "$html_str1_1".$iframe_dir."/"."$code"."_1"."$html_str1_2"."\n";
+        $additional_2 .= "$html_str1_1".$iframe_dir."/"."$code"."_2"."$html_str1_3";
         &create_yiframe_1();
         &create_yiframe_2();
 	return $additional_2;
@@ -3334,7 +3683,7 @@ sub create_yiframe_1 {
 	if ($brand_name eq "") {
 		$brand_name = "other"
 	}
-	my $output_iframe_data_dir = $output_yahoo_data_dir."/iframe/".$brand_name;
+	my $output_iframe_data_dir = $output_yahoo_data_dir."/iframe/brand/".$brand_name;
 	#出力先ディレクトリの作成
 	unless(-d $output_iframe_data_dir) {
 	# 存在しない場合はフォルダ作成
@@ -3361,15 +3710,15 @@ my $html_str1=
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <title>MEN &amp; WOMEN HIGHT FASHION FACTORY</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/style.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/detail.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="../../../css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/detail.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/print.css" media="print" />
 <link rel="index contents" href="/" title="ホーム" />
-<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/fixHeight.js"></script>
-<script type="text/javascript" src="../js/jquery.carouFredSel-6.2.1.js"></script>
+<script type="text/javascript" src="../../../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../../js/common.js"></script>
+<script type="text/javascript" src="../../../js/fixHeight.js"></script>
+<script type="text/javascript" src="../../../js/jquery.carouFredSel-6.2.1.js"></script>
 <style type="text/css">
 html,body { background:none; }
 ul,ol,li { margin: 0; padding: 0; }
@@ -3394,8 +3743,10 @@ HTML_STR_2
 	# 画像部分のHTMLを追加する
 	my $html_str_3 ="";
 	# 商品画像URLとして出力する画像を配列に入れる
-	my @img_url_list_r = split(/\//,$global_entry_goods_rimagefilename);
-	my @img_url_list_y = split(/\//,$global_entry_goods_yimagefilename);
+	my @img_url_list_r = ();
+	my @img_url_list_y = ();
+	@img_url_list_r = split(/\//,$global_entry_goods_rimagefilename);
+	@img_url_list_y = split(/\//,$global_entry_goods_yimagefilename);
 	# 商品画像の数を格納する
 	my $img_url_list_r_count = @img_url_list_r;
 	my $img_url_list_y_count = @img_url_list_y;
@@ -3405,9 +3756,12 @@ my $html_str3_1=
 <ul class="thumbList fixHeight clearfix" id="jcarouseItem">
 HTML_STR_3_1
 	chomp($html_str3_1);
-	my $p_loc = index($img_url_list_y[0],".",0);
-	my $img_code = substr(&get_y_target_image_filename($img_url_list_y[0]),0,$p_loc);
-	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" /></p>";
+	my $img_url_list_y_code = $img_url_list_y[0] || 0;
+	my $p_loc = index($img_url_list_y_code,".",0);
+	my $img_code = substr(&get_y_target_image_filename($img_url_list_y_code),0,$p_loc);
+	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://item.shopping.c.yimg.jp/i/l/hff_"."$img_code"."\" /></p>";
+	# テスト環境用コード
+#	$iframe_html .= "<body>"."\n"."<div class=\"slide\">"."\n"."<p class=\"mainImage\"><img src=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" /></p>";
 	$iframe_html .= $html_str3_1."\n";
 	foreach (my $i=0; $i<=$img_url_list_y_count-1; $i++){
 		my $color_name ="";
@@ -3462,49 +3816,65 @@ HTML_STR_3_1
 		if ($i>=0 && $i<5){
 			if($color_name ne ""){
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
+				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/l/hff_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
+				# テスト環境用コード
+#				$html_str_3 .="<li><a rev=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" class=\"swapImage\" href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $img_file_name_thum = "$img_code"."s.jpg";
 				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+				# テスト環境用コード
+#				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
 			}
 			else{
 				# 拡大画像URLを追加
-				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/f/hff_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
+				$html_str_3 .="<li><a rev=\""."http://item.shopping.c.yimg.jp/i/l/hff_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
+				# テスト環境用コード
+#				$html_str_3 .="<li><a rev=\""."http://test.image.shopping.yahoo.co.jp/i/l/snbx-21yppmkp9_"."$img_code"."\" class=\"swapImage\"  href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $img_file_name_thum = "$img_code"."s.jpg";
 				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+				# テスト環境用コード
+#				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
 			}
 		}
 		else {
 			if ($color_name ne ""){
 				# 拡大画像URLを追加
 				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\" href=\"javascript:;\">";
+				# テスト環境用コード
+#				$html_str_3 .="<li><a rev=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\" href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $suffix_pos = rindex(get_y_target_image_filename($img_url_list_y[$i]), '.');
 				my $img_url_list_file_name = substr(get_y_target_image_filename($img_url_list_y[$i]),0,$suffix_pos);
 				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
 				$html_str_3 .="<img src=\""."http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
+				# テスト環境用コード
+#				$html_str_3 .="<img src=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" alt=\""."$color_name"."\" /></a><span>"."$color_name"."</span></li>"."\n";
 			}
 			else{
 				# 拡大画像URLを追加
 				$html_str_3 .="<li><a rev=\""."http://shopping.c.yimg.jp/lib/hff/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\"  href=\"javascript:;\">";
+				# テスト環境用コード
+#				$html_str_3 .="<li><a rev=\""."http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/".&get_y_target_image_filename($img_url_list_y[$i])."\" class=\"swapImage\"  href=\"javascript:;\">";
 				# サムネイルコードを追加
 				# _sをつけるためにリネームする
 				my $suffix_pos = rindex(get_y_target_image_filename($img_url_list_y[$i]), '.');
 				my $img_url_list_file_name = substr(get_y_target_image_filename($img_url_list_y[$i]),0,$suffix_pos);
 				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
 				$html_str_3 .="<img src=\"http://shopping.c.yimg.jp/lib/hff/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
+				# テスト環境用コード
+#				$html_str_3 .="<img src=\"http://test.lib.shopping.yahoo.co.jp/lib/snbx-21yppmkp9/"."$img_file_name_thum"."\" /></a><span></span></li>"."\n";
 			}
 		}
 	}
 	$iframe_html .= "$html_str_3"."</ul>"."\n";
 my $html_str4=
 <<"HTML_STR_4";
-<p class="prevItem"><a href="#" class="prevItem01"><img src="../img/detail/left_arrow.gif" alt="" /></a></p>
-  <p class="nextItem"><a href="#" class="nextItem01"><img src="../img/detail/right_arrow.gif" alt="" /></a></p>
+<p class="prevItem"><a href="#" class="prevItem01"><img src="../../../img/detail/left_arrow.gif" alt="" /></a></p>
+  <p class="nextItem"><a href="#" class="nextItem01"><img src="../../../img/detail/right_arrow.gif" alt="" /></a></p>
  </div> 
  </div>
 </body>
@@ -3532,7 +3902,7 @@ sub create_yiframe_2 {
 	if ($brand_name eq "") {
 		$brand_name = "other"
 	}
-	my $output_iframe_data_dir = $output_yahoo_data_dir."/iframe/".$brand_name;
+	my $output_iframe_data_dir = $output_yahoo_data_dir."/iframe/brand/".$brand_name;
 	#出力先ディレクトリの作成
 	unless(-d $output_iframe_data_dir) {
 	# 存在しない場合はフォルダ作成
@@ -3559,10 +3929,10 @@ my $html_str=
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <title>MEN &amp; WOMEN HIGHT FASHION FACTORY</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/style.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/detail.css" media="all" />
-<link rel="stylesheet" type="text/css" href="../css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="../../../css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/detail.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../../../css/print.css" media="print" />
 <link rel="index contents" href="/" title="ホーム" />
 <style type="text/css">
 html,body { background:none; }
@@ -3579,9 +3949,9 @@ ul,ol,li { margin: 0; padding: 0; }
  </div>
  <!-- /.textInfo -->
  <ul class="tools clearfix">
-  <li><a href="http://store.shopping.yahoo.co.jp/hff/infosize.html" class="hover" target="_parent"><img src="../img/detail/btn_tool01.gif" alt="サイズの測り方" /></a></li>
-  <li><a href="http://store.shopping.yahoo.co.jp/hff/inforepair.html" class="hover" target="_parent"><img src="../img/detail/btn_tool02.gif" alt="お直し" /></a></li>
-  <li><a href="http://store.shopping.yahoo.co.jp/hff/infoexchange.html" class="hover" target="_parent"><img src="../img/detail/btn_tool03.gif" alt="返品・交換" /></a></li>
+  <li><a href="http://store.shopping.yahoo.co.jp/hff/infosize.html" class="hover" target="_parent"><img src="../../../img/detail/btn_tool01.gif" alt="サイズの測り方" /></a></li>
+  <li><a href="http://store.shopping.yahoo.co.jp/hff/inforepair.html" class="hover" target="_parent"><img src="../../../img/detail/btn_tool02.gif" alt="お直し" /></a></li>
+  <li><a href="http://store.shopping.yahoo.co.jp/hff/infoexchange.html" class="hover" target="_parent"><img src="../../../img/detail/btn_tool03.gif" alt="返品・交換" /></a></li>
  </ul>
 </body>
 </html>
@@ -3774,7 +4144,6 @@ sub create_y_q_subcode {
 			&output_log("sub create_y_subcode() -- variation error.");
 			exit 1;
 		}
-		print "!!!!!!!!!!!!!!!$subcode[0]/n/n/n/n";
 		return @subcode;	
 	}
 	else {
@@ -4054,10 +4423,28 @@ sub get_8_9digit {
 }
 
 sub get_r_target_image_filename {
-	my $file_name=$_[0];
+	my $file_name= "";
+	$file_name= shift || 0;
 	# "_n"までのファイル名を保持
-	my $temp_file_name_1=substr($file_name, 0, 7);
-	my $temp_file_name_2=substr($file_name, 8+get_image_numdigit_from_filename($file_name, 7), 4);
+	my $temp_file_name_1="";
+	$temp_file_name_1 = substr($file_name, 0, 7) || "";
+	my $temp_file_name_2="";
+	$temp_file_name_2 = substr($file_name, 8+get_image_numdigit_from_filename($file_name, 7), 4) || "";
+	# ファイル番号からprefixを判断
+	my $file_count="";
+	$file_count = get_r_image_num_from_filename($file_name) || 0;
+	return $temp_file_name_1."_".$file_count.$temp_file_name_2;
+}
+
+=pod
+sub get_r_target_image_filename {
+	my $file_name= "";
+	$file_name=$_[0];
+	# "_n"までのファイル名を保持
+	my $temp_file_name_1="";
+	$temp_file_name_1 = substr($file_name, 0, 7);
+	my $temp_file_name_2="";
+	$temp_file_name_2 = substr($file_name, 8+get_image_numdigit_from_filename($file_name, 7), 4);
 	# ファイル番号からprefixを判断
 	my $file_count=get_r_image_num_from_filename($file_name) || 0;
 	my $target_image_prefix = "";
@@ -4081,6 +4468,7 @@ sub get_r_target_image_filename {
 	if (!$temp_num) {$temp_num=8;}
 	return $temp_file_name_1.$target_image_prefix.$temp_num.$temp_file_name_2;
 }
+=cut
 
 sub get_r_image_num_from_filename {
 	return substr($_[0], 8, get_image_numdigit_from_filename($_[0], 7));
@@ -4088,7 +4476,32 @@ sub get_r_image_num_from_filename {
 
 # ヤフー用ファイル
 sub get_y_target_image_filename {
-	my $file_name=$_[0];
+	my $file_name= $_[0] || "";
+	# "_n"までのファイル名を保持
+	my $temp_file_name_1="";
+	my $goods_code_digit = 0;
+	if ($global_entry_goods_variationflag ==1){
+		$goods_code_digit=5;
+		$temp_file_name_1=substr($file_name, 0, $goods_code_digit);
+	}
+	else {
+		$goods_code_digit=9;
+		$temp_file_name_1=substr($file_name, 0, $goods_code_digit);
+	}
+	my $temp_file_name_len=length($temp_file_name_1)+1 || 0;
+	my $numgit = get_image_numdigit_from_filename($file_name, $goods_code_digit);
+	my $num = $temp_file_name_len+$numgit || 0;
+	my $temp_file_name_2=substr($file_name, $num, 4) || "";
+	# ファイル番号からprefixを判断
+	my $file_count= get_y_image_num_from_filename($file_name) || 0;
+	my $y_file_name = "$temp_file_name_1"."_"."$file_count"."$temp_file_name_2";
+	return $y_file_name;
+}
+
+=pod
+sub get_y_target_image_filename {
+	my $file_name="";
+	$file_name=$_[0];
 	# "_n"までのファイル名を保持
 	my $temp_file_name_1="";
 	my $goods_code_digit = 0;
@@ -4103,7 +4516,8 @@ sub get_y_target_image_filename {
 	my $temp_file_name_len=length($temp_file_name_1)+1;
 	my $temp_file_name_2=substr($file_name, $temp_file_name_len+get_image_numdigit_from_filename($file_name, $goods_code_digit), 4);
 	# ファイル番号からprefixを判断
-	my $file_count=get_y_image_num_from_filename($file_name);
+	my $file_count= 0;
+	$file_count=get_y_image_num_from_filename($file_name);
 	my $target_image_prefix = "";
 	my $temp_num="";
 	if ($file_count){
@@ -4111,7 +4525,6 @@ sub get_y_target_image_filename {
 			$target_image_prefix = "_";
 		}			
 		elsif ($file_count >= 9 && $file_count <= 16) {
-print "-----file_count ~= $file_count\n";
 			$target_image_prefix = "_a_"
 		}
 		elsif ($file_count >= 17 && $file_count <= 24) {
@@ -4127,16 +4540,15 @@ print "-----file_count ~= $file_count\n";
 		$temp_num=$file_count%8;
 		if (!$temp_num) {$temp_num=8;}
 	}
-	if ($file_count >= 9 && $file_count <= 16) {
-print "#####$temp_file_name_1$target_image_prefix$temp_num$temp_file_name_2\n";
-		}
 	my $y_file_name = "$temp_file_name_1"."$target_image_prefix"."$temp_num"."$temp_file_name_2";
 	return $y_file_name;
 }
+=cut
 
 sub get_y_image_num_from_filename {
 	my $digit_count =0;
-	my $p_loc = index($_[0],"_",0);
+	my $p_loc = "";
+	$p_loc = index($_[0],"_",0) || 0;
 	if ($p_loc == -1){
 		$digit_count = 0;
 	}
@@ -4152,11 +4564,12 @@ sub get_y_image_num_from_filename {
 }
 
 sub get_image_numdigit_from_filename {
-	my $file_name=$_[0];
-	my $goods_code_digit=$_[1]+1;
+	my $file_name = $_[0] || "";
+	my $goods_code_digit = 0;
+#	$goods_code_digit = $_[1]+1;
 	# ファイル名からファイル番号を桁数を意識して取得
 	my $digit_count=0;
-	my $file_count=substr($file_name, $goods_code_digit, 2);
+	my $file_count = substr($file_name, $_[1]+1, 2) || "";
 	if (index($file_count, '.') != -1) {
 		$digit_count = 1;
 	}

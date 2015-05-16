@@ -39,6 +39,9 @@ use IO::Handle;
 use Text::CSV_XS;
 use XML::Simple;
 use Encode;
+use LWP::UserAgent;
+use LWP::Simple;
+use HTML::TreeBuilder;
 
 # ログファイルを格納するフォルダ名
 my $output_log_dir="./../log";
@@ -206,6 +209,9 @@ my @code_7_list=();
 my @y_img_list = ();
 # _6以上の画像のリスト
 my @y_6over_img_list = ();
+# 掲載する画像のリスト
+my @new_img_url_list =();
+my $zip = Archive::Zip->new();
 my $sabun_line = $input_sabun_csv->getline($input_sabun_file_disc);
 while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	# 既に処理済みの商品の場合はスキップ
@@ -219,8 +225,9 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	if ($skip_flag) {
 		next;
 	}
-	my @code_7_list_tmp=();
+	my @code_5_list=();
 	my $code_9=@$sabun_line[0];
+	my $target_code_7 = get_7code(@$sabun_line[0]);
 	my $brand_name="";
 	seek $input_goods_file_disc, 0, 0;
 	# バリエーション商品かどうかの判定
@@ -239,7 +246,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 			}
 			# カラーバリエーションの商品を保持する
 			if (!$find_flag_tmp) {
-				push(@code_7_list_tmp, get_7code(@$goods_line[0]));
+				push(@code_5_list, get_5code(@$goods_line[0]));
 				push(@code_7_list, get_7code(@$goods_line[0]));
 			}	
 			if ($brand_name eq "") {
@@ -254,7 +261,178 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	else {
 		# goods.csvに5桁が合致する商品が複数あったのでバリエーション商品
 		$target_variation{$code_9}=1;
-	}	
+	}
+	# スクレイピングでGLOBERのページから画像をDLし、楽天店用に保存
+	my $target_code_5;
+	my $total_image_cnt=0;
+	my @done_list_5 =();
+	foreach $target_code_5 (@code_5_list) {
+		my $done_flag =0;
+		# ブランド名が取得できた商品のみ画像取得処理
+		foreach my $done_list_5 (@done_list_5) {
+			if($done_list_5 == $target_code_5) {
+				$done_flag = 1;
+			}
+		}
+		# ブランドの登録がないもの、または取得した親商品はスキップ
+		if ($brand_name eq "" or $done_flag == 1) {
+			last;
+		}
+		# GLOBERの商品画像URL
+		# 親商品毎にリストの初期化
+		@new_img_url_list =();
+		&get_img_list($target_code_5);
+		# 先頭に/c/の画像を入れる
+		my $goods_num;
+		my $yahoo_goods_num;
+		if($target_variation{$code_9}){
+			# バリエーションがあるものは5桁
+			$goods_num = $target_code_5;
+		}
+		else {
+			# バリエーションのないものは9桁
+			$goods_num = $code_9;
+		}
+		my $img_c_url = "http://glober.jp/img/c/$goods_num.jpg";
+		unshift(@new_img_url_list,$img_c_url);
+		my $rtn=0;
+		my $cnt=0;
+		my $c_find_flag = 0;
+		# リスト内の画像を取得する
+		my $img_cnt =1;
+		my $y_file_name;
+		my $y_full_file_name;
+		my $y_s_over6_file_name;
+		my $y_s_over6_full_file_name;	
+		for (my $i=0; $i <= $#new_img_url_list; $i++){
+			my $glober_goods_img_url = $new_img_url_list[$i];
+=pod
+		foreach my $glober_goods_img_url (@new_img_url_list){
+			# 楽天用フォルダに画像を取得
+			my $image_file_name="$target_code_7"."_$cnt".".jpg";
+			if( -f $r_image_dir."/".$target_code_7."_".$cnt.".jpg" ) {
+				# 既に画像取得済みの場合はスキップ
+				next;
+			}
+=cut	
+			# 画像を取得する
+			$rtn = system("wget.exe -q -P $r_image_dir $glober_goods_img_url");
+			$glober_goods_img_url =~ s/\.jpg//g;
+			# /c/または/nn/を抽出
+			$glober_goods_img_url =~ /\/c\//;
+			$glober_goods_img_url =~ /\/\d{1,2}\//;
+			#マッチしたディレクトリを返している
+			$cnt = $&;
+			$cnt =~ s/\///g;
+			# /c/に画像がない場合、スキップする
+			if ($rtn){
+				my $warning_str = "WARNING!! $glober_goods_img_url カラーバリエーション画像がありません。";
+				Encode::from_to( $warning_str, 'utf8', 'shiftjis' );
+				&output_log("$warning_str.\n");
+				next;
+			}
+			if ($cnt eq "c") {
+				# http://glober.jp/img/c/を削除
+				$glober_goods_img_url =~ s/http:\/\/glober\.jp\/img\/c\///g;
+				# フォルダ作成
+				my $target_dir=$r_image_dir."/".$brand_name."/".$cnt;
+				&create_dir($target_dir);
+				# ブランド毎_n毎のフォルダに格納する。※リサイズはいらない
+				# 楽天用
+				copy($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$glober_goods_img_url.".jpg") or die ("ERROR!!".$r_image_dir."\\".$glober_goods_img_url."jpg"." copy failed.");
+				# ヤフー用
+				$y_file_name = $goods_num.".jpg";
+				$y_full_file_name = $y_image_dir."/".$goods_num.".jpg";
+				$y_s_over6_file_name = $goods_num."s.jpg";
+				$y_s_over6_full_file_name = $y_s_over6_image_dir."/".$goods_num."s.jpg";
+				copy($r_image_dir."/".$glober_goods_img_url.".jpg", $y_full_file_name) or die ("ERROR!!".$y_image_dir."\\".$goods_num."jpg"." copy failed.");
+				&image_resize($y_full_file_name, $y_s_over6_full_file_name, 70, 70, 70);
+				# 1～5までの中にZIPする
+				$zip->addFile($y_full_file_name,$y_file_name);
+				# 6～,sの中にZIPする
+				$y_s_over6_zip->addFile($y_s_over6_full_file_name,$y_s_over6_file_name);
+				$c_find_flag = 1;
+			}
+			else{
+				# http://glober.jp/img/goods/nn/を削除
+				$glober_goods_img_url =~ s/http:\/\/glober\.jp\/img\/goods\/\d{1,2}\///g;
+				# フォルダ作成
+				my $target_dir=$r_image_dir."/".$brand_name."/".$cnt;
+				&create_dir($target_dir);
+				# ブランド毎_n毎のフォルダに格納する。
+				# 楽天用
+				copy($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$glober_goods_img_url.".jpg") or die ("ERROR!!".$r_image_dir."\\".$glober_goods_img_url."jpg"." copy failed.");
+				&image_resize($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$glober_goods_img_url."s.jpg", 70, 70, 70);
+				# ヤフー用
+				# カラーバリエーション画像がない場合の1番目の画像
+				if($i == 1 && $c_find_flag == 0){
+					$y_file_name = $goods_num.".jpg";
+					$y_full_file_name = $y_image_dir."/".$goods_num.".jpg";
+					$y_s_over6_file_name = $goods_num."s.jpg";
+					$y_s_over6_full_file_name = $y_s_over6_image_dir."/".$goods_num."s.jpg";
+					copy($r_image_dir."/".$glober_goods_img_url.".jpg", $y_full_file_name) or die ("ERROR!!".$y_image_dir."\\".$goods_num."jpg"." copy failed.");
+					&image_resize($y_full_file_name, $y_s_over6_full_file_name, 70, 70, 70);
+					# 1～5までの中にZIPする
+					$zip->addFile($y_full_file_name,$y_file_name);
+					# 6～,sの中にZIPする
+					$y_s_over6_zip->addFile($y_s_over6_full_file_name,$y_s_over6_file_name);
+					
+				}
+				else {
+					$img_cnt++;
+					if($img_cnt<=5){
+						$y_file_name = $goods_num."_$img_cnt".".jpg";
+						$y_full_file_name = $y_image_dir."/".$goods_num."_$img_cnt".".jpg";
+						$y_s_over6_file_name = $goods_num."_$img_cnt"."s.jpg";
+						$y_s_over6_full_file_name = $y_s_over6_image_dir."/".$goods_num."_$img_cnt"."s.jpg";;
+						copy($r_image_dir."/".$glober_goods_img_url.".jpg", $y_full_file_name) or die ("ERROR!!".$r_image_dir."\\".$goods_num."_$img_cnt"."jpg"." copy failed.");
+						&image_resize($y_full_file_name, $y_s_over6_full_file_name, 70, 70, 70);
+						# 1～5までの中にZIPする
+						$zip->addFile($y_full_file_name,$y_file_name);
+						# 6～,sの中にZIPする
+						$y_s_over6_zip->addFile($y_s_over6_full_file_name,$y_s_over6_file_name);
+					}
+					else {
+						$y_file_name = $goods_num."_$img_cnt".".jpg";
+						$y_full_file_name = $y_s_over6_image_dir."/".$goods_num."_$img_cnt".".jpg";
+						$y_s_over6_file_name = $goods_num."_$img_cnt"."s.jpg";
+						$y_s_over6_full_file_name = $y_s_over6_image_dir."/".$goods_num."_$img_cnt"."s.jpg";
+						copy($r_image_dir."/".$glober_goods_img_url.".jpg", $y_full_file_name) or die ("ERROR!!".$r_image_dir."\\".$goods_num."_$img_cnt"."jpg"." copy failed.");
+						&image_resize($y_full_file_name, $y_s_over6_full_file_name, 70, 70, 70);
+						# 6～,sの中にZIPする
+						$y_s_over6_zip->addFile($y_full_file_name,$y_file_name);
+						# 6～,sの中にZIPする
+						$y_s_over6_zip->addFile($y_s_over6_full_file_name,$y_s_over6_file_name);
+						
+					}
+				}
+			}
+		}
+		$total_image_cnt = @new_img_url_list;
+=pod
+		my $status = $zip->writeToFileNamed($zipfile);
+		if ($status != 'AZ_OK') {
+			unlink("$zipfile") if (-e "$zipfile");
+			print "$zipfileが作成されません";
+			exit;
+		}
+=cut
+		# cがあるとき（c_find_flag=1の時）+処理される
+		if(!$c_find_flag){
+			$total_image_cnt++;
+		}
+		
+	$target_image_num{$code_9}=$total_image_cnt;
+	push (@done_list_5,$target_code_5)
+	}
+}
+	my $zipfile_1 = $y_image_dir."/zip1.zip";
+	my $zipfile_2 = $y_s_over6_image_dir."/zip2.zip";
+	my $status = $zip->writeToFileNamed($zipfile_1);
+	my $status = $y_s_over6_zip->writeToFileNamed($zipfile_2);
+exit;
+
+=pod
 	# wgetで楽天用商品画像を取得する
 	my $target_code_7;
 	my $total_image_cnt=0;
@@ -296,7 +474,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	$target_image_num{$code_9}=$total_image_cnt;
 
 }
-
+=cut
 # sabunファイルの情報に"親の画像枚数","バリエーション"を追加してregist_mall_data_file.csvを作成
 if (!open $output_regist_mall_data_file_disc, ">", $regist_mall_data_file_name) {
 	&output_log("ERROR!!($!) $regist_mall_data_file_name open failed.");
@@ -614,6 +792,27 @@ close(LOG_FILE);
 ##############################  sub routin   #############################################
 ##########################################################################################
 
+## HTMLを取得して、掲載する画像のリストを作成する
+sub get_img_list(){
+	# GLOBERの商品画像URL
+	my $glober_goods_url = "http://glober.jp/g/g"."$_[0]";
+	# HTMLを取得
+	# LWP::Simpleの「get」関数を使用                                                
+	# GLOBERの商品詳細HTML取得
+	my $glober_goods_new = get($glober_goods_url) or die "Couldn't get it!";
+	$glober_goods_new = Encode::encode('Shift_JIS', $glober_goods_new);
+	# 画像のリストを作成する
+	my $tree_new = HTML::TreeBuilder->new;
+	$tree_new->parse($glober_goods_new);
+	my @goods_img_url_list_place =  $tree_new->look_down('class', 'thumbList fixHeight clearfix')->find('a');
+	for my $img_li (@goods_img_url_list_place) {
+	    my $img_src = "";
+	    $img_src = $img_li->attr('rev');
+	    my $img_url = "http://glober.jp".$img_src;
+	    push (@new_img_url_list,$img_url);
+	}
+}
+
 ## 画像をリサイズする
 sub image_resize() {
 	( $img_resize->{in} , $img_resize->{out} , $img_resize->{width},  $img_resize->{height}, $img_resize->{quality}) = @_ ;
@@ -639,7 +838,7 @@ sub add_y_zip() {
 
 ## Yahoo用のZIPファイルにthumbnail, 6以上の画像を追加
 sub add_y_s_over6_zip() {
-	$y_s_over6_zip->addFile("$_[0]", "$_[1]");
+	$y_s_over6_zip->addFile("$_[0]");
 		if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
 		# 新しいZIPファイルにする
 		terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");

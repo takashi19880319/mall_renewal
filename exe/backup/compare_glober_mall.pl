@@ -1,6 +1,6 @@
 # compare_glober_mall.pl
 # author:T.Haashiguchi
-# date:2014/5/1
+# date:2014/11/1
 
 #========== 改訂履歴 ==========
 # date:2014/05/01 modify
@@ -224,7 +224,8 @@ while($goods_line = <GOODS_FILE>){
 		# itemファイルの9桁コードと比較
 		my @rakuten_item=split(/,/, $item_line);
 		# 9桁コードか否かのチェック
-		my $rakuten_item_code=$rakuten_item[2];
+		my $rakuten_item_code=delete_double_quotation($rakuten_item[2]);
+		$rakuten_item_code =~ s/\"//g;
 		if(is_9code($rakuten_item_code)) {
 			# 9桁との比較処理
 			if ($glober_goods_9code == $rakuten_item_code) {
@@ -258,14 +259,23 @@ while($goods_line = <GOODS_FILE>){
 				while($select_line = <SELECT_FILE>){	
 					# selectファイルの5桁+4桁コードと比較
 					my @rakuten_select_code=split(/,/, $select_line);		
-					my $rakuten_select_4_code=delete_double_quotation($rakuten_select_code[6]);
+					my $rakuten_select_4_code=delete_double_quotation($rakuten_select_code[8]);
 					# selectファイルの項目選択肢横軸子番号に4ケタがあるかが確認する。
 					# selectファイルの項目選択肢横軸子番号に4ケタがなかったら、項目選択肢縦軸子番号を変数に入れる。
-					if (length($rakuten_select_4_code) != 4) {
-						$rakuten_select_4_code = delete_double_quotation($rakuten_select_code[8]);
+					if (length($rakuten_select_4_code) < 4) {
+						$rakuten_select_4_code = delete_double_quotation($rakuten_select_code[6]).delete_double_quotation($rakuten_select_code[8]);
 					}
-					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]); 
+					if (length($rakuten_select_4_code) < 4) {
+						print "Error!!!!"."\n";
+						exit;
+					}
+					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]);
 					my $rakuten_select_code="$rakuten_select_5code$rakuten_select_4_code";
+					if($rakuten_select_code =~ /"/){
+						my $before_rep_str0="\"";
+						my $after_rep_str0="";
+						$rakuten_select_code =~ s/$before_rep_str0/$after_rep_str0/g;
+					} 
 					if ($glober_goods_9code eq $rakuten_select_code) {
 						$find_flag=1;
 						last;

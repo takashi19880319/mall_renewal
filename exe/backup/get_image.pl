@@ -63,9 +63,9 @@ my $output_dir="./..";
 my $regist_mall_data_file_name="$output_dir"."/"."regist_mall_data_file_temp.csv";
 my $regist_mall_data_file_name_correct="$output_dir"."/"."regist_mall_data_file.csv";
 # 画像を保存するフォルダ名
-my $r_image_dir="./../rakuten_up_data/rakuten_image";
-my $y_image_dir="./../yahoo_up_data/yahoo_image";
-my $y_s_over6_image_dir="./../yahoo_up_data/yahoo_image_s_over6";
+my $r_image_dir="../rakuten_up_data/pic";
+my $y_image_dir="../yahoo_up_data/yahoo_image";
+my $y_s_over6_image_dir="../yahoo_up_data/yahoo_image_s_over6";
 # 取得する写真上限枚数(モール店で使用する最大画像数)
 my $get_image_max_num_= 50;
 # Yahooの画像ZIPファイルに格納するファイル数(上限15MB)
@@ -202,6 +202,10 @@ my $y_s_over6_zip_count=0;
 my %target_image_num;
 my %target_variation;
 my @code_7_list=();
+# _6未満の画像のリスト
+my @y_img_list = ();
+# _6以上の画像のリスト
+my @y_6over_img_list = ();
 my $sabun_line = $input_sabun_csv->getline($input_sabun_file_disc);
 while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	# 既に処理済みの商品の場合はスキップ
@@ -214,15 +218,18 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	}
 	if ($skip_flag) {
 		next;
-	}	
+	}
 	my @code_7_list_tmp=();
 	my $code_9=@$sabun_line[0];
 	my $brand_name="";
 	seek $input_goods_file_disc, 0, 0;
+	# バリエーション商品かどうかの判定
+	my $find_5code_count=0;
 	my $goods_line = $input_goods_csv->getline($input_goods_file_disc);
 	while($goods_line = $input_goods_csv->getline($input_goods_file_disc)){
 		# 本店の商品コード抽出
 		if (get_5code(@$sabun_line[0]) == get_5code(@$goods_line[0])) {
+			$find_5code_count++;
 			my $find_flag_tmp=0;
 			foreach my $code_7_tmp (@code_7_list) {
 				if ($code_7_tmp == get_7code(@$goods_line[0])) {
@@ -230,7 +237,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 					last;
 				}
 			}
-			# 配列に値を格納
+			# カラーバリエーションの商品を保持する
 			if (!$find_flag_tmp) {
 				push(@code_7_list_tmp, get_7code(@$goods_line[0]));
 				push(@code_7_list, get_7code(@$goods_line[0]));
@@ -239,11 +246,13 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 				$brand_name = get_brandname_from_xml(@$goods_line[1]);
 			}
 		}
-	}	
-	if (@code_7_list_tmp == 1) {
+	}
+	if ($find_5code_count == 1) {
+		# goods.csvに5桁が合致する商品が一つしかなかったのでバリエーション商品ではない
 		$target_variation{$code_9}=0;
 	}
 	else {
+		# goods.csvに5桁が合致する商品が複数あったのでバリエーション商品
 		$target_variation{$code_9}=1;
 	}	
 	# wgetで楽天用商品画像を取得する
@@ -279,8 +288,8 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 			&create_dir($target_dir);
 			my $target_cnt = $cnt%8;
 			# ブランド毎_n毎のフォルダに格納する。
-			copy($r_image_dir."/".$target_code_7."_".$cnt.".jpg", $target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$target_cnt.".jpg") or die ("ERROR!!".$r_image_dir."\\".$target_code_7."_".$cnt.".jpg"." copy failed.");
-			&image_resize($target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$target_cnt.".jpg", $target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$target_cnt."s.jpg", 70, 70, 70);
+			copy($r_image_dir."/".$target_code_7."_".$cnt.".jpg", $target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$cnt.".jpg") or die ("ERROR!!".$r_image_dir."\\".$target_code_7."_".$cnt.".jpg"." copy failed.");
+			&image_resize($target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$cnt.".jpg", $target_dir."/".$target_code_7."_".get_target_image_prefix($cnt).$cnt."s.jpg", 70, 70, 70);
 		}
 		$total_image_cnt+=$cnt;
 	}
@@ -327,17 +336,19 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 }
 close $output_regist_mall_data_file_disc;
 
-# Yahoo店用の画像処理
 if (!open $input_regist_mall_data_file_disc, "<", $regist_mall_data_file_name) {
 	&output_log("ERROR!!($!) $regist_mall_data_file_name open failed.");
 	exit 1;
 }
+# ファイル名リストの作成
 my @done_list=();
 my %y_filename_lists;
 my %r_filename_lists;
+# 登録対象商品の読み出し
 my $regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regist_mall_data_file_disc);
 while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regist_mall_data_file_disc)){
 	my $skip_flag=0;
+	#既に処理されているバリエーション商品は処理しない
 	foreach my $done_code (@done_list) { 
 		if ($done_code == @$regist_mall_data_line[0]) {
 			$skip_flag=1;
@@ -354,10 +365,18 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	# 画像リストを取得
 	my $wd = Cwd::getcwd();
 	chdir $r_image_dir;
-	my @r_jpg_list = glob "*.jpg";
-	chdir $wd;	
+	my @tmp_r_jpg_list = glob "*.jpg";
+	chdir $wd;
 	# リストを昇順で並べる。
-	@r_jpg_list = sort {$a cmp $b} @r_jpg_list;	
+	my %jpg_hash=();
+	foreach my $r_jpg_name (@tmp_r_jpg_list) {
+		my $keynumber = get_keynumber_from_filename($r_jpg_name);
+		$jpg_hash{$keynumber} = $r_jpg_name;
+	}
+	my @r_jpg_list=();
+	foreach my $key (sort {$a cmp $b} keys %jpg_hash) {  
+		push(@r_jpg_list, $jpg_hash{$key});
+	}
 	my $y_file_count=0;
 	my $y_full_file_name;
 	my $y_file_name;
@@ -367,12 +386,13 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	my $y_filename_list="";
 	if (@$regist_mall_data_line[9] == 0) {
 		# バリエーションがないので9桁のファイル名
-		foreach my $r_jpg_name (@r_jpg_list) { 
+		foreach my $r_jpg_name (@r_jpg_list) {
 			my $sub_jpg_name = substr($r_jpg_name, 0, 5);
 			if (get_5code(@$regist_mall_data_line[0]) eq $sub_jpg_name) {
-				my $sub_jpg_num = substr($r_jpg_name, 8, 1);
+				# 登録商品と画像ファイル名の上位5桁が合致したら画像ファイルの番号を確認
+				my $sub_jpg_num = substr($r_jpg_name, 8, get_image_numdigit_from_filename($r_jpg_name));
 				if ($sub_jpg_num eq "1") {
-					# 1枚目の画像の場合は"_1"を削除
+					# yahooの1枚目の画像の場合は"_1"を削除
 					$y_file_name = @$regist_mall_data_line[0].".jpg";
 					$y_full_file_name = get_y_image_folder_name($y_file_count)."/".$y_file_name;
 					$y_thumb_file_name = @$regist_mall_data_line[0]."s.jpg";
@@ -380,7 +400,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 					$y_file_count++;
 				}
 				else {
-					# 2枚目以降の画像	
+					# yahooの2枚目以降の画像	
 					$y_file_count++;
 					$y_file_name = @$regist_mall_data_line[0]."_".get_target_image_prefix($y_file_count).$sub_jpg_num.".jpg";
 					$y_full_file_name = get_y_image_folder_name($y_file_count)."/".$y_file_name;
@@ -390,12 +410,15 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 				copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");		
 				&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 				if ($y_file_count < 6) {
-					&add_y_zip($y_full_file_name, $y_file_name);
+					push(@y_img_list,$y_full_file_name);
+#					&add_y_zip($y_full_file_name);
 				}
 				else {
-					&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+					push (@y_6over_img_list,$y_full_file_name);
+#					&add_y_s_over6_zip($y_full_file_name, $y_file_name);
 				}
-				&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+				push (@y_6over_img_list,$y_thumb_full_file_name);
+#				&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 				# 処理した画像ファイル名を保持
 				my $separator="";
 				if ($y_filename_list ne "") {
@@ -408,13 +431,13 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	}		
 	else {
 		# バリエーション商品なので5桁code_7_listのファイル名
-		my @done_list=();
+		# まず正面画像"_1"をリストの先頭にいれる
 		foreach my $target_code_7 (@code_7_list) {
 			if (get_5code($target_code_7) == get_5code(@$regist_mall_data_line[0])) {
 				foreach my $r_jpg_name (@r_jpg_list) { 	
 					my $sub_jpg_name = substr($r_jpg_name, 0, 7);	
 					if ($target_code_7 eq $sub_jpg_name) {
-						my $sub_jpg_num = substr($r_jpg_name, 8, 1);
+						my $sub_jpg_num = substr($r_jpg_name, 8, get_image_numdigit_from_filename($r_jpg_name));
 						if ($sub_jpg_num eq "1") {
 							# "_1"の画像の場合の処理
 							if ($y_file_count == 0) {
@@ -433,16 +456,19 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 								$y_thumb_file_name = get_5code($target_code_7)."_".get_target_image_prefix($y_file_count).$y_file_count."s.jpg";
 								$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;
 
-							}				
+							}		
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($y_file_count < 6) {
-								&add_y_zip($y_full_file_name, $y_file_name);
+								push(@y_img_list,$y_full_file_name);
+#								&add_y_zip($y_full_file_name);
 							}
 							else {
-								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+								push (@y_6over_img_list,$y_full_file_name);
+#								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
 							}
-							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+							push (@y_6over_img_list,$y_thumb_full_file_name);
+#							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 							# 処理した画像ファイル名を保持
 							my $separator="";
 							if ($y_filename_list ne "") {
@@ -456,27 +482,31 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 			}
 		}
 		$y_file_count = $y_file_count-1;
+		# "_1"以外の画像をリストに入れる
 		foreach my $target_code_7 (@code_7_list) {
 			if (get_5code($target_code_7) == get_5code(@$regist_mall_data_line[0])) {
 				foreach my $r_jpg_name (@r_jpg_list) { 
 					my $sub_jpg_name = substr($r_jpg_name, 0, 7);
 					if ($target_code_7 eq $sub_jpg_name) {
-						my $sub_jpg_num = substr($r_jpg_name, 8, 1);
+						my $sub_jpg_num = substr($r_jpg_name, 8, get_image_numdigit_from_filename($r_jpg_name));
 						if ($sub_jpg_num ne "1") {
 							$sub_jpg_num = $sub_jpg_num+$y_file_count;
 							$y_file_name = get_5code($target_code_7)."_".get_target_image_prefix($sub_jpg_num).$sub_jpg_num.".jpg";
 							$y_full_file_name = get_y_image_folder_name($sub_jpg_num)."/".$y_file_name;
 							$y_thumb_file_name = get_5code($target_code_7)."_".get_target_image_prefix($sub_jpg_num).$sub_jpg_num."s.jpg";
-							$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;							
+							$y_thumb_full_file_name = $y_s_over6_image_dir."/".$y_thumb_file_name;
 							copy( "$r_image_dir/$r_jpg_name", "$y_full_file_name" ) or die("ERROR!! $y_full_file_name copy failed.");
 							&image_resize($y_full_file_name, $y_thumb_full_file_name, 70, 70, 70);
 							if ($sub_jpg_num < 6) {
-								&add_y_zip($y_full_file_name, $y_file_name);
+								push(@y_img_list,$y_full_file_name);
+#								&add_y_zip("$y_full_file_name");
 							}
 							else {
-								&add_y_s_over6_zip($y_full_file_name, $y_file_name);
+								push (@y_6over_img_list,$y_full_file_name);
+#								&add_y_s_over6_zip("$y_full_file_name", "$y_file_name");
 							}
-							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
+							push (@y_6over_img_list,$y_thumb_full_file_name);
+#							&add_y_s_over6_zip($y_thumb_full_file_name, $y_thumb_file_name);
 							# 処理した画像ファイル名を保持
 							my $separator="";
 							if ($y_filename_list ne "") {
@@ -496,8 +526,14 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 }
 
 # ZIPファイルのクローズ
-&terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
-&terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
+my %count;
+@y_img_list = grep( !$count{$_}++, @y_img_list );
+&terminate_y_zip(@y_img_list);
+my %count_s;
+@y_6over_img_list = grep( !$count_s{$_}++, @y_6over_img_list );
+&terminate_y_s_over6_zip(@y_6over_img_list);
+#&terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
+#&terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 
 #=================
 # sabunファイルの情報に"親の画像枚数","バリエーション"を追加してregist_mall_data_file.csvを作成
@@ -593,10 +629,10 @@ sub image_resize() {
 
 ## Yahoo用のZIPファイルに画像をファイルを追加
 sub add_y_zip() {
-	$y_zip->addFile("$_[0]", "$_[1]");
+	$y_zip->addFile("$_[0]");
 	if (!(++$y_zip_count % $y_image_max)) {
 		# 新しいZIPファイルにする
-		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count.zip");
+		terminate_y_zip("$y_image_dir/y_pic_$y_zip_count".".zip");
 		$y_zip = Archive::Zip->new();
 	}
 }
@@ -604,7 +640,7 @@ sub add_y_zip() {
 ## Yahoo用のZIPファイルにthumbnail, 6以上の画像を追加
 sub add_y_s_over6_zip() {
 	$y_s_over6_zip->addFile("$_[0]", "$_[1]");
-	if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
+		if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
 		# 新しいZIPファイルにする
 		terminate_y_s_over6_zip("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
 		$y_s_over6_zip = Archive::Zip->new();
@@ -613,12 +649,46 @@ sub add_y_s_over6_zip() {
 
 ## Yahoo用のZIPファイルの終了処理
 sub terminate_y_zip() {
-	$y_zip->writeToFileNamed("$_[0]");
+	$y_zip_count=0;
+	for (my $i = 0; $i <= $#y_img_list; $i++){
+		if (!(++$y_zip_count % $y_image_max)) {
+			my $status = $y_zip->writeToFileNamed("$y_image_dir/y_pic_$y_zip_count.zip");
+			if ($status != 0) {
+				output_log("!!!!!zip error [$status] filename[$_[0]]\n");
+				exit 1;
+			}
+			$y_zip = Archive::Zip->new();
+		}
+		my $y_img_list_name = substr($y_img_list[$i],29);
+		$y_zip->addFile($y_img_list[$i],$y_img_list_name);
+	}
+	my $status = $y_zip->writeToFileNamed("$y_image_dir/y_pic_$y_zip_count.zip");
+	if ($status != 0) {
+		output_log("!!!!!zip error [$status] filename[$_[0]]\n");
+		exit 1;
+	}
 }
 
 ## Yahoo用のZIPファイルの終了処理
 sub terminate_y_s_over6_zip() {
-	$y_s_over6_zip->writeToFileNamed("$_[0]");
+	$y_s_over6_zip_count =0;
+	for (my $i = 0; $i <= $#y_6over_img_list; $i++){
+		if (!(++$y_s_over6_zip_count % $y_s_over6_image_max)) {
+			my $status = $y_s_over6_zip->writeToFileNamed("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
+			if ($status != 0) {
+				output_log("!!!!!zip error [$status] filename[$_[0]]\n");
+				exit 1;
+			}
+			$y_s_over6_zip = Archive::Zip->new();
+		}
+		my $y_6over_img_list_name = substr($y_6over_img_list[$i],37);
+		$y_s_over6_zip->addFile($y_6over_img_list[$i],$y_6over_img_list_name);
+	}
+	my $status = $y_s_over6_zip->writeToFileNamed("$y_s_over6_image_dir/y_s_over6_$y_s_over6_zip_count.zip");
+	if ($status != 0) {
+		output_log("!!!!!zip error [$status] filename[$_[0]]\n");
+		exit 1;
+	}
 }
 
 ## ログ出力
@@ -635,10 +705,10 @@ sub output_log() {
 
 ## 現在日時取得関数
 sub to_YYYYMMDD_string() {
-  my $time = time();
-  my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);
-  my $result = sprintf("%04d%02d%02d %02d:%02d:%02d", $year + 1900, $mon + 1, $mday, $hour, $min, $sec);
-  return $result;
+	my $time = time();
+	my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);
+	my $result = sprintf("%04d%02d%02d %02d:%02d:%02d", $year + 1900, $mon + 1, $mday, $hour, $min, $sec);
+	return $result;
 }
 
 sub delete_double_quotation {
@@ -676,7 +746,6 @@ sub is_9code {
 ## 指定されたカテゴリ名に対応するカテゴリをXMLファイルから取得する
 sub get_brandname_from_xml {
 	my $category_name = $_[0]; 
-	print "sub get_brandname_from_xml".$category_name."\n";
 	my $info_name = "r_directory";  
 	#brand.xmlからブランド名を取得
 	my $xml = XML::Simple->new;
@@ -723,22 +792,6 @@ sub create_dir {
 sub get_target_image_prefix {
 	my $file_count=$_[0];
 	my $target_image_prefix = "";
-	if ($file_count < 9) {
-		$target_image_prefix = "";
-	}			
-	elsif ($file_count >= 9 && $file_count <= 16) {
-		$target_image_prefix = "a_"
-	}
-	elsif ($file_count >= 17 && $file_count <= 24) {
-		$target_image_prefix = "b_"
-	}
-	elsif ($file_count >= 25 && $file_count <= 32) {
-		$target_image_prefix = "c_"
-	}
-	else {
-		#エラー ログ出力
-		exit 1;
-	}
 	return $target_image_prefix;
 }
 
@@ -752,4 +805,28 @@ sub get_y_image_folder_name {
 		$y_image_folder_name = $y_s_over6_image_dir;
 	}
 	return $y_image_folder_name;
-}	
+}
+
+sub get_image_numdigit_from_filename {
+	my $file_name=$_[0];
+	# ファイル名からファイル番号を桁数を意識して取得
+	my $digit_count=0;
+	my $file_count=substr($file_name, 8, 2);
+	if (index($file_count, '.') != -1) {
+		$digit_count = 1;
+	}
+	else {
+		$digit_count = 2;
+	}
+	return $digit_count;
+}
+
+sub get_keynumber_from_filename {
+	my $keynumber = substr($_[0], 0, 7);
+	my $image_num = substr($_[0], 8, get_image_numdigit_from_filename($_[0]));
+	if (get_image_numdigit_from_filename($_[0]) == 1) {
+		$image_num = "0".$image_num;
+	}
+	$keynumber .= $image_num;
+	return $keynumber;
+}
