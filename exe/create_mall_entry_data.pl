@@ -915,7 +915,7 @@ sub add_rakuten_item_data {
 		# SKUの場合はサイズのtagidを出力
 		$tag_id=&create_r_tag_id();
 	}
-	$output_item_csv->combine($tag_id) or die $output_item_csv->error_diag();
+	$output_item_csv->combine("") or die $output_item_csv->error_diag();
 	print $output_item_file_disc $output_item_csv->string(), ",";
 	# PC用キャッチコピー
 	$output_item_csv->combine(&create_r_pccatch_copy()) or die $output_item_csv->error_diag();
@@ -2735,30 +2735,48 @@ HTML_STR_3_4
 	chomp($html_str3_4);
 	foreach (my $i=0; $i<=$img_url_list_count-1; $i++){
 		if ($i == 0){
-			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/1"."/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
-			$iframe_html .= $html_str3_1."\n";
+			my $img_file_name_thum = $img_url_list[$i];
+			$img_file_name_thum =~ s/\.jpg//g;
+			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/c"."/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
+			$iframe_html .= $html_str3_1."\n".$html_str3_2."$img_dir"."/c/"."$img_url_list[$i]"."\""."$html_str3_3";
+			$iframe_html .= $html_str3_4."$img_dir"."/c/"."$img_file_name_thum"."s.jpg"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."</li>"."\n";
 		}
-		my $img_num = get_r_image_num_from_filename($img_url_list[$i]);
-		# サイズバリエーションがあり、かつ、カラーバリエーションがある商品
-		my $entry_img_code = &get_7code($img_url_list[$i]);
-		# サイズ○カラー○、サイズ×カラー○の商品には正面画像サムネイル下に画像名を入れる
-		if ($img_num == 1) {
-			my $color_name ="";
-			# サイズバリエーションがあり、かつ、カラーバリエーションがあるものはカラーをgoods.csvから抽出する
-			if($global_entry_goods_variationflag == 1){
-				my $tmp_goods_file_disc;
-				if (!open $tmp_goods_file_disc, "<", $input_goods_file_name) {
-					&output_log("ERROR!!($!) $input_goods_file_name open failed.");
-					exit 1;
-				}
-				if ($global_entry_goods_size ne ""){
-					$color_name = &create_r_lateral_name();
-					my $color_str = "カラー";
-					Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-					if ($color_name eq $color_str){
+		else{
+			my $img_num = get_r_image_num_from_filename($img_url_list[$i]);
+			# サイズバリエーションがあり、かつ、カラーバリエーションがある商品
+			my $entry_img_code = &get_7code($img_url_list[$i]);
+			# サイズ○カラー○、サイズ×カラー○の商品には正面画像サムネイル下に画像名を入れる
+			if ($img_num == 1) {
+				my $color_name ="";
+				# サイズバリエーションがあり、かつ、カラーバリエーションがあるものはカラーをgoods.csvから抽出する
+				if($global_entry_goods_variationflag == 1){
+					my $tmp_goods_file_disc;
+					if (!open $tmp_goods_file_disc, "<", $input_goods_file_name) {
+						&output_log("ERROR!!($!) $input_goods_file_name open failed.");
+						exit 1;
+					}
+					if ($global_entry_goods_size ne ""){
+						$color_name = &create_r_lateral_name();
+						my $color_str = "カラー";
+						Encode::from_to( $color_str, 'utf8', 'shiftjis' );
+						if ($color_name eq $color_str){
+							# goodsファイルの読み出し(項目行分1行読み飛ばし)
+							seek $tmp_goods_file_disc,0,0;
+							my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
+							while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
+								if ($entry_img_code == &get_7code(@$goods_line[0])){
+									$color_name = @$goods_line[6];
+									last;
+								}
+							}
+						}
+					}
+					# カラーバリエーションのある商品
+					else {
 						# goodsファイルの読み出し(項目行分1行読み飛ばし)
 						seek $tmp_goods_file_disc,0,0;
 						my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
+						my $is_find_goods_info=0;
 						while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
 							if ($entry_img_code == &get_7code(@$goods_line[0])){
 								$color_name = @$goods_line[6];
@@ -2766,40 +2784,27 @@ HTML_STR_3_4
 							}
 						}
 					}
+					close $tmp_goods_file_disc;
 				}
-				# カラーバリエーションのある商品
-				else {
-					# goodsファイルの読み出し(項目行分1行読み飛ばし)
-					seek $tmp_goods_file_disc,0,0;
-					my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-					my $is_find_goods_info=0;
-					while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-						if ($entry_img_code == &get_7code(@$goods_line[0])){
-							$color_name = @$goods_line[6];
-							last;
-						}
-					}
-				}
-				close $tmp_goods_file_disc;
+				# 拡大画像URLを追加
+				$html_str_3 .="$html_str3_2"."$img_dir"."/"."$img_num"."/"."$img_url_list[$i]"."\""."$html_str3_3";
+				# サムネイルコードを追加
+				# _sをつけるためにリネームする
+				my $img_url_list_file_name = substr("$img_url_list[$i]",0,9);
+				my $img_file_name_thum = "$img_url_list_file_name"."s.jpg";
+				$html_str_3 .="$html_str3_4"."$img_dir"."/"."$img_num"."/"."$img_file_name_thum"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."$color_name"."</li>"."\n";
 			}
-			# 拡大画像URLを追加
-			$html_str_3 .="$html_str3_2"."$img_dir"."/"."$img_num"."/"."$img_url_list[$i]"."\""."$html_str3_3";
-			# サムネイルコードを追加
-			# _sをつけるためにリネームする
-			my $img_url_list_file_name = substr("$img_url_list[$i]",0,9);
-			my $img_file_name_thum = "$img_url_list_file_name"."s.jpg";
-			$html_str_3 .="$html_str3_4"."$img_dir"."/"."$img_num"."/"."$img_file_name_thum"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."$color_name"."</li>"."\n";
-		}
-		else {			
-			# 拡大画像URLを追加
-			my $folder_image_num=$img_num;
-			$html_str_3 .=$html_str3_2.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i])."\"".$html_str3_3;
-			# サムネイルコードを追加
-			# _sをつけるためにリネームする
-			my $suffix_pos = rindex(get_r_target_image_filename($img_url_list[$i]), '.');
-			my $img_url_list_file_name = substr(get_r_target_image_filename($img_url_list[$i]),0,$suffix_pos);
-			my $img_file_name_thum = $img_url_list_file_name."s.jpg";
-			$html_str_3 .=$html_str3_4.$img_dir."/".$folder_image_num."/".$img_file_name_thum."\" alt=\"".$global_entry_goods_name."\" /></a>"."</li>"."\n";
+			else {			
+				# 拡大画像URLを追加
+				my $folder_image_num=$img_num;
+				$html_str_3 .=$html_str3_2.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i])."\"".$html_str3_3;
+				# サムネイルコードを追加
+				# _sをつけるためにリネームする
+				my $suffix_pos = rindex(get_r_target_image_filename($img_url_list[$i]), '.');
+				my $img_url_list_file_name = substr(get_r_target_image_filename($img_url_list[$i]),0,$suffix_pos);
+				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
+				$html_str_3 .=$html_str3_4.$img_dir."/".$folder_image_num."/".$img_file_name_thum."\" alt=\"".$global_entry_goods_name."\" /></a>"."</li>"."\n";
+			}
 		}
 	}
 	$iframe_html .= "$html_str_3"."</ul>"."\n";
@@ -2841,10 +2846,16 @@ sub create_r_goods_image_url {
 	}
 	my $connect_str=" ";
 	foreach (my $i=0; $i < $last_count; $i++){
-		if ($i == $last_count) {$connect_str="";}
-		my $folder_image_num=get_r_image_num_from_filename($img_url_list[$i]);
-		$image_url_str .=$html_str1.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i]).$connect_str;
+		if($i ==0){
+			$image_url_str =$html_str1.$img_dir."/"."c"."/".$img_url_list[$i].$connect_str;
+		}
+		else{
+			if ($i == $last_count) {$connect_str="";}
+			my $folder_image_num=get_r_image_num_from_filename($img_url_list[$i]);
+			$image_url_str .=$html_str1.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i]).$connect_str;
+		}
 	}
+	print $image_url_str."\n";
         return $image_url_str;
 }
 
