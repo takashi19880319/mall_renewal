@@ -313,7 +313,8 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 			# ブランド毎_n毎のフォルダに格納する。※リサイズはいらない
 			# 楽天用
 			copy($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$rakuten_file_name) or die ("ERROR!!".$r_image_dir."\\".$rakuten_file_name." copy failed.");
-			&image_resize($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$glober_goods_img_url."s.jpg", 70, 70, 70);
+			# 楽天用のカラー入り画像はリサイズ不要
+			# &image_resize($r_image_dir."/".$glober_goods_img_url.".jpg", $target_dir."/".$glober_goods_img_url."s.jpg", 70, 70, 70);
 			# ヤフー用
 			$y_file_name = $goods_num.".jpg";
 			$y_full_file_name = $y_image_dir."/".$goods_num.".jpg";
@@ -387,21 +388,6 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	}
 	$total_image_cnt = @new_img_url_list;
 =pod
-	my $chk = 157831111;
-	if($code_9 == $chk){
-		while (my($pref, $city) = each(%rakuten_target_image_lists)) {
-		  #
-		  # ハッシュの値(配列)を全て巡回する
-		  foreach (@{$city}) {
-			if($chk == $pref){
-				print "$pref = $_\n"; # 出力
-			}
-		  }
-		  print "\n"; # ハッシュ毎に空行を入れる
-		}
-	}
-=cut
-=pod
 	my $status = $zip->writeToFileNamed($zipfile);
 	if ($status != 'AZ_OK') {
 		unlink("$zipfile") if (-e "$zipfile");
@@ -465,45 +451,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 		print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), "\n";
 	}
 }
-=pod
-while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
-	my $sabun_code = @$sabun_line[0];
-	$sabun_code =~ s/"//g;
-	my $multi_info_find_flag=0;
-	while ( my ($target_code_9, $image_cnt) = each %target_image_num ) {
-		if($sabun_code == $target_code_9){
-			print $target_code_9."\n";
-			for (my $i=0; $i < 8; $i++) {
-				$output_regist_mall_data_csv->combine(@$sabun_line[$i]) or die $output_regist_mall_data_csv->error_diag();
-				print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), ",";
-			}
-			$output_regist_mall_data_csv->combine($image_cnt) or die $output_regist_mall_data_csv->error_diag();
-			print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), ",";
-			$output_regist_mall_data_csv->combine($target_variation{$target_code_9}) or die $output_regist_mall_data_csv->error_diag();
-			print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), ",";
-			$output_regist_mall_data_csv->combine(&output_rakuten_img_list($target_code_9)) or die $output_regist_mall_data_csv->error_diag();
-			print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), ",";
-			$output_regist_mall_data_csv->combine(&output_yahoo_img_list($target_code_9)) or die $output_regist_mall_data_csv->error_diag();
-			print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), "\n";
-			$multi_info_find_flag=1;
-			last;
-		}
-	}
-	if($multi_info_find_flag == 0){
-		print $sabun_code."\n";
-		for (my $i=0; $i < 8; $i++) {
-			if($i==7){
-				$output_regist_mall_data_csv->combine(@$sabun_line[$i]) or die $output_regist_mall_data_csv->error_diag();
-				print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), "\n";
-			}
-			else {
-				$output_regist_mall_data_csv->combine(@$sabun_line[$i]) or die $output_regist_mall_data_csv->error_diag();
-				print $output_regist_mall_data_file_disc $output_regist_mall_data_csv->string(), ",";
-			}
-		}
-	}
-}
-=cut
+
 close $output_regist_mall_data_file_disc;
 
 # ZIPファイルのクローズ

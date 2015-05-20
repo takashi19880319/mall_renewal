@@ -2733,10 +2733,12 @@ my $html_str3_4=
 <img src="http://image.rakuten.co.jp/hff/cabinet/pic/
 HTML_STR_3_4
 	chomp($html_str3_4);
-	foreach (my $i=0; $i<=$img_url_list_count-1; $i++){
+	# iframeに出力する
+	# カラー入りの画像はiframeに不要
+	foreach (my $i=1; $i<=$img_url_list_count-1; $i++){
 		if ($i == 0){
 			my $img_file_name_thum = $img_url_list[$i];
-			$img_file_name_thum =~ s/\.jpg//g;
+			$img_file_name_thum =~ s/\.jpg//i;
 			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/c"."/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
 			$iframe_html .= $html_str3_1."\n".$html_str3_2."$img_dir"."/c/"."$img_url_list[$i]"."\""."$html_str3_3";
 			$iframe_html .= $html_str3_4."$img_dir"."/c/"."$img_file_name_thum"."s.jpg"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."</li>"."\n";
@@ -2855,7 +2857,6 @@ sub create_r_goods_image_url {
 			$image_url_str .=$html_str1.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i]).$connect_str;
 		}
 	}
-	print $image_url_str."\n";
         return $image_url_str;
 }
 
