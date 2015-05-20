@@ -286,7 +286,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 		my $glober_goods_img_url = $new_img_url_list[$i];	
 		# 画像を取得する
 		$rtn = system("wget.exe -q -P $r_image_dir $glober_goods_img_url");
-		$glober_goods_img_url =~ s/\.jpg//g;
+		$glober_goods_img_url =~ s/\.jpg//i;
 		# 楽天店の保存用ファイル名
 		my $rakuten_file_name = $glober_goods_img_url.".jpg";
 		$rakuten_file_name =~ s/http:\/\/glober\.jp\/img\/c\///g;
