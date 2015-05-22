@@ -325,14 +325,17 @@ if (!open $input_regist_mall_data_file_disc, "<", $input_regist_mall_data_file_n
 #出力ディレクトリ
 my $output_rakuten_data_dir="../rakuten_up_data";
 my $output_yahoo_data_dir="../yahoo_up_data";
+my $output_rakuten_reset_dir=$output_rakuten_data_dir."/reset/";
+my $output_rakuten_delete_dir=$output_rakuten_data_dir."/delete/";
+my $output_yahoo_delete_dir=$output_yahoo_data_dir."/delete/";
 #出力ファイル名
 my $output_item_file_name="$output_rakuten_data_dir"."/"."item.csv";
-my $output_resetitem_file_name="$output_rakuten_data_dir"."/"."reset-item.csv";
-my $output_deleteitem_file_name="$output_rakuten_data_dir"."/"."delete-item.csv";
+my $output_resetitem_file_name="$output_rakuten_reset_dir"."/"."item.csv";
+my $output_deleteitem_file_name="$output_rakuten_delete_dir"."/"."item.csv";
 my $output_select_file_name="$output_rakuten_data_dir"."/"."select.csv";
 my $output_itemcat_file_name="$output_rakuten_data_dir"."/"."item-cat.csv";
 my $output_ydata_file_name="$output_yahoo_data_dir"."/"."ydata.csv";
-my $output_ydelete_file_name="$output_yahoo_data_dir"."/"."delete-ydata.csv";
+my $output_ydelete_file_name="$output_yahoo_delete_dir"."/"."delete-ydata.csv";
 my $output_yquantity_file_name="$output_yahoo_data_dir"."/"."yquantity.csv";
 #出力先ディレクトリの作成
 unless(-d $output_rakuten_data_dir) {
@@ -346,6 +349,27 @@ unless(-d $output_yahoo_data_dir) {
 	# 存在しない場合はフォルダ作成
 	if(!mkpath($output_yahoo_data_dir)) {
 		output_log("ERROR!!($!) $output_yahoo_data_dir create failed.");
+		exit 1;
+	}
+}
+unless(-d $output_rakuten_delete_dir) {
+	# 存在しない場合はフォルダ作成
+	if(!mkpath($output_rakuten_delete_dir)) {
+		output_log("ERROR!!($!) $output_rakuten_delete_dir create failed.");
+		exit 1;
+	}
+}
+unless(-d $output_rakuten_reset_dir) {
+	# 存在しない場合はフォルダ作成
+	if(!mkpath($output_rakuten_reset_dir)) {
+		output_log("ERROR!!($!) $output_rakuten_reset_dir create failed.");
+		exit 1;
+	}
+}
+unless(-d $output_yahoo_delete_dir) {
+	# 存在しない場合はフォルダ作成
+	if(!mkpath($output_yahoo_delete_dir)) {
+		output_log("ERROR!!($!) $output_yahoo_delete_dir create failed.");
 		exit 1;
 	}
 }
@@ -1006,7 +1030,8 @@ sub add_rakuten_item_data {
 	else{$output_item_csv->combine(&create_ry_point()) or die $output_item_csv->error_diag();}
 	print $output_item_file_disc $output_item_csv->string(), ",";
 	# ポイント変倍率適用期間
-	$output_item_csv->combine(&create_r_point_term()) or die $output_item_csv->error_diag();
+	if($global_entry_goods_controlcolumn eq "u"){$output_item_csv->combine("") or die $output_item_csv->error_diag();}
+	else{$output_item_csv->combine(&create_r_point_term()) or die $output_item_csv->error_diag();}
 	#最後に改行を追加
 	print $output_item_file_disc $output_item_csv->string(), "\n";
 	return 0;
