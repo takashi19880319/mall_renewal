@@ -443,6 +443,7 @@ our $global_entry_goods_controlcolumn="";
 our $global_entry_goods_variationflag=0;
 our $global_entry_goods_rimagefilename="";
 our $global_entry_goods_yimagefilename="";
+our $genre_goods_count=0;
 our @globel_spec_sort=&get_spec_sort_from_xml();
 
 #################################################################
@@ -518,13 +519,7 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 				}
 				close($tmp_goods_file_disc);
 				$tmp_goods_csv->eof;
-			}
-=pod			
-			foreach my $key(keys(%global_entry_parents_size_variation)){
-				print "=====$global_entry_goods_code key=$key, value= $global_entry_parents_size_variation{$key}\n";
-			}
-=cut			
-			
+			}		
 			last;
 		}
 	}
@@ -595,9 +590,9 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	# 商品コードの上位5桁を切り出し
 	seek $input_genre_goods_file_disc,0,0;
 	%global_entry_genre_goods_info=();
+	$genre_goods_count=0;
 	# 1行読み飛ばし
 	my $genre_goods_line = $input_genre_goods_csv->getline($input_genre_goods_file_disc);
-	my $genre_goods_count=0;
 	while($genre_goods_line = $input_genre_goods_csv->getline($input_genre_goods_file_disc)){	
 		my $genre_goods_genre_code = @$genre_goods_line[0];
 		my $genre_goods_goods_code = @$genre_goods_line[1];
@@ -607,7 +602,9 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 			$genre_goods_count++;
 		}
 	}
-
+	#特定のブランドの特定のジャンルは、レディースカテゴリを追加する。
+	&add_item_cat_category_mall($global_entry_goods_category);
+	
 	# 楽天用データを追加
 	&add_rakuten_data();
 	# Yahoo!用データを追加
@@ -1225,23 +1222,23 @@ sub add_rakuten_itemcat_data {
 			else{
 			$output_itemcat_csv->combine(&get_5code($global_entry_goods_code)) or die $output_itemcat_csv->error_diag();
 			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		}
-		# 商品名
-		$output_itemcat_csv->combine(&create_ry_goods_name()) or die $output_itemcat_csv->error_diag();
-		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		# 表示先カテゴリ
-		chomp $global_entry_genre_goods_info{$genre_goods_num};
-		$output_itemcat_csv->combine(&get_r_category_from_xml($global_entry_genre_goods_info{$genre_goods_num}, 0)) or die $output_itemcat_csv->error_diag();
-		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		# 優先度
-		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
-		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		# URL
-		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
-		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		# 1ページ複数形式
-		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
-		print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
+			}
+			# 商品名
+			$output_itemcat_csv->combine(&create_ry_goods_name()) or die $output_itemcat_csv->error_diag();
+			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+			# 表示先カテゴリ
+			chomp $global_entry_genre_goods_info{$genre_goods_num};
+			$output_itemcat_csv->combine(&get_r_category_from_xml($global_entry_genre_goods_info{$genre_goods_num}, 0)) or die $output_itemcat_csv->error_diag();
+			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+			# 優先度
+			$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+			# URL
+			$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+			print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+			# 1ページ複数形式
+			$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+			print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
 		}
 		# "ブランドをチェック"
 		# コントロールカラム
@@ -1263,9 +1260,8 @@ sub add_rakuten_itemcat_data {
 		$output_itemcat_csv->combine(&get_info_from_xml("r_category")) or die $output_itemcat_csv->error_diag();
 		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
 		# 優先度
-		$output_itemcat_csv->combine("$global_category_priority") or die $output_itemcat_csv->error_diag();
+		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
 		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
-		$global_category_priority++;
 		# URL
 		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
 		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
@@ -2831,81 +2827,6 @@ HTML_STR_3_4
 			$html_str_3 .=$html_str3_4.$img_dir."/".$folder_image_num."/".$img_file_name_thum."\" alt=\"".$global_entry_goods_name."\" /></a>"."</li>"."\n";
 		}
 	}
-=pod
-		if ($i == 1){
-			my $img_file_name_thum = $img_url_list[$i];
-			$img_file_name_thum =~ s/\.jpg//i;
-			$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/$i/"."$img_url_list[$i]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
-			$iframe_html .= $html_str3_1."\n".$html_str3_2."$img_dir"."/$i/"."$img_url_list[$i]"."\""."$html_str3_3";
-			$iframe_html .= $html_str3_4."$img_dir"."/$i/"."$img_file_name_thum"."s.jpg"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."</li>"."\n";
-		}
-		else{
-			my $img_num = get_r_image_num_from_filename($img_url_list[$i]);
-			# サイズバリエーションがあり、かつ、カラーバリエーションがある商品
-			my $entry_img_code = &get_7code($img_url_list[$i]);
-			# サイズ○カラー○、サイズ×カラー○の商品には正面画像サムネイル下に画像名を入れる
-			if ($img_num == 1) {
-				my $color_name ="";
-				# サイズバリエーションがあり、かつ、カラーバリエーションがあるものはカラーをgoods.csvから抽出する
-				if($global_entry_goods_variationflag == 1){
-					my $tmp_goods_file_disc;
-					if (!open $tmp_goods_file_disc, "<", $input_goods_file_name) {
-						&output_log("ERROR!!($!) $input_goods_file_name open failed.");
-						exit 1;
-					}
-					if ($global_entry_goods_size ne ""){
-						$color_name = &create_r_lateral_name();
-						my $color_str = "カラー";
-						Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-						if ($color_name eq $color_str){
-							# goodsファイルの読み出し(項目行分1行読み飛ばし)
-							seek $tmp_goods_file_disc,0,0;
-							my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-							while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-								if ($entry_img_code == &get_7code(@$goods_line[0])){
-									$color_name = @$goods_line[6];
-									last;
-								}
-							}
-						}
-					}
-					# カラーバリエーションのある商品
-					else {
-						# goodsファイルの読み出し(項目行分1行読み飛ばし)
-						seek $tmp_goods_file_disc,0,0;
-						my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-						my $is_find_goods_info=0;
-						while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-							if ($entry_img_code == &get_7code(@$goods_line[0])){
-								$color_name = @$goods_line[6];
-								last;
-							}
-						}
-					}
-					close $tmp_goods_file_disc;
-				}
-				# 拡大画像URLを追加
-				$html_str_3 .="$html_str3_2"."$img_dir"."/"."$img_num"."/"."$img_url_list[$i]"."\""."$html_str3_3";
-				# サムネイルコードを追加
-				# _sをつけるためにリネームする
-				my $img_url_list_file_name = substr("$img_url_list[$i]",0,9);
-				my $img_file_name_thum = "$img_url_list_file_name"."s.jpg";
-				$html_str_3 .="$html_str3_4"."$img_dir"."/"."$img_num"."/"."$img_file_name_thum"."\""." alt=\""."$global_entry_goods_name"."\" /></a>"."$color_name"."</li>"."\n";
-			}
-			else {			
-				# 拡大画像URLを追加
-				my $folder_image_num=$img_num;
-				$html_str_3 .=$html_str3_2.$img_dir."/".$folder_image_num."/".get_r_target_image_filename($img_url_list[$i])."\"".$html_str3_3;
-				# サムネイルコードを追加
-				# _sをつけるためにリネームする
-				my $suffix_pos = rindex(get_r_target_image_filename($img_url_list[$i]), '.');
-				my $img_url_list_file_name = substr(get_r_target_image_filename($img_url_list[$i]),0,$suffix_pos);
-				my $img_file_name_thum = $img_url_list_file_name."s.jpg";
-				$html_str_3 .=$html_str3_4.$img_dir."/".$folder_image_num."/".$img_file_name_thum."\" alt=\"".$global_entry_goods_name."\" /></a>"."</li>"."\n";
-			}
-		}
-	}
-=cut
 	$iframe_html .= "$html_str_3"."</ul>"."\n";
 my $html_str4=
 <<"HTML_STR_4";
@@ -3079,14 +3000,11 @@ sub create_y_path {
 	Encode::from_to( $john_str, 'utf8', 'shiftjis' );
 	my $john_wstr = "ジョンストンズ　WOMEN'S/Johnstons";
 	Encode::from_to( $john_wstr, 'utf8', 'shiftjis' );
-	my $begg_str = "ベグ・スコットランド/Begg Scotland";
-	Encode::from_to( $begg_str, 'utf8', 'shiftjis' );
-	my $begg_wstr = "ベグ・スコットランド WOMEN'S";
-	Encode::from_to( $begg_wstr, 'utf8', 'shiftjis' );
 	# ハッシュの要素数をカウント
 	my $global_entry_genre_count = scalar(values(%global_entry_genre_goods_info));
 	foreach ( my $i = 0; $i <= $global_entry_genre_count-1; $i++) {
 		my $genre_code = $global_entry_genre_goods_info{$i};
+		# クルチアーニのブレスレットのみ
 		if ($path eq $cruciani_str && $genre_code =~ /^19/ ){
 			$path .= "\n"."$cruciani_wstr";
 		}
@@ -3102,10 +3020,6 @@ sub create_y_path {
 	# ジョンストンズすべて
 	elsif ($path eq $john_str){
 		$path .= "\n"."$john_wstr";
-	}
-	# ベグ・スコットランドすべて
-	elsif ($path eq $begg_str){
-		$path .= "\n"."$begg_wstr";
 	}
 	# 本店のジャンル情報からYahoo店のカテゴリ情報を取得
 	# 商品コードの上位5桁を切り出し
@@ -4265,6 +4179,7 @@ sub create_y_q_subcode {
 ### ユーティリティ関数　###
 #####################
 ## 指定されたカテゴリ名に対応するカテゴリをXMLファイルから取得する
+
 sub get_info_from_xml {
 	my $info_name = $_[0]; 
 	#brand.xmlからブランド名を取得
@@ -4545,40 +4460,6 @@ sub get_r_target_image_filename {
 	return $temp_file_name_1."_".$file_count.$temp_file_name_2;
 }
 
-=pod
-sub get_r_target_image_filename {
-	my $file_name= "";
-	$file_name=$_[0];
-	# "_n"までのファイル名を保持
-	my $temp_file_name_1="";
-	$temp_file_name_1 = substr($file_name, 0, 7);
-	my $temp_file_name_2="";
-	$temp_file_name_2 = substr($file_name, 8+get_image_numdigit_from_filename($file_name, 7), 4);
-	# ファイル番号からprefixを判断
-	my $file_count=get_r_image_num_from_filename($file_name) || 0;
-	my $target_image_prefix = "";
-	if ($file_count < 9) {
-		$target_image_prefix = "_";
-	}			
-	elsif ($file_count >= 9 && $file_count <= 16) {
-		$target_image_prefix = "_a_"
-	}
-	elsif ($file_count >= 17 && $file_count <= 24) {
-		$target_image_prefix = "_b_"
-	}
-	elsif ($file_count >= 25 && $file_count <= 32) {
-		$target_image_prefix = "_c_"
-	}
-	else {
-		#エラー ログ出力
-		exit 1;
-	}
-	my $temp_num=$file_count%8;
-	if (!$temp_num) {$temp_num=8;}
-	return $temp_file_name_1.$target_image_prefix.$temp_num.$temp_file_name_2;
-}
-=cut
-
 sub get_r_image_num_from_filename {
 	return substr($_[0], 8, get_image_numdigit_from_filename($_[0], 7));
 }
@@ -4606,53 +4487,6 @@ sub get_y_target_image_filename {
 	my $y_file_name = "$temp_file_name_1"."_"."$file_count"."$temp_file_name_2";
 	return $y_file_name;
 }
-
-=pod
-sub get_y_target_image_filename {
-	my $file_name="";
-	$file_name=$_[0];
-	# "_n"までのファイル名を保持
-	my $temp_file_name_1="";
-	my $goods_code_digit = 0;
-	if ($global_entry_goods_variationflag ==1){
-		$goods_code_digit=5;
-		$temp_file_name_1=substr($file_name, 0, $goods_code_digit);
-	}
-	else {
-		$goods_code_digit=9;
-		$temp_file_name_1=substr($file_name, 0, $goods_code_digit);
-	}
-	my $temp_file_name_len=length($temp_file_name_1)+1;
-	my $temp_file_name_2=substr($file_name, $temp_file_name_len+get_image_numdigit_from_filename($file_name, $goods_code_digit), 4);
-	# ファイル番号からprefixを判断
-	my $file_count= 0;
-	$file_count=get_y_image_num_from_filename($file_name);
-	my $target_image_prefix = "";
-	my $temp_num="";
-	if ($file_count){
-		if ($file_count < 9) {
-			$target_image_prefix = "_";
-		}			
-		elsif ($file_count >= 9 && $file_count <= 16) {
-			$target_image_prefix = "_a_"
-		}
-		elsif ($file_count >= 17 && $file_count <= 24) {
-			$target_image_prefix = "_b_"
-		}
-		elsif ($file_count >= 25 && $file_count <= 32) {
-			$target_image_prefix = "_c_"
-		}
-		else {
-			#エラー ログ出力
-			exit 1;
-		}
-		$temp_num=$file_count%8;
-		if (!$temp_num) {$temp_num=8;}
-	}
-	my $y_file_name = "$temp_file_name_1"."$target_image_prefix"."$temp_num"."$temp_file_name_2";
-	return $y_file_name;
-}
-=cut
 
 sub get_y_image_num_from_filename {
 	my $digit_count =0;
@@ -4686,4 +4520,72 @@ sub get_image_numdigit_from_filename {
 		$digit_count = 2;
 	}
 	return $digit_count;	
+}
+
+sub add_itemcat_brand_mall {
+	my $categry_name = $_[0] || "";
+	print $categry_name."\n";
+	my $chums ="チャムス";
+	Encode::from_to( $chums, 'utf8', 'shiftjis' );
+	my $muta ="ムータ";
+	Encode::from_to( $muta, 'utf8', 'shiftjis' );
+	my $johnstons = "ジョンストンズ";
+	Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
+	# レディースの取り扱いのブランドがあるとき
+	if($categry_name eq $chums || $muta || $johnstons){
+		foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+			# バッグの場合、バッグWOMEN'Sを追加
+			if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
+				$genre_goods_count++;
+				$global_entry_genre_goods_info{$genre_goods_count} = 9015;
+				last;
+			}
+			# マフラーの場合、マフラーWOMEN'Sを追加
+			elsif($global_entry_genre_goods_info{$genre_goods_num} == 1914) {
+				$genre_goods_count++;
+				$global_entry_genre_goods_info{$genre_goods_count} = 9017;
+				last;
+			}		
+		}
+	}
+	else{
+		return 0;
+	}
+	foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+		print $global_entry_genre_goods_info{$genre_goods_num}."\n";
+	}
+}
+
+sub add_item_cat_category_mall {
+	my $categry_name = $_[0] || "";
+	print $categry_name."\n";
+	my $chums ="チャムス";
+	Encode::from_to( $chums, 'utf8', 'shiftjis' );
+	my $muta ="ムータ";
+	Encode::from_to( $muta, 'utf8', 'shiftjis' );
+	my $johnstons = "ジョンストンズ";
+	Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
+	# レディースの取り扱いのブランドがあるとき
+	if($categry_name eq $chums || $muta || $johnstons){
+		foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+			# バッグの場合、バッグWOMEN'Sを追加
+			if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
+				$genre_goods_count++;
+				$global_entry_genre_goods_info{$genre_goods_count} = 9015;
+				last;
+			}
+			# マフラーの場合、マフラーWOMEN'Sを追加
+			elsif($global_entry_genre_goods_info{$genre_goods_num} == 1914) {
+				$genre_goods_count++;
+				$global_entry_genre_goods_info{$genre_goods_count} = 9017;
+				last;
+			}		
+		}
+	}
+	else{
+		return 0;
+	}
+	foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+		print $global_entry_genre_goods_info{$genre_goods_num}."\n";
+	}
 }
