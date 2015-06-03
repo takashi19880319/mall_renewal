@@ -1240,7 +1240,7 @@ sub add_rakuten_itemcat_data {
 			$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
 			print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
 		}
-		# "ブランドをチェック"
+		# "ブランドをチェック"の出力
 		# コントロールカラム
 		$output_itemcat_csv->combine("n") or die $output_itemcat_csv->error_diag();
 		print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
@@ -1268,6 +1268,71 @@ sub add_rakuten_itemcat_data {
 		# 1ページ複数形式
 		$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
 		print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
+		# レディースの出力が必要なもの
+		my $find_flag =0;
+		my $chums ="チャムス";
+		Encode::from_to( $chums, 'utf8', 'shiftjis' );
+		my $muta ="ムータ";
+		Encode::from_to( $muta, 'utf8', 'shiftjis' );
+		my $johnstons = "ジョンストンズ";
+		Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
+		my $cruciani = "クルチアーニ";
+		Encode::from_to( $cruciani, 'utf8', 'shiftjis' );
+		# レディースの取り扱いのブランドを探す
+		if($global_entry_goods_category eq $chums || $muta || $johnstons || $cruciani){
+			if($global_entry_goods_category eq $chums){
+				$global_entry_goods_category = "チャムス WOMEN'S";
+			}
+			elsif($global_entry_goods_category eq $muta){
+				$global_entry_goods_category = "ムータ　WOMEN'S";
+			}
+			elsif($global_entry_goods_category eq $johnstons){
+				$global_entry_goods_category = "ジョンストンズ WOMEN'S";
+			}
+			elsif($global_entry_goods_category eq $cruciani){
+				$global_entry_goods_category = "クルチアーニ WOMEN'S";
+			}
+			Encode::from_to( $global_entry_goods_category, 'utf8', 'shiftjis' );
+			foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+				# バッグの場合もブランドWOMEN'Sを追加
+				if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
+					$find_flag =1;
+				}
+				# 服飾雑貨の場合もブランドWOMEN'Sを追加
+				elsif($global_entry_genre_goods_info{$genre_goods_num} =~ /^19/) {
+					$find_flag=1;
+				}
+			}
+			if($find_flag){
+				# コントロールカラム
+				$output_itemcat_csv->combine("n") or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				# 商品管理番号（商品URL）
+				if ($global_entry_goods_variationflag == 0){
+					$output_itemcat_csv->combine("$global_entry_goods_code") or die $output_itemcat_csv->error_diag();
+					print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				}
+				else{
+					$output_itemcat_csv->combine(&get_5code($global_entry_goods_code)) or die $output_itemcat_csv->error_diag();
+					print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				}
+				# 商品名
+				$output_itemcat_csv->combine(&create_ry_goods_name()) or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				# 表示先カテゴリ
+				$output_itemcat_csv->combine(&get_info_from_xml("r_category")) or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				# 優先度
+				$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				# URL
+				$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), ",";
+				# 1ページ複数形式
+				$output_itemcat_csv->combine("") or die $output_itemcat_csv->error_diag();
+				print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
+			}
+		}
 		return 0;
 	}
 }
@@ -4522,43 +4587,8 @@ sub get_image_numdigit_from_filename {
 	return $digit_count;	
 }
 
-sub add_itemcat_brand_mall {
-	my $categry_name = $_[0] || "";
-	print $categry_name."\n";
-	my $chums ="チャムス";
-	Encode::from_to( $chums, 'utf8', 'shiftjis' );
-	my $muta ="ムータ";
-	Encode::from_to( $muta, 'utf8', 'shiftjis' );
-	my $johnstons = "ジョンストンズ";
-	Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
-	# レディースの取り扱いのブランドがあるとき
-	if($categry_name eq $chums || $muta || $johnstons){
-		foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
-			# バッグの場合、バッグWOMEN'Sを追加
-			if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
-				$genre_goods_count++;
-				$global_entry_genre_goods_info{$genre_goods_count} = 9015;
-				last;
-			}
-			# マフラーの場合、マフラーWOMEN'Sを追加
-			elsif($global_entry_genre_goods_info{$genre_goods_num} == 1914) {
-				$genre_goods_count++;
-				$global_entry_genre_goods_info{$genre_goods_count} = 9017;
-				last;
-			}		
-		}
-	}
-	else{
-		return 0;
-	}
-	foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
-		print $global_entry_genre_goods_info{$genre_goods_num}."\n";
-	}
-}
-
 sub add_item_cat_category_mall {
 	my $categry_name = $_[0] || "";
-	print $categry_name."\n";
 	my $chums ="チャムス";
 	Encode::from_to( $chums, 'utf8', 'shiftjis' );
 	my $muta ="ムータ";
@@ -4584,8 +4614,5 @@ sub add_item_cat_category_mall {
 	}
 	else{
 		return 0;
-	}
-	foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
-		print $global_entry_genre_goods_info{$genre_goods_num}."\n";
 	}
 }

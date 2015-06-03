@@ -434,6 +434,16 @@
 		<y_brand_code>4033</y_brand_code>
 	</brand>
 	<brand>
+		<category_name>クルチアーニ WOMEN'S</category_name>
+		<brand_name>クルチアーニ/Cruciani</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/cruciani_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック　WOMEN'S\カ行\クルチアーニ</r_category>
+		<y_dictionary>cc-br.html</y_dictionary>
+		<y_path>クルチアーニ/Cruciani</y_path>
+		<r_directory>cruciani</r_directory>
+		<y_brand_code>4033</y_brand_code>
+	</brand>
+	<brand>
 		<category_name>グローバーオール</category_name>
 		<brand_name>グローバーオール/Gloverall</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/gloverall/gloverallcompany.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
@@ -823,7 +833,7 @@
 		<category_name>チャムス WOMEN'S</category_name>
 		<brand_name>チャムス/Chums</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/chums/chums_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
-		<r_category>ブランドをチェック　WOMEN'S\タ行\チャムス</r_category>
+		<r_category>ブランドをチェック　WOMEN'S\タ行\チャムス　WOMEN'S</r_category>
 		<y_dictionary>cu-br.html</y_dictionary>
 		<y_path>チャムス WOMEN'S/Chums</y_path>
 		<r_directory>zzchums</r_directory>
@@ -1284,6 +1294,15 @@
 		<brand_name>ムータ/Muta</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/muta/muta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
 		<r_category>ブランドをチェック\マ行\ムータ</r_category>
+		<y_dictionary>mu-br.html</y_dictionary>
+		<y_path>ムータ/Muta</y_path>
+		<r_directory>muta</r_directory>
+	</brand>
+	<brand>
+		<category_name>ムータ　WOMEN'S</category_name>
+		<brand_name>ムータ/Muta</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/muta/muta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック　WOMEN'S\マ行\ムータ　WOMEN'S</r_category>
 		<y_dictionary>mu-br.html</y_dictionary>
 		<y_path>ムータ/Muta</y_path>
 		<r_directory>muta</r_directory>
