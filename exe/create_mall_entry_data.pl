@@ -607,6 +607,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	
 	# 楽天用データを追加
 	&add_rakuten_data();
+	# ブランドカテゴリを再度元に戻す
+	$global_entry_goods_category=@$goods_line[1];
 	# Yahoo!用データを追加
 	&add_yahoo_data();
 }
@@ -1279,20 +1281,28 @@ sub add_rakuten_itemcat_data {
 		my $cruciani = "クルチアーニ";
 		Encode::from_to( $cruciani, 'utf8', 'shiftjis' );
 		# レディースの取り扱いのブランドを探す
-		if($global_entry_goods_category eq $chums || $muta || $johnstons || $cruciani){
+		if($global_entry_goods_category eq $chums || $global_entry_goods_category eq $muta || $global_entry_goods_category eq $johnstons || $global_entry_goods_category eq $cruciani){
 			if($global_entry_goods_category eq $chums){
-				$global_entry_goods_category = "チャムス WOMEN'S";
+				my $chums_wm = "チャムス WOMEN'S";
+				Encode::from_to( $chums_wm, 'utf8', 'shiftjis' );
+				$global_entry_goods_category = $chums_wm;
 			}
 			elsif($global_entry_goods_category eq $muta){
-				$global_entry_goods_category = "ムータ　WOMEN'S";
+				my $muta_wm = "ムータ　WOMEN'S";
+				Encode::from_to( $muta_wm, 'utf8', 'shiftjis' );
+				$global_entry_goods_category = $muta_wm;
 			}
 			elsif($global_entry_goods_category eq $johnstons){
-				$global_entry_goods_category = "ジョンストンズ WOMEN'S";
+				my $john_wm = "ジョンストンズ WOMEN'S";
+				Encode::from_to( $john_wm, 'utf8', 'shiftjis' );
+				$global_entry_goods_category = $john_wm;
 			}
 			elsif($global_entry_goods_category eq $cruciani){
-				$global_entry_goods_category = "クルチアーニ WOMEN'S";
+				my $cruciani_wm = "クルチアーニ WOMEN'S";
+				Encode::from_to( $cruciani_wm, 'utf8', 'shiftjis' );
+				$global_entry_goods_category = $cruciani_wm;
+				                                                
 			}
-			Encode::from_to( $global_entry_goods_category, 'utf8', 'shiftjis' );
 			foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
 				# バッグの場合もブランドWOMEN'Sを追加
 				if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
@@ -1333,8 +1343,8 @@ sub add_rakuten_itemcat_data {
 				print $output_itemcat_file_disc $output_itemcat_csv->string(), "\n";
 			}
 		}
-		return 0;
 	}
+	return 0;
 }
 
 ##############################
@@ -2820,12 +2830,12 @@ my $html_str3_4=
 <img src="http://image.rakuten.co.jp/hff/cabinet/pic/
 HTML_STR_3_4
 	chomp($html_str3_4);
-	# 一番目のマウスオン画像
-	$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/1/"."$img_url_list[1]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
-	$iframe_html .= $html_str3_1."\n";
 	# iframeに出力する
-	# カラー入りの画像はiframeに不要
-	foreach (my $i=1; $i<=$img_url_list_count-1; $i++){
+	# 一番目のマウスオン画像
+	my $first_num = &img_c_check();
+	$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/1/"."$img_url_list[$first_num]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
+	$iframe_html .= $html_str3_1."\n";
+	foreach (my $i=$first_num; $i<=$img_url_list_count-1; $i++){
 		my $img_file_name_thum = $img_url_list[$i];
 		$img_file_name_thum =~ s/\.jpg//i;
 		my $img_num = get_r_image_num_from_filename($img_url_list[$i]);
@@ -2930,9 +2940,10 @@ sub create_r_goods_image_url {
 		$last_count = $img_url_list_count;
 	}
 	my $connect_str=" ";
-	foreach (my $i=0; $i < $last_count; $i++){
+	foreach(my $i=0; $i<=$last_count-1; $i++){
 		if($i ==0){
-			$image_url_str =$html_str1.$img_dir."/"."c"."/".$img_url_list[$i].$connect_str;
+			my $first_dir = &img_dir_check;
+			$image_url_str =$html_str1.$img_dir."/"."$first_dir"."/".$img_url_list[$i].$connect_str;
 		}
 		else{
 			if ($i == $last_count) {$connect_str="";}
@@ -3086,6 +3097,10 @@ sub create_y_path {
 	elsif ($path eq $john_str){
 		$path .= "\n"."$john_wstr";
 	}
+	foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
+		$path="$path"."\n".&get_y_category_from_xml($global_entry_genre_goods_info{$genre_goods_num});
+	}
+=pod
 	# 本店のジャンル情報からYahoo店のカテゴリ情報を取得
 	# 商品コードの上位5桁を切り出し
 	my $entry_goods_code_5=substr($global_entry_goods_code, 0, 5);
@@ -3098,6 +3113,7 @@ sub create_y_path {
 			$path="$path"."\n".&get_y_category_from_xml(@$genre_goods_line[0]);
 		}
 	}
+=cut
 	return $path;
 }
 
@@ -3355,20 +3371,7 @@ HTML_STR_10
 ##############################
 ## (Yahoo)explanation情報の生成
 ##############################
-=pod
-sub create_y_explanation {
-	my $explanation=create_ry_mb_goods_spec();
-	# <br>タグは使用可能？？
-	# <br>, <br />タグを半角スペースに置換
-	my $before_rep_str1="<br>";
-	my $before_rep_str2="<br />";
-	my $after_rep_str=" ";
-	$explanation =~ s/$before_rep_str1/$after_rep_str/g;
-	$explanation =~ s/$before_rep_str2/$after_rep_str/g;
-	# T.B.D <a>タグの削除はどうする？
-	return $explanation;
-}
-=cut
+
 sub create_y_explanation {
 	my $smp_yahoo_spec = "";
 	# 商品番号を追加
@@ -4378,8 +4381,7 @@ sub get_r_sizetag_from_xml {
 
 ## 指定されたGLOBERのカテゴリ番号に対応する楽天のカテゴリ名をXMLファイルから取得する
 ## arg1=GLOBERのカテゴリ番号　　arg2=商品ページに表示する文言取得は0, カテゴリ名取得は1
-sub get_r_category_from_xml {
-#	my $category_number = 0;	
+sub get_r_category_from_xml {	
 	my $category_number = $_[0];
 	my $category_disp_type = $_[1];
 	#category.xmlからブランド名を取得
@@ -4596,7 +4598,7 @@ sub add_item_cat_category_mall {
 	my $johnstons = "ジョンストンズ";
 	Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
 	# レディースの取り扱いのブランドがあるとき
-	if($categry_name eq $chums || $muta || $johnstons){
+	if($categry_name eq $chums || $categry_name eq $muta || $categry_name eq $johnstons){
 		foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
 			# バッグの場合、バッグWOMEN'Sを追加
 			if($global_entry_genre_goods_info{$genre_goods_num} =~ /^13/){
@@ -4612,7 +4614,28 @@ sub add_item_cat_category_mall {
 			}		
 		}
 	}
-	else{
-		return 0;
+}
+
+sub img_c_check {
+	# テンデンスのみカラーバリエーションの画像はなし
+	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
+	my $first_num = 1;
+	my $tendence = "テンデンス";
+	Encode::from_to( $tendence, 'utf8', 'shiftjis' );
+	if($global_entry_goods_category eq $tendence){
+		$first_num=0;
 	}
+	return $first_num;
+}
+
+sub img_dir_check {
+	# テンデンスのみカラーバリエーションの画像はなし
+	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
+	my $first_dir = "c";
+	my $tendence = "テンデンス";
+	Encode::from_to( $tendence, 'utf8', 'shiftjis' );
+	if($global_entry_goods_category eq $tendence){
+		$first_dir=1;
+	}
+	return $first_dir;
 }

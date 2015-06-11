@@ -262,7 +262,14 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 	}
 	# スクレイピングでGLOBERのページから画像をDLし、楽天店用に保存
 	@new_img_url_list =();
-	&get_img_list($target_code_5);
+	my $scraping_flag = &get_img_list($target_code_5);
+	if(!$scraping_flag){
+		my $warning_str_2 = "WARNING!! $target_code_5 ページが表示されていません。";
+		Encode::from_to( $warning_str_2, 'utf8', 'shiftjis' );
+		&output_log("$warning_str_2.\n");
+		push (@done_list_5,$target_code_5);
+		next;
+	}
 	# cの画像の画像URL
 	my $img_c_url = "http://glober.jp/img/c/$goods_num.jpg";
 	# 取得するリストにcの画像も追加
@@ -400,7 +407,7 @@ while($sabun_line = $input_sabun_csv->getline($input_sabun_file_disc)){
 		$total_image_cnt++;
 	}
 	$target_image_num{$code_9}=$total_image_cnt;
-	push (@done_list_5,$target_code_5)
+	push (@done_list_5,$target_code_5);
 }
 # sabunファイルの情報に"親の画像枚数","バリエーション"を追加してregist_mall_data_file.csvを作成
 if (!open $output_regist_mall_data_file_disc, ">", $regist_mall_data_file_name) {
@@ -496,13 +503,20 @@ sub get_img_list(){
 	# 画像のリストを作成する
 	my $tree_new = HTML::TreeBuilder->new;
 	$tree_new->parse($glober_goods_new);
-	my @goods_img_url_list_place =  $tree_new->look_down('class', 'thumbList fixHeight clearfix')->find('a');
+	# ページが表示されていなかったら、0を返す。
+	my $scraping = $tree_new->look_down('class', 'thumbList fixHeight clearfix');
+	my @goods_img_url_list_place=();
+	if($scraping != ""){
+		@goods_img_url_list_place = $scraping->find('a');
+	}
+	else{return 0;}
 	for my $img_li (@goods_img_url_list_place) {
 	    my $img_src = "";
 	    $img_src = $img_li->attr('rev');
 	    my $img_url = "http://glober.jp".$img_src;
 	    push (@new_img_url_list,$img_url);
 	}
+	return 1;
 }
 
 ## 画像をリサイズする
