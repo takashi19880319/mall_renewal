@@ -1676,6 +1676,15 @@ sub create_ry_goods_name {
 	my $brand_name = &get_info_from_xml("brand_name");
 	# 商品名を生成
 	my $goods_name = "$brand_name".":"."$global_entry_goods_name";
+	# 9桁の商品はカラー名とサイズ名を出力する
+	if(length($global_entry_goods_code) == 9){
+		$goods_name .= " ".$global_entry_goods_color." ".$global_entry_goods_size;
+	}
+	my $str = " ";
+	# 半角スペースが2個続く場合は削除
+	$goods_name =~ s/$str$str/$str/g;
+	# 末尾の半角スペースを削除
+	$goods_name =~ s/$str$//g;
 	return $goods_name;
 }
 
