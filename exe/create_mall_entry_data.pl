@@ -1016,7 +1016,6 @@ sub add_rakuten_item_data {
 	if ($global_entry_goods_variationflag eq "1") {$output_stockcode_str="";}
 	else {$output_stockcode_str="14";}
 	$output_item_csv->combine($output_stockcode_str) or die $output_item_csv->error_diag();
-	$output_item_csv->combine("") or die $output_item_csv->error_diag();
 	print $output_item_file_disc $output_item_csv->string(), ",";
 	# あす楽配送管理番号
 	$output_item_csv->combine("1") or die $output_item_csv->error_diag();
@@ -1168,7 +1167,7 @@ sub add_rakuten_select_data {
 					$output_select_csv->combine("") or die $output_select_csv->error_diag();
 					print $output_select_file_disc $output_select_csv->string(), ",";
 					# 項目選択肢別在庫用横軸選択肢(サイズがある場合、サイズ項目を出力)
-					$output_select_csv->combine($size_str) or die $output_select_csv->error_diag();
+					$output_select_csv->combine($global_entry_goods_color) or die $output_select_csv->error_diag();
 					print $output_select_file_disc $output_select_csv->string(), ",";
 					# 項目選択肢別在庫用横軸選択肢子番号
 					$output_select_csv->combine("") or die $output_select_csv->error_diag();
@@ -1677,8 +1676,11 @@ sub create_ry_goods_name {
 	# 商品名を生成
 	my $goods_name = "$brand_name".":"."$global_entry_goods_name";
 	# 9桁の商品はカラー名とサイズ名を出力する
-	if(length($global_entry_goods_code) == 9){
+	if(!$global_entry_goods_variationflag){
 		$goods_name .= " ".$global_entry_goods_color." ".$global_entry_goods_size;
+	}
+	elsif(elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2){
+		$goods_name .= " ".$global_entry_goods_color;
 	}
 	my $str = " ";
 	# 半角スペースが2個続く場合は削除
@@ -2841,7 +2843,7 @@ HTML_STR_3_4
 	chomp($html_str3_4);
 	# iframeに出力する
 	# 一番目のマウスオン画像
-	my $first_num = &img_c_check();
+	my $first_num = &img_c_check($img_url_list[0]);
 	$iframe_html .= "<p class=\"mainImage\"><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/"."$img_dir"."/1/"."$img_url_list[$first_num]"."\""." alt=\""."$global_entry_goods_name"."\" /></p>"."\n";
 	$iframe_html .= $html_str3_1."\n";
 	foreach (my $i=$first_num; $i<=$img_url_list_count-1; $i++){
@@ -2861,18 +2863,13 @@ HTML_STR_3_4
 					exit 1;
 				}
 				if ($global_entry_goods_size ne ""){
-					$color_name = &create_r_lateral_name();
-					my $color_str = "カラー";
-					Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-					if ($color_name eq $color_str){
-						# goodsファイルの読み出し(項目行分1行読み飛ばし)
-						seek $tmp_goods_file_disc,0,0;
-						my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-						while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-							if ($entry_img_code == &get_7code(@$goods_line[0])){
-								$color_name = @$goods_line[6];
-								last;
-							}
+					# goodsファイルの読み出し(項目行分1行読み飛ばし)
+					seek $tmp_goods_file_disc,0,0;
+					my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
+					while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
+						if ($entry_img_code == &get_7code(@$goods_line[0])){
+							$color_name = @$goods_line[6];
+							last;
 						}
 					}
 				}
@@ -3879,18 +3876,13 @@ HTML_STR_3_1
 					exit 1;
 				}
 				if ($global_entry_goods_size ne ""){
-					my $lateral_name = &create_r_lateral_name();
-					my $color_str = "カラー";
-					Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-					if ($lateral_name eq $color_str){
-						# goodsファイルの読み出し(項目行分1行読み飛ばし)
-						seek $tmp_goods_file_disc,0,0;
-						my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
-						while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
-							if ($entry_img_r_code == &get_7code(@$goods_line[0])){
-								$color_name = @$goods_line[6];
-								last;
-							}
+					# goodsファイルの読み出し(項目行分1行読み飛ばし)
+					seek $tmp_goods_file_disc,0,0;
+					my $goods_line = $input_goods_csv->getline($tmp_goods_file_disc);
+					while($goods_line = $input_goods_csv->getline($tmp_goods_file_disc)){
+						if ($entry_img_r_code == &get_7code(@$goods_line[0])){
+							$color_name = @$goods_line[6];
+							last;
 						}
 					}
 				}
@@ -4110,7 +4102,7 @@ sub create_y_subcode {
 				$tmp_size_str=~ s/\s+/_/g;
 				my $color=0;
 				my @color_key = keys (%global_entry_parents_color_variation);
-				$subcode .= $size_str.$tmp_size_str."=".get_5code($global_entry_goods_code).$color_key[0].$size_key;
+				$subcode .= $global_entry_goods_color.":".$tmp_size_str."=".get_5code($global_entry_goods_code).$color_key[0].$size_key;
 			}
 		}
 		else {
@@ -4124,6 +4116,55 @@ sub create_y_subcode {
 ##############################
 ## (Yahoo)create_y_optionsの生成
 ##############################
+sub create_y_options {
+	my $options="";
+	# バリエーション商品のみ処理
+	if($global_entry_goods_variationflag) {
+		my $color_str="カラー|175|";
+		Encode::from_to( $color_str, 'utf8', 'shiftjis' );
+		my $size_str="サイズ|178|";
+		Encode::from_to( $size_str, 'utf8', 'shiftjis' );	
+		# カラー、サイズ共にバリエーション有の場合
+		if(keys(%global_entry_parents_color_variation)>=2 && %global_entry_parents_size_variation)>=2) {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+				# " "がある場合は"_"に置換
+				my $tmp_str=$global_entry_parents_color_variation{$color_key};
+				$tmp_str=~ s/\s+/_/g;
+				$color_str .= " ".$tmp_str;
+			}
+			$options .= $color_str;
+			if ($options) {$options.="\n\n";}
+			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+				# サイズの中に" "がある場合は"_"に置換
+				my $tmp_str=$global_entry_parents_size_variation{$size_key};
+				$tmp_str=~ s/\s+/_/g;
+				$size_str .= " ".$tmp_str;
+			}
+			$options.=$size_str;
+		}
+		elsif(keys(%global_entry_parents_color_variation)==1 && %global_entry_parents_size_variation)>=2) {
+			$size_str=$global_entry_goods_color;
+			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
+				# サイズの中に" "がある場合は"_"に置換
+				my $tmp_str=$global_entry_parents_size_variation{$size_key};
+				$tmp_str=~ s/\s+/_/g;
+				$size_str .= " ".$tmp_str;
+			}
+			$options.=$size_str;
+		}
+		else {
+			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
+				# " "がある場合は"_"に置換
+				my $tmp_str=$global_entry_parents_color_variation{$color_key};
+				$tmp_str=~ s/\s+/_/g;
+				$color_str .= " ".$tmp_str;
+			}
+			$options .= $color_str;
+		}
+	}
+	return $options;
+}
+=pod
 sub create_y_options {
 	my $options="";
 	# バリエーション商品のみ処理
@@ -4157,6 +4198,7 @@ sub create_y_options {
 	}
 	return $options;
 }
+=cut
 
 ##############################
 ## (Yahoo)relevant-linksの生成
@@ -4625,6 +4667,7 @@ sub add_item_cat_category_mall {
 	}
 }
 
+=pod
 sub img_c_check {
 	# テンデンスのみカラーバリエーションの画像はなし
 	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
@@ -4632,6 +4675,16 @@ sub img_c_check {
 	my $tendence = "テンデンス";
 	Encode::from_to( $tendence, 'utf8', 'shiftjis' );
 	if($global_entry_goods_category eq $tendence){
+		$first_num=0;
+	}
+	return $first_num;
+}
+=cut
+
+sub img_c_check {
+	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
+	my $first_num = 1;
+	if($_[0] =~ /_/){
 		$first_num=0;
 	}
 	return $first_num;
