@@ -1679,7 +1679,7 @@ sub create_ry_goods_name {
 	if(!$global_entry_goods_variationflag){
 		$goods_name .= " ".$global_entry_goods_color." ".$global_entry_goods_size;
 	}
-	elsif(elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2){
+	elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2){
 		$goods_name .= " ".$global_entry_goods_color;
 	}
 	my $str = " ";
@@ -2450,12 +2450,6 @@ HTML_STR_1
 		$entry_code = get_9code($global_entry_goods_code);
         }
 	$smp_goods_spec .= "<tr valign=\"top\">\n"."<td>"."$str_goods_code"."</td>\n"."<td>"."$coron"."</td>"."<td>"."$entry_code"."</td>\n"."</tr>"."\n";
-	# カラーを追加
-	if ($global_entry_goods_color ne "") {
-		my $color_str = "カラー";
-		Encode::from_to( $color_str, 'utf8', 'shiftjis' );
-		$smp_goods_spec .= "<tr valign=\"top\">\n"."<td>"."$color_str"."</td>\n"."<td>"."$coron"."</td>"."<td>"."$global_entry_goods_color"."</td>\n"."</tr>"."\n";
-	}
 	# 商品スペックを追加
 	my @specs;
 	my $spec_count = @global_entry_goods_spec_info;
@@ -4125,7 +4119,7 @@ sub create_y_options {
 		my $size_str="サイズ|178|";
 		Encode::from_to( $size_str, 'utf8', 'shiftjis' );	
 		# カラー、サイズ共にバリエーション有の場合
-		if(keys(%global_entry_parents_color_variation)>=2 && %global_entry_parents_size_variation)>=2) {
+		if(keys(%global_entry_parents_color_variation)>=2 && keys(%global_entry_parents_size_variation)>=2) {
 			foreach my $color_key (sort {$a <=> $b} keys %global_entry_parents_color_variation) {
 				# " "がある場合は"_"に置換
 				my $tmp_str=$global_entry_parents_color_variation{$color_key};
@@ -4142,7 +4136,7 @@ sub create_y_options {
 			}
 			$options.=$size_str;
 		}
-		elsif(keys(%global_entry_parents_color_variation)==1 && %global_entry_parents_size_variation)>=2) {
+		elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2) {
 			$size_str=$global_entry_goods_color;
 			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
 				# サイズの中に" "がある場合は"_"に置換
