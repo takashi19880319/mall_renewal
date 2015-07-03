@@ -513,7 +513,7 @@ sub get_img_list(){
 		my $warning_str_2 = "WARNING!! $_[0] ページが表示されていません。";
 		Encode::from_to( $warning_str_2, 'utf8', 'shiftjis' );
 		&output_log("ERROR!! Not exist $warning_str_2.\n");
-		die;
+		return 0;
 	}
 	for my $img_li (@goods_img_url_list_place) {
 	    my $img_src = "";

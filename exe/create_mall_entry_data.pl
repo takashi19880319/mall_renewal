@@ -1978,7 +1978,7 @@ HTML_STR_6
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
-	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/howto4.html";
+	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/info/exchange.html";
 	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
 	$goods_comment_1 =~ s/$before_rep_str8/$after_rep_str8/g;
 	# クルチアーニの画像削除
@@ -2127,9 +2127,9 @@ my $html_str7=
 </div>
 <!-- /.textInfo -->
 <ul class="tools clearfix">
-<li><a href="http://www.rakuten.ne.jp/gold/hff/howto-size/index.html" class="tools01"><img src="http://www.rakuten.ne.jp/gold/hff/img/detail/btn_tool01.gif" alt="サイズの測り方" /></a></li>
+<li><a href="http://www.rakuten.ne.jp/gold/hff/info/size.html" class="tools01"><img src="http://www.rakuten.ne.jp/gold/hff/img/detail/btn_tool01.gif" alt="サイズの測り方" /></a></li>
 <li><a href="http://www.rakuten.ne.jp/gold/hff/info/repair.html" class="tools02"><img src="http://www.rakuten.ne.jp/gold/hff/img/detail/btn_tool02.gif" alt="お直し" /></a></li>
-<li><a href="http://www.rakuten.ne.jp/gold/hff/howto4.html" class="tools03"><img src="http://www.rakuten.ne.jp/gold/hff/img/detail/btn_tool03.gif" alt="返品・交換" /></a></li>
+<li><a href="http://www.rakuten.ne.jp/gold/hff/info/exchange.html" class="tools03"><img src="http://www.rakuten.ne.jp/gold/hff/img/detail/btn_tool03.gif" alt="返品・交換" /></a></li>
 </ul>
 </div>
 <!-- /.sectionInner -->
@@ -2540,7 +2540,7 @@ HTML_STR_2
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
-	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/howto4.html";
+	my $after_rep_str8="http://www.rakuten.ne.jp/gold/hff/info/exchange.html";
 	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
 	$goods_comment_1 =~ s/$before_rep_str8/$after_rep_str8/g;
 	# クルチアーニの画像削除
@@ -3310,7 +3310,7 @@ HTML_STR_7
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_info0 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
-	my $after_rep_str8="http://store.shopping.yahoo.co.jp/hff/howto4.html";
+	my $after_rep_str8="http://store.shopping.yahoo.co.jp/hff/infoexchange.html";
 	my $before_rep_str8="http://glober.jp/info/exchange.aspx";
 	$goods_info0 =~ s/$before_rep_str8/$after_rep_str8/g;
 	# クルチアーニの画像削除
