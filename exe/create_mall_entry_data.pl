@@ -3080,7 +3080,7 @@ sub create_r_goods_image_url {
 	my $connect_str=" ";
 	foreach(my $i=0; $i<=$last_count-1; $i++){
 		if($i ==0){
-			my $first_dir = &img_dir_check;
+			my $first_dir = &img_dir_check($img_url_list[0]);
 			$image_url_str =$html_str1.$img_dir."/"."$first_dir"."/".$img_url_list[$i].$connect_str;
 		}
 		else{
@@ -4823,6 +4823,7 @@ sub img_c_check {
 	return $first_num;
 }
 
+=pod
 sub img_dir_check {
 	# テンデンスのみカラーバリエーションの画像はなし
 	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
@@ -4830,6 +4831,17 @@ sub img_dir_check {
 	my $tendence = "テンデンス";
 	Encode::from_to( $tendence, 'utf8', 'shiftjis' );
 	if($global_entry_goods_category eq $tendence){
+		$first_dir=1;
+	}
+	return $first_dir;
+}
+=cut
+
+sub img_dir_check {
+	# テンデンスのみカラーバリエーションの画像はなし
+	# そのほかにもカラーバリエーションなしのブランドが追加されれば、随時修正
+	my $first_dir = "c";
+	if($_[0] =~ /_/){
 		$first_dir=1;
 	}
 	return $first_dir;
