@@ -326,12 +326,16 @@ if (!open $input_regist_mall_data_file_disc, "<", $input_regist_mall_data_file_n
 my $output_rakuten_data_dir="../rakuten_up_data";
 my $output_yahoo_data_dir="../yahoo_up_data";
 my $output_rakuten_reset_dir=$output_rakuten_data_dir."/reset/";
+my $output_rakuten_reset_stock_dir=$output_rakuten_reset_dir."/stock/";
 my $output_rakuten_delete_dir=$output_rakuten_data_dir."/delete/";
+my $output_rakuten_delete_stock_dir=$output_rakuten_delete_dir."/stock/";
 my $output_yahoo_delete_dir=$output_yahoo_data_dir."/delete/";
 #出力ファイル名
 my $output_item_file_name="$output_rakuten_data_dir"."/"."item.csv";
 my $output_resetitem_file_name="$output_rakuten_reset_dir"."/"."item.csv";
+my $output_reset_stock_item_file_name="$output_rakuten_reset_stock_dir"."/"."item.csv";
 my $output_deleteitem_file_name="$output_rakuten_delete_dir"."/"."item.csv";
+my $output_delete_stock_item_file_name="$output_rakuten_delete_stock_dir"."/"."item.csv";
 my $output_select_file_name="$output_rakuten_data_dir"."/"."select.csv";
 my $output_itemcat_file_name="$output_rakuten_data_dir"."/"."item-cat.csv";
 my $output_ydata_file_name="$output_yahoo_data_dir"."/"."ydata.csv";
@@ -359,10 +363,24 @@ unless(-d $output_rakuten_delete_dir) {
 		exit 1;
 	}
 }
+unless(-d $output_rakuten_delete_stock_dir) {
+	# 存在しない場合はフォルダ作成
+	if(!mkpath($output_rakuten_delete_stock_dir)) {
+		output_log("ERROR!!($!) $output_rakuten_delete_stock_dir create failed.");
+		exit 1;
+	}
+}
 unless(-d $output_rakuten_reset_dir) {
 	# 存在しない場合はフォルダ作成
 	if(!mkpath($output_rakuten_reset_dir)) {
 		output_log("ERROR!!($!) $output_rakuten_reset_dir create failed.");
+		exit 1;
+	}
+}
+unless(-d $output_rakuten_reset_stock_dir) {
+	# 存在しない場合はフォルダ作成
+	if(!mkpath($output_rakuten_reset_stock_dir)) {
+		output_log("ERROR!!($!) $output_rakuten_reset_stock_dir create failed.");
 		exit 1;
 	}
 }
@@ -376,7 +394,9 @@ unless(-d $output_yahoo_delete_dir) {
 #出力用CSVファイルモジュールの初期化
 my $output_item_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_resetitem_csv = Text::CSV_XS->new({ binary => 1 });
+my $output_reset_stock_item_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_deleteitem_csv = Text::CSV_XS->new({ binary => 1 });
+my $output_delete_stock_item_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_select_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_itemcat_csv = Text::CSV_XS->new({ binary => 1 });
 my $output_ydata_csv = Text::CSV_XS->new({ binary => 1 });
@@ -393,8 +413,18 @@ if (!open $output_resetitem_file_disc, ">", $output_resetitem_file_name) {
 	&output_log("ERROR!!($!) $output_item_file_name open failed.");
 	exit 1;
 }
+my $output_reset_stock_item_file_disc;
+if (!open $output_reset_stock_item_file_disc, ">", $output_reset_stock_item_file_name) {
+	&output_log("ERROR!!($!) $output_item_file_name open failed.");
+	exit 1;
+}
 my $output_deleteitem_file_disc;
 if (!open $output_deleteitem_file_disc, ">", $output_deleteitem_file_name) {
+	&output_log("ERROR!!($!) $output_item_file_name open failed.");
+	exit 1;
+}
+my $output_delete_stock_item_file_disc;
+if (!open $output_delete_stock_item_file_disc, ">", $output_delete_stock_item_file_name) {
 	&output_log("ERROR!!($!) $output_item_file_name open failed.");
 	exit 1;
 }	
@@ -526,6 +556,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	if ($global_entry_goods_controlcolumn eq "d") {
 		#コントロールカラムdの商品の場合はdelete-item.csvの出力のみ行う
 		&add_rakuten_delete_data();
+		#コントロールカラムdの商品の場合はストックギアのデータ削除用にitem.csvの出力のみ行う
+		&add_rakuten_delete_stock_data();
 		#コントロールカラムdの商品の場合はdelete-ydata.csvの出力のみ行う
 		&add_yahoo_delete_data();
 		next;
@@ -551,6 +583,8 @@ while($regist_mall_data_line = $input_regist_mall_data_csv->getline($input_regis
 	if ($global_entry_goods_controlcolumn eq "u") {
 		#コントロールカラムuのときは、reset-item.csvに出力
 		&add_rakuten_reset_data();
+		#コントロールカラムuのときは、ストックギア用削除データitem.csvに出力
+		&add_rakuten_reset_stock_data();
 	}
 	##### goods_suppファイルの読み出し
 	@global_entry_goods_supp_info=();
@@ -622,7 +656,9 @@ $input_regist_mall_data_csv->eof;
 # 出力用CSVファイルモジュールの終了処理
 $output_item_csv->eof;
 $output_resetitem_csv->eof;
+$output_reset_stock_item_csv->eof;
 $output_deleteitem_csv->eof;
+$output_delete_stock_item_csv->eof;
 $output_select_csv->eof;
 $output_itemcat_csv->eof;
 $output_ydata_csv->eof;
@@ -637,7 +673,9 @@ close $input_regist_mall_data_file_disc;
 # 出力ファイルのクローズ
 close $output_item_file_disc;
 close $output_resetitem_file_disc;
+close $output_reset_stock_item_file_disc;
 close $output_deleteitem_file_disc;
+close $output_delete_stock_item_file_disc;
 close $output_select_file_disc;
 close $output_itemcat_file_disc;
 close $output_ydata_file_disc;
@@ -697,6 +735,28 @@ sub add_r_resetitemcsv_name {
 }
 
 ##############################
+## ストックギア削除用item.csvファイルに項目名を追加
+##############################
+sub add_r_reset_stock_itemcsv_name {
+	my @csv_r_reset_stock_item_name=("コントロールカラム","商品管理番号（商品URL）","商品番号","商品名","在庫タイプ");
+	my $csv_r_reset_stock_item_name_num=@csv_r_reset_stock_item_name;
+	my $csv_r_reset_stock_item_name_count=0;
+	for my $csv_r_reset_stock_item_name_str (@csv_r_reset_stock_item_name) {
+		Encode::from_to( $csv_r_reset_stock_item_name_str, 'utf8', 'shiftjis' );
+		$output_reset_stock_item_csv->combine($csv_r_reset_stock_item_name_str) or die $output_reset_stock_item_csv->error_diag();
+		my $post_fix_str="";
+		if (++$csv_r_reset_stock_item_name_count >= $csv_r_reset_stock_item_name_num) {
+			$post_fix_str="\n";
+		}
+		else {
+			$post_fix_str=",";
+		}
+		print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), $post_fix_str;
+	}
+	return 0;
+}
+
+##############################
 ## 楽天用delete-item.csvファイルに項目名を追加
 ##############################
 sub add_r_deleteitemcsv_name {
@@ -714,6 +774,28 @@ sub add_r_deleteitemcsv_name {
 			$post_fix_str=",";
 		}
 		print $output_deleteitem_file_disc $output_deleteitem_csv->string(), $post_fix_str;
+	}
+	return 0;
+}
+
+##############################
+## ストックギア用item.csvファイルに項目名を追加
+##############################
+sub add_r_delete_stock_itemcsv_name {
+	my @csv_r_delete_stock_item_name=("コントロールカラム","商品管理番号（商品URL）","商品番号","商品名","在庫タイプ");
+	my $csv_r_delete_stock_item_name_num=@csv_r_delete_stock_item_name;
+	my $csv_r_delete_stock_item_name_count=0;
+	for my $csv_r_delete_stock_item_name_str (@csv_r_delete_stock_item_name) {
+		Encode::from_to( $csv_r_delete_stock_item_name_str, 'utf8', 'shiftjis' );
+		$output_delete_stock_item_csv->combine($csv_r_delete_stock_item_name_str) or die $output_delete_stock_item_csv->error_diag();
+		my $post_fix_str="";
+		if (++$csv_r_delete_stock_item_name_count >= $csv_r_delete_stock_item_name_num) {
+			$post_fix_str="\n";
+		}
+		else {
+			$post_fix_str=",";
+		}
+		print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), $post_fix_str;
 	}
 	return 0;
 }
@@ -770,8 +852,12 @@ sub add_r_csv_name {
 	&add_r_itemcsv_name();
 	# 楽天用のreset-item.csvに項目名を出力
 	&add_r_resetitemcsv_name();
+	# ストックギア削除用のitem.csvに項目名を出力
+	&add_r_reset_stock_itemcsv_name();
 	# 楽天用のdelete-item.csvに項目名を出力
 	&add_r_deleteitemcsv_name();
+	# ストックギア削除用のdelete-item.csvに項目名を出力
+	&add_r_delete_stock_itemcsv_name();
 	# 楽天用のselect.csvに項目名を出力
 	&add_r_selectcsv_name();
 	# 楽天用のitem-cat.csvに項目名を出力
@@ -896,6 +982,32 @@ sub add_rakuten_reset_data {
 }
 
 ##############################
+## ストックギア用ファイルitemファイルにデータを追加
+##############################
+sub add_rakuten_reset_stock_data {
+	# 各値をCSVファイルに書き出す
+	# コントロールカラム
+	$output_reset_stock_item_csv->combine("u") or die $output_reset_stock_item_csv->error_diag();
+	print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), ",";
+	# 商品管理番号
+	$output_reset_stock_item_csv->combine(&get_5code($global_entry_goods_code)) or die $output_reset_stock_item_csv->error_diag();
+	print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), ",";
+	# 商品番号
+	$output_reset_stock_item_csv->combine(&get_5code($global_entry_goods_code)) or die $output_reset_stock_item_csv->error_diag();
+	print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), ",";
+	# 商品名
+	$output_reset_stock_item_csv->combine(&create_ry_goods_name()) or die $output_reset_stock_item_csv->error_diag();
+	print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), ",";
+	# 在庫タイプ
+	my $output_code_str=1;
+	if ($global_entry_goods_variationflag eq "1") {$output_code_str=2;}
+	$output_reset_stock_item_csv->combine($output_code_str) or die $output_reset_stock_item_csv->error_diag();
+	#最後に改行を追加
+	print $output_reset_stock_item_file_disc $output_reset_stock_item_csv->string(), "\n";
+	return 0;
+}
+
+##############################
 ## 楽天削除用ファイルdelete-itemファイルにデータを追加
 ##############################
 sub add_rakuten_delete_data {
@@ -910,6 +1022,32 @@ sub add_rakuten_delete_data {
 	$output_deleteitem_csv->combine(&create_ry_goods_name()) or die $output_deleteitem_csv->error_diag();
 	#最後に改行を追加
 	print $output_deleteitem_file_disc $output_deleteitem_csv->string(), "\n";
+	return 0;
+}
+
+##############################
+## ストックギア削除用ファイルitemファイルにデータを追加
+##############################
+sub add_rakuten_delete_stock_data {
+	# 各値をCSVファイルに書き出す
+	# コントロールカラム
+	$output_delete_stock_item_csv->combine("d") or die $output_delete_stock_item_csv->error_diag();
+	print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), ",";
+	# 商品管理番号
+	$output_delete_stock_item_csv->combine($global_entry_goods_code) or die $output_delete_stock_item_csv->error_diag();
+	print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), ",";
+	# 商品番号
+	$output_delete_stock_item_csv->combine($global_entry_goods_code) or die $output_delete_stock_item_csv->error_diag();
+	print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), ",";
+	# 商品名
+	$output_delete_stock_item_csv->combine(&create_ry_goods_name()) or die $output_delete_stock_item_csv->error_diag();
+	print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), ",";
+	# 在庫タイプ
+	my $output_code_str=1;
+	if ($global_entry_goods_variationflag eq "1") {$output_code_str=2;}
+	$output_delete_stock_item_csv->combine($output_code_str) or die $output_delete_stock_item_csv->error_diag();
+	#最後に改行を追加
+	print $output_delete_stock_item_file_disc $output_delete_stock_item_csv->string(), "\n";
 	return 0;
 }
 
@@ -4138,6 +4276,7 @@ sub create_y_options {
 		}
 		elsif(keys(%global_entry_parents_color_variation)==1 && keys(%global_entry_parents_size_variation)>=2) {
 			$size_str=$global_entry_goods_color;
+			$size_str=~ s/\s+/_/g;
 			foreach my $size_key (sort {$a <=> $b} keys %global_entry_parents_size_variation) {
 				# サイズの中に" "がある場合は"_"に置換
 				my $tmp_str=$global_entry_parents_size_variation{$size_key};

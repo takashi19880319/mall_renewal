@@ -265,10 +265,6 @@ while($goods_line = <GOODS_FILE>){
 					if (length($rakuten_select_4_code) < 4) {
 						$rakuten_select_4_code = delete_double_quotation($rakuten_select_code[6]).delete_double_quotation($rakuten_select_code[8]);
 					}
-					if (length($rakuten_select_4_code) < 4) {
-						print "Error!!!!"."\n";
-						exit;
-					}
 					my $rakuten_select_5code=delete_double_quotation($rakuten_select_code[1]);
 					my $rakuten_select_code="$rakuten_select_5code$rakuten_select_4_code";
 					if($rakuten_select_code =~ /"/){
