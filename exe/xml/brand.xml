@@ -73,6 +73,24 @@
 		<r_directory>altea</r_directory>
 	</brand>
 	<brand>
+		<category_name>アルテッラ</category_name>
+		<brand_name>アルテッラ/Arte'lla</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/artella/artella_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ア行\アルテッラ</r_category>
+		<y_dictionary>artella-br.html</y_dictionary>
+		<y_path>アルテッラ/Arte'lla</y_path>
+		<r_directory>artella</r_directory>
+	</brand>
+	<brand>
+		<category_name>アラルディ1930</category_name>
+		<brand_name>アラルディ1930/Araldi1930</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/araldi/araldi_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ア行\アラルディ1930</r_category>
+		<y_dictionary>araldi-br.html</y_dictionary>
+		<y_path>アラルディ1930/Araldi1930</y_path>
+		<r_directory>araldi1930</r_directory>
+	</brand>
+	<brand>
 		<category_name>アラン</category_name>
 		<brand_name>アラン/Alain</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/alain/alain_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
@@ -218,6 +236,8 @@
 		<y_dictionary>lbm1911-br.html</y_dictionary>
 		<y_path>エル・ビー・エム1911/L.B.M1911</y_path>
 		<r_directory>lbm1911</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>エンメティ</category_name>
@@ -470,6 +490,8 @@
 		<y_dictionary>cj-mt.html</y_dictionary>
 		<y_path>クロケット＆ジョーンズ</y_path>
 		<r_directory>crockett</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 		<y_brand_code>706</y_brand_code>
 	</brand>
 	<brand>
@@ -527,6 +549,15 @@
 		<y_dictionary>zanellato-br.html</y_dictionary>
 		<y_path>ザネラート/Zanellato</y_path>
 		<r_directory>zanellat</r_directory>
+	</brand>
+	<brand>
+		<category_name>サンダース</category_name>
+		<brand_name>サンダース/Sanders</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/sanders/sanders_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\サ行\サンダース</r_category>
+		<y_dictionary>sd-br.html</y_dictionary>
+		<y_path>サンダース/Snders</y_path>
+		<r_directory>sanders</r_directory>
 	</brand>
 	<brand>
 		<category_name>ザノーネ</category_name>
@@ -608,6 +639,8 @@
 		<y_dictionary>cm-br.html</y_dictionary>
 		<y_path>シャンボール・セリエ/Chambord Sellier</y_path>
 		<r_directory>chambord</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>ショット</category_name>
@@ -617,6 +650,8 @@
 		<y_dictionary>sc-br.html</y_dictionary>
 		<y_path>ショット/Schott</y_path>
 		<r_directory>schott</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>ジョンストンズ</category_name>
@@ -670,6 +705,16 @@
 		<y_dictionary>stb-br.html</y_dictionary>
 		<y_path>ステファノビジ/Stefano Bigi</y_path>
 		<r_directory>stefanob</r_directory>
+	</brand>
+	<brand>
+		<category_name>ストーンアイランド</category_name>
+		<brand_name>ストーンアイランド/Stone Island</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/stoneisland/stoneisland_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\サ行\ストーンアイランド</r_category>
+		<y_dictionary>stoneil.html</y_dictionary>
+		<y_path>ストーンアイランド/Stone Island</y_path>
+		<r_directory>stoneisland</r_directory>
+		<y_brand_code>1026</y_brand_code>
 	</brand>
 	<brand>
 		<category_name>スプリングコート</category_name>
@@ -848,6 +893,15 @@
 		<r_directory>cinquant</r_directory>
 	</brand>
 	<brand>
+		<category_name>デスティニーズディメンション</category_name>
+		<brand_name>デスティニーズ・ディメンション/Destiny's Dimension</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/destinysdimension/destinysdimension_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\タ行\デスティニーズ・ディメンション</r_category>
+		<y_dictionary>destinysdimension-br.html</y_dictionary>
+		<y_path>デスティニーズ・ディメンション</y_path>
+		<r_directory>destinysdimension</r_directory>
+	</brand>
+	<brand>
 		<category_name>ティベリオ・フェレッティ</category_name>
 		<brand_name>ティベリオ・フェレッティ/Tiberio Ferretti</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/tiberioferretti/tiberioferretti_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
@@ -1009,6 +1063,17 @@
 		<r_directory>burfield</r_directory>
 	</brand>
 	<brand>
+		<category_name>ハイランドパーク</category_name>
+		<brand_name>ハイランドパーク/Highland Park</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/highlandpark/highlandpark.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ハ行\ハイランドパーク</r_category>
+		<y_dictionary>highlandpark-br.html</y_dictionary>
+		<y_path>ハイランドパーク/Highland Park</y_path>
+		<r_directory>highlandpark</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
+	</brand>
+	<brand>
 		<category_name>ハケット</category_name>
 		<brand_name>ハケット/Hackett</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/hackett/hackett_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
@@ -1025,6 +1090,17 @@
 		<y_dictionary>barbour-br.html</y_dictionary>
 		<y_path>バブアー/Barbour</y_path>
 		<r_directory>barbour</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
+	</brand>
+	<brand>
+		<category_name>パニカーレ</category_name>
+		<brand_name>パニカーレ/Panicale</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/panicale/panicale_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ハ行\パニカーレ</r_category>
+		<y_dictionary>panicale-br.html</y_dictionary>
+		<y_path>パニカーレ/Panicale</y_path>
+		<r_directory>panicale</r_directory>
 	</brand>
 	<brand>
 		<category_name>バルスター/バルスタリーノ</category_name>
@@ -1130,6 +1206,8 @@
 		<y_dictionary>felisi-br.html</y_dictionary>
 		<y_path>フェリージ/Felisi</y_path>
 		<r_directory>felisi</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>フォックス・アンブレラズ</category_name>
@@ -1208,6 +1286,8 @@
 		<y_dictionary>hn-br.html</y_dictionary>
 		<y_path>ヘルノ/Herno</y_path>
 		<r_directory>herno</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>ベルベスト</category_name>
@@ -1230,6 +1310,13 @@
 		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
+		<category_name>ボッテガ・オットデュエ</category_name>
+		<brand_name>ボッテガ・オットデュエ/Bottega Ottodue</brand_name>
+		<r_category>ブランドをチェック\ハ行\ボッテガ・オットデュエ</r_category>
+		<y_path>ボッテガ・オットデュエ/Bottega Ottodue</y_path>
+		<r_directory>bottegaottodue</r_directory>
+	</brand>
+	<brand>
 		<category_name>ポルペッタ</category_name>
 		<brand_name>ポルペッタ/Polpetta</brand_name>
 		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/polpetta/polpetta_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
@@ -1250,6 +1337,8 @@
 		<y_dictionary>wc-re.html</y_dictionary>
 		<y_path>ホワイトハウスコックス</y_path>
 		<r_directory>whitehou</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 		<y_brand_code>1858</y_brand_code>
 	</brand>
 	<brand>
@@ -1297,6 +1386,8 @@
 		<y_dictionary>mu-br.html</y_dictionary>
 		<y_path>ムータ/Muta</y_path>
 		<r_directory>muta</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 	</brand>
 	<brand>
 		<category_name>ムータ　WOMEN'S</category_name>
@@ -1351,6 +1442,8 @@
 		<y_dictionary>ld-br.html</y_dictionary>
 		<y_path>ラルディーニ/Lardini</y_path>
 		<r_directory>lardini</r_directory>
+		<brand_point>10</brand_point>
+		<brand_point_term>startday_finishday</brand_point_term>
 		<y_brand_code>8444</y_brand_code>
 	</brand>
 	<brand>
@@ -1404,5 +1497,14 @@
 		<y_dictionary>lt-br.html</y_dictionary>
 		<y_path>ルトロワ/Letroyes</y_path>
 		<r_directory>letroyes</r_directory>
+	</brand>
+	<brand>
+		<category_name>ロシニョール</category_name>
+		<brand_name>ロシニョール/Rossignol</brand_name>
+		<r_dictionary>&lt;span&gt;&lt;a href=http://www.rakuten.ne.jp/gold/hff/brand/rossignol/rossignol_br.html&gt;このブランドについて&lt;/a&gt;&lt;/span&gt;</r_dictionary>
+		<r_category>ブランドをチェック\ラ行\ロシニョール</r_category>
+		<y_dictionary>rossignol-br.html</y_dictionary>
+		<y_path>ロシニョール/Rossignol</y_path>
+		<r_directory>rossignol</r_directory>
 	</brand>
 </brand_info>

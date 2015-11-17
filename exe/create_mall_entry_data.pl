@@ -1417,8 +1417,10 @@ sub add_rakuten_itemcat_data {
 		Encode::from_to( $johnstons, 'utf8', 'shiftjis' );
 		my $cruciani = "クルチアーニ";
 		Encode::from_to( $cruciani, 'utf8', 'shiftjis' );
+		my $tendence = "テンデンス";
+		Encode::from_to( $tendence, 'utf8', 'shiftjis' );
 		# レディースの取り扱いのブランドを探す
-		if($global_entry_goods_category eq $chums || $global_entry_goods_category eq $muta || $global_entry_goods_category eq $johnstons || $global_entry_goods_category eq $cruciani){
+		if($global_entry_goods_category eq $chums || $global_entry_goods_category eq $muta || $global_entry_goods_category eq $johnstons || $global_entry_goods_category eq $cruciani || $global_entry_goods_category eq $tendence){
 			if($global_entry_goods_category eq $chums){
 				my $chums_wm = "チャムス WOMEN'S";
 				Encode::from_to( $chums_wm, 'utf8', 'shiftjis' );
@@ -1438,6 +1440,12 @@ sub add_rakuten_itemcat_data {
 				my $cruciani_wm = "クルチアーニ WOMEN'S";
 				Encode::from_to( $cruciani_wm, 'utf8', 'shiftjis' );
 				$global_entry_goods_category = $cruciani_wm;
+				                                                
+			}
+			elsif($global_entry_goods_category eq $tendence){
+				my $tendence_wm = "テンデンス WOMEN'S";
+				Encode::from_to( $tendence_wm, 'utf8', 'shiftjis' );
+				$global_entry_goods_category = $tendence_wm;
 				                                                
 			}
 			foreach my $genre_goods_num ( sort keys %global_entry_genre_goods_info ) {
@@ -2112,7 +2120,7 @@ HTML_STR_6
 	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
 	$goods_comment_1 =~ s/$before_rep_str6/$after_rep_str6/;
 	# ジョンストンズのリンク削除
-	my $after_rep_str7="";
+	my $after_rep_str7="<br /><br /><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/johnston/johnstons_authorised.jpg\" alt=\"johnstons\" />";
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
@@ -2256,7 +2264,7 @@ HTML_STR_6_2
 my $html_str7=
 <<"HTML_STR_7";
 <div>
-<p class="campaign"><a href ="http://www.rakuten.ne.jp/gold/hff/review/review2014.html"><img src="http://www.rakuten.ne.jp/gold/hff/img/common/new_main_coupon_w726b.gif" alt="Special Campaign レビューを書いて商品券をGET! VJAギフトカード 5,000円分が5名様に当たる！！" /></a></p>
+<p class="campaign"><a href ="http://www.rakuten.ne.jp/gold/hff/review/review2015.html"><img src="http://www.rakuten.ne.jp/gold/hff/img/common/rakuten2015fw_coupon_w726b.gif" alt="Special Campaign レビューを書いて商品券をGET! VJAギフトカード 5,000円分が5名様に当たる！！" /></a></p>
 <div class="textInfo">
 <ul>
 <li>当店では、他店舗と在庫データを共有しているため、まれに売り切れや入荷待ちの場合がございます。</li>
@@ -2674,7 +2682,7 @@ HTML_STR_2
 	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
 	$goods_comment_1 =~ s/$before_rep_str6/$after_rep_str6/;
 	# ジョンストンズのリンク削除
-	my $after_rep_str7="";
+	my $after_rep_str7="<br /><br /><img src=\"http://image.rakuten.co.jp/hff/cabinet/pic/johnston/johnstons_authorised.jpg\" alt=\"johnstons\" />";
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_comment_1 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
@@ -3197,7 +3205,7 @@ sub create_r_point_term {
 sub create_y_path {
 	# ブランド名を取得
 	my $path=&get_info_from_xml("y_path");
-	# クルチアーニ、ムータ、チャムス、ジョンストンズ、ベグ・スコットランドのとき、WOMEN'Sカテゴリを追加する
+	# クルチアーニ、ムータ、チャムス、ジョンストンズ、ベグ・スコットランド、テンデンスのとき、WOMEN'Sカテゴリを追加する
 	my $cruciani_str = "クルチアーニ/Cruciani";
 	Encode::from_to( $cruciani_str, 'utf8', 'shiftjis' );
 	my $cruciani_wstr = "クルチアーニ WOMEN'S/Cruciani";
@@ -3214,6 +3222,10 @@ sub create_y_path {
 	Encode::from_to( $john_str, 'utf8', 'shiftjis' );
 	my $john_wstr = "ジョンストンズ　WOMEN'S/Johnstons";
 	Encode::from_to( $john_wstr, 'utf8', 'shiftjis' );
+	my $tendence_str = "テンデンス/Tendence";
+	Encode::from_to( $tendence_str, 'utf8', 'shiftjis' );
+	my $tendence_wstr = "テンデンス WOMEN'S/Tendence WOMEN'S";
+	Encode::from_to( $tendence_wstr, 'utf8', 'shiftjis' );
 	# ハッシュの要素数をカウント
 	my $global_entry_genre_count = scalar(values(%global_entry_genre_goods_info));
 	foreach ( my $i = 0; $i <= $global_entry_genre_count-1; $i++) {
@@ -3230,6 +3242,10 @@ sub create_y_path {
 	#　ムータの商品すべて
 	if ($path eq $muta_str){
 		$path .= "\n"."$muta_wstr";
+	}
+	# テンデンスの商品すべて
+	elsif ($path eq $tendence_str){
+		$path .= "\n"."$tendence_wstr";
 	}
 	# ジョンストンズすべて
 	elsif ($path eq $john_str){
@@ -3444,7 +3460,7 @@ HTML_STR_7
 	my $before_rep_str6="http://blog.glober.jp.*1526#repair";
 	$goods_info0 =~ s/$before_rep_str6/$after_rep_str6/;
 	# ジョンストンズのリンク削除
-	my $after_rep_str7="";
+	my $after_rep_str7="<br /><br /><img src=\"http://shopping.c.yimg.jp/lib/hff/johnstons_authorised.jpg\" alt=\"johnstons\" />";
 	my $before_rep_str7="<br /><br /><img.*alt=\"johnstons\">";
 	$goods_info0 =~ s/$before_rep_str7/$after_rep_str7/g;
 	# 返品交換のリンク置換
@@ -4234,7 +4250,9 @@ sub create_y_subcode {
 				$tmp_size_str=~ s/\s+/_/g;
 				my $color=0;
 				my @color_key = keys (%global_entry_parents_color_variation);
-				$subcode .= $global_entry_goods_color.":".$tmp_size_str."=".get_5code($global_entry_goods_code).$color_key[0].$size_key;
+				my $tmp_color_str = $global_entry_goods_color;
+				$tmp_color_str=~ s/\s+/_/g;
+				$subcode .= $tmp_color_str.":".$tmp_size_str."=".get_5code($global_entry_goods_code).$color_key[0].$size_key;
 			}
 		}
 		else {
